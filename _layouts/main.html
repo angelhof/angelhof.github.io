@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+{% seo %}
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="index.html" style="color: inherit">{{ site.title }}</a></h1> 
+        <p>{{ site.introduction }}</p>
+	
+	<p class="view"><a href="about.html">About me</a></p>
+	<p class="view"><a href="files/cv_konstantinos_kallas.pdf">Curriculum Vitae</a></p>
+	
+        <a href="{{ site.github.owner_url }}">
+	  <img src="assets/GitHub-Mark-64px.png"  style="width:24px;height:24px;border:0;">
+	</a>
+	<a href="https://www.linkedin.com/in/konstantinoskallas/">
+	  <img src="assets/In-Black-48px.png"  style="width:24px;height:24px;border:0;">
+	</a>
+
+      </header>
+      <section>
+
+      {{ content }}
+
+      </section>
+      <footer>
+	<p>Last modified at: {% last_modified_at %d-%m-%Y %}</p>
+	<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+    
+
+  {% if site.google_analytics %}
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '{{ site.google_analytics }}', 'auto');
+        ga('send', 'pageview');
+    </script>
+  {% endif %}
+  </body>
+</html>
