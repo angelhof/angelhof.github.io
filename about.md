@@ -13,6 +13,6 @@ My research interests are programming languages design and implementation, type 
 
 Throughout my studies I have developed software for many projects with my colleagues. Some notable examples are:  a complete compiler for the language Edsger - [link](https://github.com/angelhof/edsger_compiler), an implementation of the Chord protocol - [link](https://github.com/angelhof/chord-distributed-erlang) and an extension of the SIP Communicator - [link](https://github.com/angelhof/sip-project-extensions). 
 
-I have also participated in Google Summer of Code 2017, where I worked with [Evgeny Khramtsov](https://github.com/zinid) to extend [ejabberd](https://github.com/processone/ejabberd). We implemented a mechanism that facilitates certificate acquiring through the [ACME](https://github.com/ietf-wg-acme/acme) protocol.
+I have also participated in Google Summer of Code 2017, where I worked with [Evgeny Khramtsov](https://github.com/zinid) to extend [ejabberd](https://github.com/processone/ejabberd). We implemented a mechanism that allows certificate acquiring through the [ACME](https://github.com/ietf-wg-acme/acme) protocol.
 
 In my free time I enjoy programming for fun or in programming competitions. I also like playing guitar, mostly improvising with friends.
