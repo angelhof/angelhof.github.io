@@ -4,10 +4,6 @@ title: Solving Problems using Monads 1 - Reachability
 overview: true
 ---
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 # Solving Problems using Monads 1 - Reachability
 
 This is part of a series of posts on solving simple programming problems using Monads. The intention of this series is to help me (and you) learn more about Monads by solving interesting (but simple) programming problems.
