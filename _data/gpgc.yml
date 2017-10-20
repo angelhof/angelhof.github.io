@@ -7,5 +7,5 @@ label_color: 666666
 github_application:
   client_id: 162d13607faddb1303b5
   code_authenticator: https://gp-comments.herokuapp.com/authenticate/
-  callback_url: http://angelhof.github.io/public/html/gpgc_redirect/index.html
+  callback_url: https://angelhof.github.io/public/html/gpgc_redirect.html
 enable_diagnostics: false
