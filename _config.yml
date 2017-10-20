@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 title: Konstantinos Kallas
-introduction: I am an computer engineering student at National Technical University of Athens. I enjoy studying about programming languages and developing software.   
+introduction: I am an computer engineering student at National Technical University of Athens. I enjoy studying about programming languages and developing software. This is my personal blog, where I sometimes post about things that interest me.
 
 plugins:
   - jekyll-paginate
