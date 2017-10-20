@@ -7,6 +7,8 @@
 {% seo %}
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <!-- This exists for the comments -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/public/css/gpgc_styles.css">
     <meta name="viewport" content="width=device-width">
   </head>
   <body>
@@ -32,6 +34,9 @@
 
       {{ content }}
 
+      <!-- This exists here for the comments -->
+      {% include gpgc_comments.html post_title=page.title %}
+      
       </section>
       <footer>
 	<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>

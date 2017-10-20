@@ -1,0 +1,11 @@
+repo_owner: angelhof
+repo_name: angelhof.github.io
+disabled: false
+use_show_action: false
+label_name: Post Comments
+label_color: 666666
+github_application:
+  client_id: 162d13607faddb1303b5
+  code_authenticator: https://gp-comments.herokuapp.com/authenticate/
+  callback_url: http://angelhof.github.io/public/html/gpgc_redirect/index.html
+enable_diagnostics: false
