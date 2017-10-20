@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: post
 title: Solving Problems using Monads 1 - Reachability
 overview: true
 ---

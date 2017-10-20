@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: default
 title: About Me
 overview: true
 permalink: about.html
