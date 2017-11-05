@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<header>
+  <h1><a href="/index.html" style="color: inherit">{{ site.title }}</a></h1> 
+  <p>{{ site.introduction }}</p>
+
+  <p class="view">Contact: (λl d -> concat [l, "@", d]) "konstantinos.kallas" "hotmail.com"</p>
+
+  <p class="view"><a href="/about.html">About me</a></p>
+  <p class="view"><a href="/files/cv_konstantinos_kallas.pdf">Curriculum Vitae</a></p>
+  
+  <a href="{{ site.github.owner_url }}">
+    <img src="/assets/GitHub-Mark-64px.png"  style="width:24px;height:24px;border:0;">
+  </a>
+  <a href="https://www.linkedin.com/in/konstantinoskallas/">
+    <img src="/assets/In-Black-48px.png"  style="width:24px;height:24px;border:0;">
+  </a>
+
+</header>
+
+<section>
+  
+  {{ content }}
+  
+</section>
+
+<footer>
+  <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+</footer>
