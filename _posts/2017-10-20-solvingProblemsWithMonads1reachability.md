@@ -4,8 +4,6 @@ title: Solving Problems using Monads 1 - Reachability
 overview: true
 ---
 
-# Solving Problems using Monads 1 - Reachability
-
 This is part of a series of posts on solving simple programming problems using Monads. The intention of this series is to help me (and you) learn more about Monads by solving interesting (but simple) programming problems.
 
 Searching for a simple problem to start the series with, I stumbled upon [this kata](https://www.codewars.com/kata/53223653a191940f2b000877). It contains a reachability problem for a pair of nodes in a graph. 
