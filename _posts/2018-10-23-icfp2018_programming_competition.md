@@ -99,7 +99,7 @@ print_voxel(R, X, Y, Z, Model) ->
 
 The nanobot moves on a z-axis line, until it reaches the end of the space, where it moves to the next line (by incrementing x) and then moves back to the start of the z-axis (with the `return(z, R, Z)` call). When it reached the end of the x-axis, it moves one plane up (by incrementing y), and it goes to the start of the x and z axes.
 
-Based on that naive solution, the first optimization that we performed was to improve the traversary of a nanobot, by implementing a back and forth movement, instead of having to return to the start of the z-axis everytime the nanobot reached the end of the line. The new `print_voxel` looks like this:
+Based on that naive solution, the first optimization that we performed was to shorten the path of each nanobot, by implementing a back and forth movement, instead of having to return to the start of the z-axis everytime the nanobot reached the end of the line. The new `print_voxel` looks like this:
 
 ```erlang
 print_voxel(Min={_,_,MinZ}, Max={_,_,MaxZ}, Curr={X,Y,Z}, plus, Model, Acc) when Z > MaxZ ->
