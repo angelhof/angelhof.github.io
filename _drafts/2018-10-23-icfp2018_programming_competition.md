@@ -5,7 +5,11 @@ overview: true
 tags: [ICFP, programming contest, Erlang]
 ---
 
-DRAFT: In July, I participated together with a friend of mine, [Achilles Benetopoulos](https://github.com/abenetopoulos), in the ICFP programming contest. Our team name was ["no need for a type system"](https://icfpcontest2018.github.io/lgtn/final-standings.html) because we implemented our solution in Erlang (which has a type system, though not a static one) and at the time (after programming for "a couple" of hours straight) it seemed like a very entertaining name. In this article, I will try to describe the experience of my team  during the lightning round of the ICFP 2018 programming contest, the solution that we submitted, and general ideas and notes that arose because of the contest. Our solution is certainly not the best for the specific problem, but I believe that there is some benefit to be made from documenting the whole process. 
+In July, I participated together with a friend of mine, [Achilles Benetopoulos](https://github.com/abenetopoulos), in the ICFP programming contest. Our team name was ["no need for a type system"](https://icfpcontest2018.github.io/lgtn/final-standings.html) because we implemented our solution in Erlang (which has a type system, though not a static one) and at the time (after programming for "a couple" of hours straight) it seemed like a very entertaining name. On the lightning round we managed to rank on the 10th place (which was surprisingly higher than our expectations).
+
+![Our final rank](/posts_files/icfp2018-final-rank.png)
+
+In this article, I will try to describe the experience of my team  during the lightning round of the ICFP 2018 programming contest, the solution that we submitted, and general ideas and notes that came up during and after the contest. Our solution is certainly not the best for the specific problem, but I believe that there is some benefit from documenting the whole process. 
 
 ## Lightning round problem overview
 
@@ -156,27 +160,40 @@ optimize_seq_trace([Com|Commands], Buffer, Acc) ->
 It not only merges consecutive small move instructions into longer ones, but it also removes opposite move commands by collecting all of the consecutive move instructions in a buffer, and then instantiating them with the least amount of commands whenever a non move command is encountered<sup>[2](#footnote2)</sup>.
 
 
+## Parallel Optimizations
 
-## DRAFT: Parallel Optimizations
+The second optimization direction is increasing the number of nanobots, so that they can print voxels in parallel, thus reducing the total system execution time. However, this introduces new challenges as two nanobots cannot move through the same space during a time step, and nanobots can crash if they try to move through an already printed voxel. Because of that, parallelization should be guided by a strategy that avoids any interference between nanobots and voxels.
 
-- Describe our parallel optimizations, what problems arise when having multiple nanobots moving and printing at the same time, and how we disallow interference between different nanobots.
-- Also talk about the problems of splitting space in different sections for each robot.
+We tried to achieve that "orchestrated" parallelization by partitioning the space in levels based on height, and by assigning a set of those levels to each nanobot in a static fashion (later on we improved this static level assignment by assigning a level to a nanobot only when it is done with its previously assigned level, thus reducing the nanobot idle time). 
+
+By having the space partitioned in levels, we can still use the sequential printing algorithm and optimizations that we implemented before without any changes. Moreover, nanobots can never crash with already printed voxels or with each other when they both move horizontally, and interference is limited between two nanobots when at least one nanobot is transitioning in a vertical manner.
+
+In order to eliminate this "vertical" intereference we constrained parallelization by tweaking it in two ways:
+
+- Each nanobot is allowed to move up and down between different levels on a vertical line that is unique to itself. This way we eliminate interference when both nanobots move vertically<sup>[3](#footnote3)</sup>, and so what is left is to avoid interference in case one nanobot is moving horizontally and the other is moving vertically. This type of interference is eliminated by the next tweak.
+
+- We created an interference checker, which also contains an interpreter of nanobot programs, that executes all nanobot commands in parallel and checks for any possible interference between all pairs of nanobots. When an interference is detected, a __Wait__ instruction is inserted to the vertically moving nanobots' programs, in order to allow any interfering horizontally moving nanobots to complete their moves. It is important to note, that this simplistic collision avoidance algorithm wouldn't work in situations where two nanobots try to move on the opposite (or the same) direction through the same line.
 
 
-- Note: Write something about the analogy of a concurrent system where every process needs to get hold of some resources, those are the lines in the 3d space, so no two processes can claim the same path at the same time.
+## Discussion
+
+In total, our solution was decent but I believe that there were some mistakes in our approach that could be summarized in the following points.
+
+First of all, the way we parallelized our solution felt "ultra-hacky" and not well thought out, as we never seriously considered its correctness during the contest. Our interference elimination algorithm is not general enough, and does not work for all corner cases. Consequently, during the final hours of the contest, we failed really hard when we tried to refine the parallelism strategy to a finer-grain by assigning sections of horizontal levels to each nanobot (instead of the whole level). In retrospect, the nanobot 3D printing system looks very similar to a multi-process concurrent system where processes compete in getting hold of specific resources (where processes are nanobots and resources are sections of the 3D space). Based on that, we could have searched for and applied a much more sophisticated (and provably correct) analysis in order to eliminate interference as there exists a lot of work in the field of concurrent systems. 
+
+In addition, we shouldn't have handled all testcases with the same algorithm, as the smaller (and less dense) sculptures could be printed with much less energy by keeping the system in "low-frequency" and only printing the closest grounded voxel every timestep.
 
 
-## TODO: What is there to get away from all that
+## DRAFT: Conclusion
 
 
-- What is our final solution
-- where do we think that we went worse than the other teams
+
 - Any general conclusion that can be drawn from the above problem?
-
-Note: Say a little bit about the fact that we separately implemented parse, output, and an initial naive solution, just by agreeing on an parse module interface, an output module interface, and the way that state is represented in the main part of the solution. This helped us completely parallelize the dirty initial process, and have a working ultra naive solution in around 3 hours after the beginning of the competition.
+  + Note: Say a little bit about the fact that we separately implemented parse, output, and an initial naive solution, just by agreeing on an parse module interface, an output module interface, and the way that state is represented in the main part of the solution. This helped us completely parallelize the dirty initial process, and have a working ultra naive solution in around 3 hours after the beginning of the competition.
 
 ![Our ranking after about 3 hours](/posts_files/icfp2018-early-rankings.png)
 
+  + It would have been better to approach the parallel optimizations part with more thought and less rushing in order to find a correct algorithm to parallelize in a better way while avoiding interference. As a lot of time had already passed, we were at a point were we were trying to rush find a solution that would just work, but in the end we ended up with having a very bad base to keep on applying parallel optimizations and increasing the grain of parallelism for example.
 
 
 <hr>
@@ -189,9 +206,7 @@ Footnote Section
 
 <a name="footnote2">[2]</a>: Looking back, it seems like merging consecutive move commands, "includes" the bounding box optimization, as all the moves outside of the bounding box would be merged into the least possible amount of moves to reach the bounding box. 
 
-
-
-
+<a name="footnote3">[3]</a>: This is actually the worst type of interference, as it cannot be solved by stalling, but needs a more complicated interference elimination strategy (which gets even more complicated when more than 2 nanobots intefere at the same time step), where one nanobot has to temporarily move to the side, allowing the other nanobot to move, and then return back to its original position to proceed with its move.
 
 
 
