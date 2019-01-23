@@ -6,3 +6,28 @@
 a:hover {
     font-weight: inherit;
 }
+
+ul.bibliography {
+  list-style-type: none;
+  list-style-position: inside;
+  text-indent: -17px;
+  padding-left: 20px;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+ul.bibliography li {
+  margin-bottom: 15px;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+ul.bibliography li.highlight {
+  background-color: #DDDD;
+}
+
+ul.contents {
+  max-width: 600px;
+  padding-left: 1em;
+  list-style: square inside;
+}
