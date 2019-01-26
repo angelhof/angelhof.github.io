@@ -3,11 +3,19 @@ layout: main
 overview: true
 ---
 
-<h1 class="page-heading">Posts</h1>
+<nav>
+  <h3><a href="/index.html" style="color: inherit">About</a></h3>
+  <h3><a href="/pubs.html" style="color: inherit">Papers</a></h3>
+  <h3 class="active"><a href="/blog/index.html" style="color: inherit">Blog</a></h3>
+</nav>
+
+<hr>
+
+<h2 class="page-heading">Posts</h2>
 
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
   <p class="author">
     <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
   </p>
