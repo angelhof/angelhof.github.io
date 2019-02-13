@@ -1,6 +1,5 @@
 theme: jekyll-theme-minimal
 title: Konstantinos Kallas
-introduction: I am a PhD student in the PL Group at the University of Pennsylvania. My research interest lies between programming languages, verification, and distributed systems. I am particularly interested in ways of making software and programming in general more reliable and secure.
 
 plugins:
   - jekyll-paginate
