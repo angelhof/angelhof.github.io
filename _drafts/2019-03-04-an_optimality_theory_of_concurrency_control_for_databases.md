@@ -6,8 +6,6 @@ tags: [serialization, concurrency, weak-serialization, scheduling, paper, linear
 ---
 **TODO: Bazw ta links ths bibliografias**
 
-**TODO: Ftiaxnw ta footnotes san tou Tim Urban**
-
 This blog post is an intro to a (possibly long) series of posts that revolve around correctness criteria of concurrent objects and systems, most notably linearizability, sequential consistency, serializability, etc. My objective is to write those blog posts to help me better understand the above concepts, both because writting helps getting to the bottom of an issue, as well as because of occasional feedback that I might get from any reader.
 
 I was planning to first read several important papers in this field and then organize them in a series of posts and that is why I started reading [Kung & Papadimitriou 78]. However, while reading it I was amazed by their results, and I thought that this specific paper might be a post on its own.
@@ -18,7 +16,7 @@ After this long (and possibly unnecessary) introduction let's get right into the
 
 ## Motivation
 
-Object systems[^1] are data systems that are shared among multiple users. An object system, usually comes with a description of what it means for the data that it stores to be consistent. It is important for the data that is stored in the object system to always satisfy those requirements. For example, imagine a banking system which contains the data about the bank accounts of the bank's clients. A consistency requirement is that an account should never contain negative amounts of money.
+Object systems <a class="footnote" href="#fn-1"><sup>1</sup></a> <span class="footnoteText">A standard instance of an object system is a database.</span>  are data systems that are shared among multiple users. An object system, usually comes with a description of what it means for the data that it stores to be consistent. It is important for the data that is stored in the object system to always satisfy those requirements. For example, imagine a banking system which contains the data about the bank accounts of the bank's clients. A consistency requirement is that an account should never contain negative amounts of money.
 
 User interact with an object system through sequences of requests (aka transactions) that read or update values of the system. Therefore an issue that naturally arises is making sure that executing the user requests on a consistent object system, should preserve its consistency. In a single user environment, this task is relatively simple, since each transaction is executed as a contiguous block, and a transaction starts executing only when the previous has finished. In this setting, the problem reduces to verifying that each transaction preserves the consistency requirements of the object system (if executed on a consistent state of the system). In the multi-user setting however, the problem is much harder, because even if each transaction preserves consistency; arbitrarily interleaving their requests might not.
 
@@ -105,64 +103,98 @@ is the best one can hope for and when also given semantic information, **seriali
 
 > WARNING: The point of this post is to be self-contained, and so below follow some necessary definitions that will allow us to formalize the notions and results discussed in the paper. If you don't want to realy understand the results of this paper formally, skip ahead to [this section](#optimal-schedulers) where the results are presented and explained in a more informal manner.
 
+A transaction system is intuitively a triple of data, integrity constraints, and a set of prespecified transaction programs. In a sense a transaction system is like shared object, containins private fields, a set of invariants (integrity constraints) that must always hold for this data, and a set of methods (transactions) that are used to access and modify the private data.
+
 ### Syntax
 
-**LEFT HERE**
+A _transaction system_ $$T$$ contains a finite set of _transactions_ $$\{T_1, ..., T_n \}$$, where each transaction is a finite sequence of steps $$T_{i1}, ..., T_{im}$$. The transactions operate on a set of _variables_ $$V$$, which are abstract variables and the values that they represent are not important. Each transaction step $$T_{ij}$$ contains a read from a global variable $$x_{ij}$$ to a local variable $$t_{ij}$$ and then an assignment to the global value $$x_{ij} := f_{ij}(t_{i1}, ... t_{ij})$$. Note that the two commands are indivisible, and so each transaction step is executed atomically. Transactions are straight line programs in this simplified model, but their results also apply to more general programs.
 
-**Syntax**
+<!-- **Syntax** -->
 
-By a transaction system, they mean a database (data and integrity constraints) together with a set of prespecified transaction programs. In a sense a database is an object, with private data, invariants or integrity constraints that must always hold for this data, and a set of methods that are used to access and modify the private data.
+<!-- By a transaction system, they mean a database (data and integrity constraints) together with a set of prespecified transaction programs. In a sense a database is an object, with private data, invariants or integrity constraints that must always hold for this data, and a set of methods that are used to access and modify the private data. -->
 
-They define transactions to be *finite* sequences of steps, where each step reads from a global variable to a local one and writes to the global variable, based on the values of the local variables in all previous steps. Note that each step is indivisible (atomic) and that transactions are straight line programs in this simplified model. (They claim that in Section 6 they extend those to transactions defined by more general programs.
-  
-**Semantics**
+<!-- They define transactions to be *finite* sequences of steps, where each step reads from a global variable to a local one and writes to the global variable, based on the values of the local variables in all previous steps. Note that each step is indivisible (atomic) and that transactions are straight line programs in this simplified model. (They claim that in Section 6 they extend those to transactions defined by more general programs. -->
 
-They assume that each transaction is executed only once and that a state of the transaction system T is a triple (J, L, G) where J is a product of program counters which show the next step of each transaction, L is a product of the values of all local variables, and G is a product of the values of all global variables. 
+### Semantics
 
-Integrity constraints can be given as a subset of all possible value products of the global variables. A sequence of transaction steps is said to be **correct** if a serial execution of the steps in the sequence will map any consistent state of the transaction system into a consistent state.
+A state of the transaction system $$T$$ is a triple $$(J, L, G)$$ where:
+- $$J$$ is a tuple of program counters (one for each transaction) showing the next step of each transaction.
+- $$L$$ is a tuple of the values of all local variables.
+- $$G$$ is a product of the values of all global variables $$V$$.
 
-**The basic assumption that they follow (and most other papers in the literature) is that all transactions in a transaction system are correct, so their sequential executions are correct. Verifying that a sequential transaction is correct is a different task, which is supposed to be much easier and orthogonal to the task that all those papers try to solve. All of those papers reason about the subset of interleavings of possible transactions that are correct, given that the transactions themselves are correct.**
+The _integrity constraints_ $$IC$$ can be represented as a subset of all possible $$G$$ values. A state $$(J, L, G)$$ is called _consistent_ if $$G \in IC$$. A sequence of transaction steps is said to be _correct_ if a serial execution of the steps in the sequence maps _any_ consistent state to a consistent state.
 
-At the end of section 2 they give an example of the system that might be useful to use as a guiding example.
+__Note:__ As stated above, the basic assumption that they make in this paper is that all transactions in the transaction system are individually correct, and so the sequential composition of any transactions is also correct. The problem that they are tackling in this paper, i.e. finding an interleaving of transactions that is correct, is orthogonal to the sequential verification of each transaction. 
 
---------------------------------------------------------------------------------------------------
 
-**Schedules**
+<!-- **Semantics** -->
 
-They define a schedule π of a transaction system to be a permutation of the set of steps in $$T$$ such that the
-steps in each specific transaction are kept in order. In practice a schedule is an interleaving of all the transaction steps. The set of all schedules of $$T$$ is denoted by $$H(T)$$. A schedule is said to be **correct** if its execution preserves the consistency of the database. The set of all correct schedules of $$T$$ is denoted by $$C(T)$$. The set $$C(T)$$ is always non empty as it at least contains all serial schedules (the ones that execute one transaction after the other).
+<!-- They assume that each transaction is executed only once and that a state of the transaction system T is a triple (J, L, G) where J is a product of program counters which show the next step of each transaction, L is a product of the values of all local variables, and G is a product of the values of all global variables.  -->
 
-Interpretation:
+<!-- Integrity constraints can be given as a subset of all possible value products of the global variables. A sequence of transaction steps is said to be **correct** if a serial execution of the steps in the sequence will map any consistent state of the transaction system into a consistent state. -->
 
-In this paper they don't really deal with what linearizability deals. There are several main differences to what I think of as linearizability. First of all, transaction steps are strictly atomic. Second, each transaction doesn't return any output, so our observation is always the state of the object. In addition, we have a set of invariants (integrity constraints) that have to always hold during the system execution.
+<!-- **The basic assumption that they follow (and most other papers in the literature) is that all transactions in a transaction system are correct, so their sequential executions are correct. Verifying that a sequential transaction is correct is a different task, which is supposed to be much easier and orthogonal to the task that all those papers try to solve. All of those papers reason about the subset of interleavings of possible transactions that are correct, given that the transactions themselves are correct.** -->
 
-**NOTE: It seems that a very important difference in many of those papers, is what they consider as observable. Is it the outputs of the requests to the system? Is it the system state? Is there a global observable time of requests? All those slight differences in the model, make for (possibly) interesting changes in the different approaches, and I would like to understand whether those different assumptions make a real difference. At least I want to mention this and ensure that I explicitly claim what do I think is observable**
+**TODO: At the end of section 2 they give an example of the system that might be useful to use as a guiding example. Maybe add it**
 
-NOTE: Another important note is that in this work they assume **FIFO communication channels** between each client and the database, so a schedule is always an interleaving where each individual client's requests are not reordered. This is very similar to sequential consistency, so here they already assume that schedules are sequentially consistent. _This makes some sense, because reordering individual client's requests might only need to happen in a distributed object system. **IS THAT CORRECT?**_
+### Schedules
 
---------------------------------------------------------------------------------------------------
+They define a _schedule_ $$\pi$$ of a transaction system to be a permutation of the steps in $$T$$ such that the steps in each specific transaction are kept in order. Intuitively a schedule is an interleaving of all transactions. The set of all schedules of $$T$$ is denoted by $$H(T)$$. Following the definition of correct sequences of transaction steps, a schedule is _correct_ if its execution preserves the consistency of the database. The set of al correct schedules of $$T$$ is denoted by $$C(T)$$. Note that the set $$C(T)$$ is non-empty for all transaction systems, as it contains at least all the serial schedules as described above.
 
-**Scheduler**
+<!-- **Schedules** -->
 
-A scheduler has to transform any schedule to a correct schedule. So it is a mapping S from H to C(T). A scheduler is correct when all its schedules are correct. They measure the **performance** of a scheduler by its fixpoint set P, which is defined to be the largest subset of H satisfying the following:
+<!-- They define a schedule π of a transaction system to be a permutation of the set of steps in $$T$$ such that the -->
+<!-- steps in each specific transaction are kept in order. In practice a schedule is an interleaving of all the transaction steps. The set of all schedules of $$T$$ is denoted by $$H(T)$$. A schedule is said to be **correct** if its execution preserves the consistency of the database. The set of all correct schedules of $$T$$ is denoted by $$C(T)$$. The set $$C(T)$$ is always non empty as it at least contains all serial schedules (the ones that execute one transaction after the other). -->
+
+<!-- Interpretation: -->
+
+<!-- In this paper they don't really deal with what linearizability deals. There are several main differences to what I think of as linearizability. First of all, transaction steps are strictly atomic. Second, each transaction doesn't return any output, so our observation is always the state of the object. In addition, we have a set of invariants (integrity constraints) that have to always hold during the system execution. -->
+
+<!-- **NOTE: It seems that a very important difference in many of those papers, is what they consider as observable. Is it the outputs of the requests to the system? Is it the system state? Is there a global observable time of requests? All those slight differences in the model, make for (possibly) interesting changes in the different approaches, and I would like to understand whether those different assumptions make a real difference. At least I want to mention this and ensure that I explicitly claim what do I think is observable** -->
+
+<!-- NOTE: Another important note is that in this work they assume **FIFO communication channels** between each client and the database, so a schedule is always an interleaving where each individual client's requests are not reordered. This is very similar to sequential consistency, so here they already assume that schedules are sequentially consistent. _This makes some sense, because reordering individual client's requests might only need to happen in a distributed object system. **IS THAT CORRECT?**_ -->
+
+### Scheduler
+
+As stated above, the main problem that the paper deals with is designing a concurrency access control mechanism that orders (serializes) transaction steps from individual users, preserving the database consistency while not degrading performance. From now on, we will call the concurrency access control mechanism a _scheduler_. Formally a scheduler is a mapping $$S$$ from $$H$$ to $$C(T)$$. A scheduler is correct when it only produces correct schedules, $$S(H) \subseteq C(T)$$. 
+
+An interesting point is how they measure the performance of a scheduler. They define the performance of a scheduler $$S$$ to be its _fixpoint set_ $$P$$, which is defined to be the largest subset of $$H(T)$$ satisfying:
 
 $$
-S(h) = h \forall h \in P
+\forall h \in P : S(h) = h 
 $$
 
-In a sense, a scheduler's fixpoint set, is the set of execution request sequences (schedules) that the scheduler keeps intact, without changing (it grants requests in the same order that they arrive). **NOTE: This is clearly not a universal performance metric but they explain in Section 6 why it is good enough**
+In a sense, a scheduler's fixpoint set is the set of transaction step sequences (schedules) that the scheduler keeps intact, allowing them to be executed in the order that they appear. At first sight, it is not clear why this performance metric makes sense, however they justify why the size of the fixpoint set correlates with the waiting time for each user (which can also be thought of as the latency of a request).
+- Assuming that the probability distribution schedules is uniform, the probability that none of the transaction steps have to wait is $$\|P\|/\|H\|$$.
+- The more schedules $$P$$ contains, the "easier" it is to rearrange a history originaly not in $$P$$ into one in $$P$$.
+- If the fixpoint set of a scheduler $$S_1$$ is a strict superset of the fixpoint set of a scheduler $$S_2$$, then scheduler $$S_1$$ is clearly better performing than scheduler $$S_2$$, so this metric allows them to partially order schedulers based on their performance.
 
-Except for the performance of the scheduler (aka how long do requests have to wait until they are released), we must also think about the cost of the scheduler making decisions. This is either the information or the time thata scheduler requires to make a decision. In this work they derive upper bounds on the performance of schedulers based solely on the **information** that they use (the time that a scheduler needs to make its decisions is addressed in [Papadimitriou 78]).
+Except for the performance of the scheduler (i.e. how long do transaction steps have to wait until they are released), we must also think about the cost of the scheduler making decisions. In this paper, they address the _information_ that the scheduler needs to make a decision, whereas in [Papadimitriou 78] they examine the time that schedulers need to make decisions in relation to their performance.
 
-Ideally we would want P to be equal to C(T), so that the scheduler lets all correct schedules pass intact. However, this is not always possible nor desirable because of the need for a lot of information. Below, they capture this in a formal theorem. What is a formal model of the information abailable to a scheduler S.
+The fixpoint set $$P$ of an optimal scheduler (performance wise) would be equal to $$C(T)$$, as it would let all correct schedules be executed without any reordering. However, it is not always possible (nor sometimes desirable) to have a scheduler that executes all correct schedules in the order that they happened, because of the amount of information needed. 
 
---------------------------------------------------------------------------------------------------
+<!-- **Scheduler** -->
+
+<!-- A scheduler has to transform any schedule to a correct schedule. So it is a mapping S from H to C(T). A scheduler is correct when all its schedules are correct. They measure the **performance** of a scheduler by its fixpoint set P, which is defined to be the largest subset of H satisfying the following: -->
+
+<!-- In a sense, a scheduler's fixpoint set, is the set of execution request sequences (schedules) that the scheduler keeps intact, without changing (it grants requests in the same order that they arrive). **NOTE: This is clearly not a universal performance metric but they explain in Section 6 why it is good enough** -->
+
+<!-- Except for the performance of the scheduler (aka how long do requests have to wait until they are released), we must also think about the cost of the scheduler making decisions. This is either the information or the time thata scheduler requires to make a decision. In this work they derive upper bounds on the performance of schedulers based solely on the **information** that they use (the time that a scheduler needs to make its decisions is addressed in [Papadimitriou 78]). -->
+
+<!-- Ideally we would want P to be equal to C(T), so that the scheduler lets all correct schedules pass intact. However, this is not always possible nor desirable because of the need for a lot of information. Below, they capture this in a formal theorem. What is a formal model of the information abailable to a scheduler S. -->
 
 ## Information Levels
 
-**A format theory**
+### A formal theory
 
-A **level of information** available to a scheduler about a transaction system T is a set I of transaction systems that contains T. Intuitively, if S keeps this level of information, it know that T is among I, but doesn't know exactly which. 
+In order to capture this relation of the information available to the scheduler with its performance, it is important to formally define the notion of information.
+
+We say that a _level of information_ that is available to a scheduler about a transaction system $$T$$ is a set $$I$$ of transaction systems that contains $$T$$. Intuitively, the scheduler knows that $$T$$ is in $$I$$ but cannot distinguish it from the rest of the transaction systems.
+
+
+<!-- **A format theory** -->
+
+<!-- A **level of information** available to a scheduler about a transaction system T is a set I of transaction systems that contains T. Intuitively, if S keeps this level of information, it know that T is among I, but doesn't know exactly which.  -->
 
 
 **SIDE NOTE: Abstractions, Operations, and the properties that they have to satisfy**
@@ -263,9 +295,3 @@ Denote by WSR(T) the set of all weakly serializable schedules of T. It is clear 
 ## Discussion
 
 <hr>
-
-{% comment %}
-Footnote Section
-{% endcomment %}
-
-[^1]: A standard instance of an object system is a database.

@@ -74,7 +74,7 @@ There are two main optimization directions, one is improving the sequential perf
 
 ## Sequential Optimizations
 
-In theory, an optimal sequential strategy would visit the voxels that a nanobot needs to print with the goal of minimizing the movement (both in distance and in rounds) that the nanobot needs to do. Well this problem sounds familiar ([TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem)) and we decided that it was not a feasible solution to the problem. At that time we also thought that a solution like this could introduce a lot of crashes of a robot with the already produced voxels<sup>[1](#footnote1)</sup>. Based on the above, we decided to go for a greedier approach.
+In theory, an optimal sequential strategy would visit the voxels that a nanobot needs to print with the goal of minimizing the movement (both in distance and in rounds) that the nanobot needs to do. Well this problem sounds familiar ([TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem)) and we decided that it was not a feasible solution to the problem. At that time we also thought that a solution like this could introduce a lot of crashes of a robot with the already produced voxels<a class="footnote" href="#fn-1"><sup>1</sup></a>.<span class="footnoteText">In retrospect, it seems like if a nanobot is going to crash to a voxel at round `r2` that was already produced by itself at round `r1`, it means that it could have delayed printing this voxel until the round `r2` as it would pass from there a second time. Thus if a nanobot prints all voxels at the latest possible time, then it will never crash with voxels created by itself. However this does not hold when many robots are printing voxels concurrently.</span> Based on the above, we decided to go for a greedier approach.
 
 As I also mentioned before, in our naive solution a nanobot traverses the whole 3D space and for every voxel that it passes, it checks whether it should print it or not as follows:
 
@@ -159,7 +159,7 @@ optimize_seq_trace([Com|Commands], Buffer, Acc) ->
   end.
 ```
 
-It doesn't only merge consecutive small move instructions into longer ones, but it also removes opposite move commands by collecting all of the consecutive move instructions in a buffer, and then instantiating them with the least amount of commands whenever a non move command is encountered<sup>[2](#footnote2)</sup>.
+It doesn't only merge consecutive small move instructions into longer ones, but it also removes opposite move commands by collecting all of the consecutive move instructions in a buffer, and then instantiating them with the least amount of commands whenever a non move command is encountered<a class="footnote" href="#fn-2"><sup>2</sup></a>.<span class="footnoteText">Looking back, it seems like merging consecutive move commands, "includes" the bounding box optimization, as all the moves outside of the bounding box would be merged into the least possible amount of moves to reach the bounding box.</span>
 
 
 ## Parallel Optimizations
@@ -170,7 +170,7 @@ We tried to achieve that "orchestrated" parallelization by partitioning the spac
 
 By having the space partitioned in levels, we can still use the sequential printing algorithm and optimizations that we implemented before without any changes. Moreover, nanobots can never crash with already printed voxels or with each other when they both move horizontally, and interference is limited between two nanobots when at least one nanobot is transitioning in a vertical manner.
 
-In order to eliminate this "vertical" intereference, we constrained parallelization in the following way. Each nanobot is allowed to move up and down between different levels on a vertical line that is unique to itself. This way we eliminate interference when both nanobots move vertically<sup>[3](#footnote3)</sup>.
+In order to eliminate this "vertical" intereference, we constrained parallelization in the following way. Each nanobot is allowed to move up and down between different levels on a vertical line that is unique to itself. This way we eliminate interference when both nanobots move vertically<a class="footnote" href="#fn-3"><sup>3</sup></a>.<span class="footnoteText">This is actually the worst type of interference, as it cannot be solved by stalling, but needs a more complicated interference elimination strategy (which gets even more complicated when more than 2 nanobots intefere at the same time step), where one nanobot has to temporarily move to the side, allowing the other nanobot to move, and then return back to its original position to proceed with its move.</span>
 
 Finally, we created an interference checker, which also contains an interpreter of nanobot programs, that executes all nanobot commands in parallel and checks for any possible interference between all pairs of nanobots. When an interference is detected, a __Wait__ instruction is inserted to the vertically moving nanobots' programs, in order to allow any interfering horizontally moving nanobots to complete their moves. It is important to note, that this simplistic collision avoidance algorithm wouldn't work in situations where two nanobots try to move on the opposite (or the same) direction through the same line.
 
@@ -190,16 +190,3 @@ On the contrary, a final positive note is that I was surprised by how fast we ma
 
 
 <hr>
-
-{% comment %}
-Footnote Section
-{% endcomment %}
-
-<a name="footnote1">[1]</a>: In retrospect, it seems like if a nanobot is going to crash to a voxel at round `r2` that was already produced by itself at round `r1`, it means that it could have delayed printing this voxel until the round `r2` as it would pass from there a second time. Thus if a nanobot prints all voxels at the latest possible time, then it will never crash with voxels created by itself. However this does not hold when many robots are printing voxels concurrently.
-
-<a name="footnote2">[2]</a>: Looking back, it seems like merging consecutive move commands, "includes" the bounding box optimization, as all the moves outside of the bounding box would be merged into the least possible amount of moves to reach the bounding box. 
-
-<a name="footnote3">[3]</a>: This is actually the worst type of interference, as it cannot be solved by stalling, but needs a more complicated interference elimination strategy (which gets even more complicated when more than 2 nanobots intefere at the same time step), where one nanobot has to temporarily move to the side, allowing the other nanobot to move, and then return back to its original position to proceed with its move.
-
-
-

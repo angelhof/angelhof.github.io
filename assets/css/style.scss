@@ -3,6 +3,36 @@
 
 @import "{{ site.theme }}";
 
+a.footnote sup {
+   text-decoration:none;
+   background-color: #b2ceff;
+   color: black;
+   border-radius: 5px;
+   padding-left: 3px;
+   padding-right: 3px;
+   margin-right: 2px;
+} 
+
+.footnoteText {
+   z-index: 1;
+   display: none;
+   opacity: 0;
+   position: relative;
+   color: black;
+   margin-left: 0px;
+   margin-right: 18px;
+   padding:14px 20px;
+   border-radius:4px; box-shadow: 5px 5px 8px #CCC;
+   border:1px solid #DCA;
+   background-color: #fffadd;
+}
+.footnote:focus + .footnoteText {
+   display: block;
+   opacity: 1;
+   }
+.close:focus .footnoteText {display: none;}
+
+
 a:hover {
     font-weight: inherit;
 }
