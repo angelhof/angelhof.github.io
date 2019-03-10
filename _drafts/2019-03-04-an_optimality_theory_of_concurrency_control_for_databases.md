@@ -16,7 +16,7 @@ After this long (and possibly unnecessary) introduction let's get right into the
 
 ## Motivation
 
-Object systems <a class="footnote" href="#fn-1"><sup>1</sup></a> <span class="footnoteText">A standard instance of an object system is a database.</span>  are data systems that are shared among multiple users. An object system, usually comes with a description of what it means for the data that it stores to be consistent. It is important for the data that is stored in the object system to always satisfy those requirements. For example, imagine a banking system which contains the data about the bank accounts of the bank's clients. A consistency requirement is that an account should never contain negative amounts of money.
+Object systems are data systems that are shared among multiple users. An object system, usually comes with a description of what it means for the data that it stores to be consistent<a class="footnote" href="#fn-1"><sup>1</sup></a>. <span class="footnoteText">A standard instance of an object system is a database.</span> It is important for the data that is stored in the object system to always satisfy those requirements. For example, imagine a banking system which contains the data about the bank accounts of the bank's clients. A consistency requirement is that an account should never contain negative amounts of money.
 
 User interact with an object system through sequences of requests (aka transactions) that read or update values of the system. Therefore an issue that naturally arises is making sure that executing the user requests on a consistent object system, should preserve its consistency. In a single user environment, this task is relatively simple, since each transaction is executed as a contiguous block, and a transaction starts executing only when the previous has finished. In this setting, the problem reduces to verifying that each transaction preserves the consistency requirements of the object system (if executed on a consistent state of the system). In the multi-user setting however, the problem is much harder, because even if each transaction preserves consistency; arbitrarily interleaving their requests might not.
 
@@ -171,7 +171,7 @@ In a sense, a scheduler's fixpoint set is the set of transaction step sequences 
 
 Except for the performance of the scheduler (i.e. how long do transaction steps have to wait until they are released), we must also think about the cost of the scheduler making decisions. In this paper, they address the _information_ that the scheduler needs to make a decision, whereas in [Papadimitriou 78] they examine the time that schedulers need to make decisions in relation to their performance.
 
-The fixpoint set $$P$ of an optimal scheduler (performance wise) would be equal to $$C(T)$$, as it would let all correct schedules be executed without any reordering. However, it is not always possible (nor sometimes desirable) to have a scheduler that executes all correct schedules in the order that they happened, because of the amount of information needed. 
+The fixpoint set $$P$$ of an optimal scheduler (performance wise) would be equal to $$C(T)$$, as it would let all correct schedules be executed without any reordering. However, it is not always possible (nor sometimes desirable) to have a scheduler that executes all correct schedules in the order that they happened, because of the amount of information needed. 
 
 <!-- **Scheduler** -->
 
@@ -185,11 +185,12 @@ The fixpoint set $$P$ of an optimal scheduler (performance wise) would be equal 
 
 ## Information Levels
 
-### A formal theory
-
 In order to capture this relation of the information available to the scheduler with its performance, it is important to formally define the notion of information.
 
-We say that a _level of information_ that is available to a scheduler about a transaction system $$T$$ is a set $$I$$ of transaction systems that contains $$T$$. Intuitively, the scheduler knows that $$T$$ is in $$I$$ but cannot distinguish it from the rest of the transaction systems.
+We say that a _level of information_ that is available to a scheduler about a transaction system $$T$$ is a set $$I$$ of transaction systems that contains $$T$$. Intuitively, the scheduler knows that $$T$$ is in $$I$$ but cannot distinguish it from the rest of the transaction systems. Alternatively, one could think about $$I$$ as a function that maps any transaction system to an information object $$I(T)$$. Then two transaction systems $$T$$ and $$T'$$ cannot be distinguished with level of information $$I$$ if they map to the same $$I(T) = I(T')$$.
+
+Now follows one of the main theorems of the paper:
+
 
 
 <!-- **A format theory** -->
@@ -197,39 +198,57 @@ We say that a _level of information_ that is available to a scheduler about a tr
 <!-- A **level of information** available to a scheduler about a transaction system T is a set I of transaction systems that contains T. Intuitively, if S keeps this level of information, it know that T is among I, but doesn't know exactly which.  -->
 
 
-**SIDE NOTE: Abstractions, Operations, and the properties that they have to satisfy**
-NOTE: _I_ represents in a sense the abstraction that the scheduler does. The granularity to which it can distringuish amond different systems using the information that it gets. The more information (observables) the scheduler has, the finer distinctions it can make between different transaction systems, and thus the smaller the set I will be. This is a general phenomenon, when trying to reason about a system (If I am not wrong, it is also the idea behind abstract interpretation). Reasoning about the system itself is undecidable or requires an extreme amount of information, so the system is thought of as a set of systems, that are all equivalent to its other based on the amount of information that we get. Thus any operation or transition that the system does has to be lifted to the set of systems, and that is where imprecision can lead to very bad results. In a sense we want well behaving approximations, abstractions, that is abstractions that are size preserving when we apply to them operations that we would normally only apply to the system itself. For example, an range abstraction on integers, is not well behaving when the operation that we apply on our states/systems is multiplication with numbers larger than one. Because, when we multiply a number in the range [1, 10] with 2, we can only get [2, 4, .., 20], but our range abstraction will return [2, 20]. A point to be made here is that abstractions have to be chosen together with the operations that are to be applied on the abstracted object, and applying the operations on the abstractions must have some nice properties.
+<!-- **SIDE NOTE: Abstractions, Operations, and the properties that they have to satisfy** -->
+<!-- NOTE: _I_ represents in a sense the abstraction that the scheduler does. The granularity to which it can distringuish amond different systems using the information that it gets. The more information (observables) the scheduler has, the finer distinctions it can make between different transaction systems, and thus the smaller the set I will be. This is a general phenomenon, when trying to reason about a system (If I am not wrong, it is also the idea behind abstract interpretation). Reasoning about the system itself is undecidable or requires an extreme amount of information, so the system is thought of as a set of systems, that are all equivalent to its other based on the amount of information that we get. Thus any operation or transition that the system does has to be lifted to the set of systems, and that is where imprecision can lead to very bad results. In a sense we want well behaving approximations, abstractions, that is abstractions that are size preserving when we apply to them operations that we would normally only apply to the system itself. For example, an range abstraction on integers, is not well behaving when the operation that we apply on our states/systems is multiplication with numbers larger than one. Because, when we multiply a number in the range [1, 10] with 2, we can only get [2, 4, .., 20], but our range abstraction will return [2, 20]. A point to be made here is that abstractions have to be chosen together with the operations that are to be applied on the abstracted object, and applying the operations on the abstractions must have some nice properties. -->
 
-Alternatively we could define I as a projection that maps any transaction system to an object I(T). Then two transaction systems T T', can not be distinguished with level information I, if they map to the same I(T) = I(T').
+<!-- Alternatively we could define I as a projection that maps any transaction system to an object I(T). Then two transaction systems T T', can not be distinguished with level information I, if they map to the same I(T) = I(T'). -->
 
-**Theorem 1:** 
-For any scheduler using information I, its fixpoint set P must satisfy:
+> **Theorem 1:** 
+> For any scheduler using information I, its fixpoint set P must satisfy:
+>
+> $$
+> P \subseteq \bigcap_{(T' \in I)} C(T')
+> $$
+
+The scheduler cannot distinguish between the different transaction systems in $$I$$, and because of that, all the schedules that it allows to be executed without any reordering, have to be in the correct schedule sets of all the indistinguishable transaction systems in $$I$$. Otherwise the scheduler might end up allowing an incorrect schedule to be executed as is, which would lead to an inconsistent state. Thus, this upper bound on $$P$$ indictates, that the coarser the level of information that is available to the scheduler, the less efficient the scheduler can be. 
+
+<!-- **SIDE NOTE: It seems like in general when we want to prove something for all, we can assume for contradiction that one of the forall doesn't hold, and then use an adversary to somehow expose that one that doesn't work and create a contradiction.** -->
+
+As a corollary, an optimal scheduler (in regards to the size of the fixpoint set as a metric of performance), has:
 
 $$
-P \subseteq \bigcap_{(T' \in I)} C(T')
+P = \bigcap_{(T' \in I)} C(T')
 $$
 
-The scheduler cannot distinguish between the different transaction systems in I, and because of that, all the schedules that it allows intact, have to be in the correct sets of schedules of all the indistinguishable transaction systems in I. Otherwise the scheduler might end up allowing a non correct schedule to pass, which should certainly not be allowed. Thus this upper bound on P shows what is the largest P we can hope to achieve with a specific amount/level of information. The proof of this theorem uses an adversary argument.
+Using the above definitions of levels of information and performance, we can partially order schedulers based on sophistication (a scheduler $$S$$ is more sophisticated than $$S'$$, if it uses finer information for its decisions $$I \subseteq I'$$) and we can also partially order them in respect to performance ($$S$$ performs better than $$S'$$, if $$P' \subseteq P$$). 
 
-**SIDE NOTE: It seems like in general when we want to prove something for all, we can assume for contradiction that one of the forall doesn't hold, and then use an adversary to somehow expose that one that doesn't work and create a contradiction.**
+Then, the mapping from a level of information $$I$$ to the fixpoint set of the optimal scheduler for $$I$$ captures the trade-off between scheduler information and performance. As stated above, the more information the scheduler has, the better performance it can have.
 
-As a corollary, an optimal scheduler (in regards to this metric of performance, has a fixpoint set P equal to this upper bound. 
+<!-- Using the above definitions of levels of information and performance, we can partially order schedulers based on sophistication (A scheduler S is more sophisticated than S', if I \subseteq I') and we can also partially order them in respect to performance (S performs better than S', if P' \subseteq P). Then the mapping from any level of information I to the fixpoint set of the optimal scheduler for I: -->
 
-Using the above definitions of levels of information and performance, we can partially order schedulers based on sophistication (A scheduler S is more sophisticated than S', if I \subseteq I') and we can also partially order them in respect to performance (S performs better than S', if P' \subseteq P). Then the mapping from any level of information I to the fixpoint set of the optimal scheduler for I:
+<!-- I -> P (= \bugcap ...) is a natural *isomorphism* between these two partially ordered sets. This capture the fundamental trade-off between scheduler information and performance. If I \subseteq I', then P' \subseteq P, for the optimal schedulers. -->
 
-I -> P (= \bugcap ...) is a natural *isomorphism* between these two partially ordered sets. This capture the fundamental trade-off between scheduler information and performance. If I \subseteq I', then P' \subseteq P, for the optimal schedulers.
-
---------------------------------------------------------------------------------------------------
 
 ## Optimal Schedulers
 
-**Maximum and Minimum Information Optimal Schedulers**
+We have now arrived to the main section of the paper, which contains results about optimal schedulers for several standard levels of information. 
 
-The optimal **maximum information** scheduler has I = {T} and because of that P = C(T).
+### Maximum and Minimum Information Optimal Schedulers
 
-The optimal **minimum information** scheduler produces only serial schedules, and thus only has serial schedules in its P. The proof is clear, by just constructing a contradiction when a scheduler with minimum information produces any non serial schedule interleaving.
+The optimal _maximum information_ scheduler knows all the information about the transaction system $$I = \{T\}$$ and because of that $$P = C(T)$$.
 
---------------------------------------------------------------------------------------------------
+The optimal _minimum information_ scheduler produces only serial schedules, that is schedules where each transaction is executed after another finishes and only one transaction is executed at each time. Those schedules are correct by definition as performing a transaction on a consistent state, returns a consistent state. 
+
+<!-- **Maximum and Minimum Information Optimal Schedulers** -->
+
+<!-- The optimal **maximum information** scheduler has I = {T} and because of that P = C(T). -->
+
+<!-- The optimal **minimum information** scheduler produces only serial schedules, and thus only has serial schedules in its P. The proof is clear, by just constructing a contradiction when a scheduler with minimum information produces any non serial schedule interleaving. -->
+
+
+### Optimal Schedulers for Complete Syntactic Information
+
+
 
 **Optimal Schedulers for Complete Syntactic Information** (WOW)
 
@@ -293,5 +312,22 @@ A schedule h is said to be weakly serializable, if starting from any state E, th
 Denote by WSR(T) the set of all weakly serializable schedules of T. It is clear that SR(T) \subseteq WSR(T). The weak serialization scheduler is defined to be S that satisfies: P = WSR(T) and S(H) = P for any T. Similarly to above, it holds that the weak serialization scheduler is optimal among all schedulers using all information (syntactic and semantic) but the integrity constraints. 
 
 ## Discussion
+
+
+**NOTE:** (Κάποια από αυτά αξίζει να μπουν στο ποστ και άλλα στα notes mou.)
+
+To serializability eiani similar με το sequential consistency. Γενικά είναι λίγο ιδιαίτερο αυτό το θέμα, επειδή για να οριστεί καν το linearizability τπρέπει να οριστεί ένα granularity operations, και τι σημαίνει πως ένα operation ολοκληρώνεται πριν αρχίσει ένα άλλο. 
+
+Επειδή δεν υπάρχουν responses στο μοντέλο του Παπαδημητρίου, και όλα τα transaction steps απλά εισέρχονται στο σύστημα, πρέπει να αναδιαμορφώσουμε τους ορισμούς. Οι schedulers στον Παπαδημητρίου έχουν στόχο να βρουν ένα sequentially consistent scheduling των operations που έρχονται. Παρόλαυτα αν θεωρήσουμε πως τα operations είναι τα transactions και όχι τα transaction steps, και το μήκος τους είναι η χρονική περίοδος μέχρι να εκτελεστεί ένα transaaction, τότε οι schedulers του Παπαδημητρίου ψάχνουν για linearizable scheuling, αφού δεν πρόκειται να αλλάξουν την σειρά δύο ολοκληρωμένων operations, afou mporoun apla na kanoun execute to prwto kai meta to deutero (apo to definition oti kathe transaction apo mono tou einai correct). 
+
+**Εναλλακτικά αν θεωρήσουμε πως το ενα operation είναι ένα transaction step, και το σύστημα απαντάει όταν τελειώσει το transaction step, αυτό το definition δεν είναι πολύ comparable με αυτό των Attiya and Welch για παράδειγμα, επειδή εκεί ένας user δεν μπορεί να κάνει queue (pipeline) τα requests του, ενώ εδώ γίνεται. Αντίθετα ένας user δεν μπορεί να κάνει pipeline transactions και πρέπει να περιμένει μέχρι να τελειώσει το πρώτο του για να κάνει κάποιο άλλο. 
+
+To issue ofeiletai sto exhs. Πρακτικά οταν μιλαμε για linearizability και sequential consistency θελουμε ενα συστημα, που οτι τιμες και να επιστρεψει σε καθε operation, αυτές να μπορούν να εξηγηθούν με ενα linearizable h sc reorderign αυτων. Στην περίπτωση του Παπαδημητριου όμως, το σύστημα δεν επιστρέφει κάποια απάντηση, οπότε οποιοδήποτε input schedule είναι και linearizable (kai sequentially consistent). Αυτό που μας ενδιαφέρει στον Παπαδημητρίου είναι να μειώσουμε όσο μπορούμε το latency του κάθε transaction, δηλαδή τον χρόνο από τον οποίο έρχεται το πρώτο transaction step να εκτελεστεί μέχρι τον χρόνο που πραγματικά εκτελείται το τελευταίο transaction step. Για κάθε transaction λοιπόν έχουμε το start time του (ή βασικά ένα oredring τους) (το οποίο είναι η στιγμή που έρχεται για execution το πρώτο transaction step) και ένα ελάχιστο όριο για το end time του (τη στιγμή που έρχεται για execution το τελευταίο transaction step). Έχουμε δηλαδή ήδη ελάχιστες περιόδους για to κάθε operation (transaction). Είναι ξεκάθαρο ότι αν τα καθυστερήσουμε όλα έτσι ώστε να τα έκτελέσουμε ένα ένα, το τελευταίο θα κάνει overlap με πάρα πολλά από αυτα (για την ακρίβεια με όσα δεν τέλειωσαν πριν αυτό ξεκινήσει), και προφανώς είναι linearizable οποιδήποτε reordering τους. Οπότε πραγματικά στον Παπαδημητρίου ψάχνουν για linearizable, και όχι sequentially consistent ordering γιατί βασικά ποτέ δεν θα είχε νόημα να κάνουν reorder δυο transactions (αφού όλα κάνουν commute μεταξύ τους). 
+
+Άρα το point είναι ότι στον Παπαδημητρίου το linearizability κάνει reduce σε sequential consistency γιατι πραγματικά τα transactions κάνουν commute (με κάθε έννοια observation (είτε οι απαντήσεις τους που είναι όλες ίδιες) είτε το τελικό global state που είναι πάντα consistent (άρα και ικανοποιεί το sequential specification)). Σε ένα τέτοιο setting (κυνηγώντας το performance, δεν θα έιχε ποτέ νόημα κάποιος να κάνει reorder δύο operations που το ένα τέλειωσε πριν αρχίσει το άλλο, γιατί όπως και να τα κάνει order, ικανοποιεί το specification, και αν τα κάνει order αλλιώς καθυστερεί τσάμπα τo πρώτο transaction που έτσι και αλλιώς τέλειωσε πριν το άλλο 
+
+ΣΗΜΕΊΩΣΗ: Υπάρχουν διάφορες μικρές λεπτομέρειες που δεν καταλαβίνω ακόμα που έχουν να κάνουν με το ordering, και το response time, γιατι στον Παπαδημητρίπυ τα responses δεν είναι καλά ορισμένα, οπότε πρέπει να καταλάβω τι σημαίνουν με οτν δικό μου ορισμό, και τι σημαίνει να ολοκληρωθεί ένα transaction πριν από ένα άλλο.
+
+ΣΗΜΕΙΩΣΗ 2: Πρακτικά στον Παπαδημητρίου ερευνούν τι γίνεται αν έχεις όλο και πιο καλό sequential specification και πιο refined. Χωρίς καθόλου ππληροφορία το sequential specification που έχεις είναι ότι επιτρέπεις μόνο sequential executions από transactions. Άρα ο scheduler παράγει πολύ μικρό υποσύνολο των πραγματικών correct schedules (τα οποία μπορούν να οριστούν με ένα complete specification των syntax, semantics, integrity constraints). Αν ο scheduler δει και συντακτική πληροφορία, μπορεί να δει μεγαλύτερο κομμάτι των correct schedules. Με όλο περισσότερη πληροφορία βλέπει και μεγαλύτερο κομμάτι των correct schedules. Αντίθετα, στο paper των Attiya & Welch, ψάχνουν για lower bounds (negative impossiblity results) για άπειρη πληροφορία για τα transactions (αλλά με άλλα constraints όπως τον ασυγχρονισμο ρολογιων κτλ).
 
 <hr>
