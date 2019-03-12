@@ -4,13 +4,12 @@ title: Discussing "An optimality theory of concurrency control for databases" by
 overview: true
 tags: [serialization, concurrency, weak-serialization, scheduling, paper, linearizability]
 ---
-**TODO: Bazw ta links ths bibliografias**
 
 This blog post is an intro to a (potentially long) series of posts that revolve around correctness criteria of concurrent objects and systems, most notably linearizability, sequential consistency, serializability, etc. My objective is to write those blog posts to help me better understand the above concepts, because I have found out that writting helps me organize my thoughts on a topic, and as a consequence, understand it more deeply.
 
 I was planning to first read several important papers in this field and then organize them in a series of posts and that is why I started reading [[Kung & Papadimitriou 78](#kung-papadimitriou-1978)]. However, while reading it I was amazed by their results, and I thought that this specific paper might be a post on its own.
 
-In this post, I will try write my thoughts while reading this paper, rephrasing and explaining their results, trying to elaborate more on them. While this post was mostly written to help me understand the paper, I think that it might be helpful to read it side by side with the original paper, to maybe get a firmer grasp of some ideas or implications that could be easily skipped if one doesn't pay too much attention (they certainly did skip me when I first read the paper). As I am far from an expert on this field (maybe not even knowledgable) I would encourage any comment or feedback on anything that is wrong, misphrased, etc of this post.
+In this post, I will try write my thoughts while reading this paper, rephrasing and explaining their results, trying to elaborate more on them. While this post was mostly written to help me understand the paper, I think that it might be helpful to read it side by side with the original paper, to maybe get a firmer grasp of some ideas or implications that could be easily skipped if one doesn't pay too much attention (they certainly did skip me when I first read the paper). As I am far from an expert on this field (maybe not even knowledgable) I would _strongly_ encourage any comment or feedback on anything that is wrong, misphrased, etc in this post.
 
 After this long (and possibly unnecessary) introduction let's get right into the paper.
 
@@ -101,7 +100,7 @@ is the best one can hope for and when also given semantic information, **seriali
 
 ## Transaction Systems
 
-> WARNING: The point of this post is to be self-contained, and so below follow some necessary definitions that will allow us to formalize the notions and results discussed in the paper. If you don't want to realy understand the results of this paper formally, skip ahead to [this section](#optimal-schedulers) where the results are presented and explained in a more informal manner.
+<!-- WARNING: The point of this post is to be self-contained, and so below follow some necessary definitions that will allow us to formalize the notions and results discussed in the paper. If you don't want to realy understand the results of this paper formally, skip ahead to [this section](#optimal-schedulers) where the results are presented and explained in a more informal manner. -->
 
 A transaction system is intuitively a triple of data, integrity constraints, and a set of prespecified transaction programs. In a sense a transaction system is like shared object, containins private fields, a set of invariants (integrity constraints) that must always hold for this data, and a set of methods (transactions) that are used to access and modify the private data.
 
@@ -165,7 +164,8 @@ $$
 $$
 
 In a sense, a scheduler's fixpoint set is the set of transaction step sequences (schedules) that the scheduler keeps intact, allowing them to be executed in the order that they appear. At first sight, it is not clear why this performance metric makes sense, however they justify why the size of the fixpoint set correlates with the waiting time for each user (which can also be thought of as the latency of a request).
-- Assuming that the probability distribution schedules is uniform, the probability that none of the transaction steps have to wait is $$\|P\|/\|H\|$$.
+- Assuming that the probability distribution schedules is uniform, the probability that none of the transaction steps have to wait is 
+$$ |P| / |H| $$.
 - The more schedules $$P$$ contains, the "easier" it is to rearrange a history originaly not in $$P$$ into one in $$P$$.
 - If the fixpoint set of a scheduler $$S_1$$ is a strict superset of the fixpoint set of a scheduler $$S_2$$, then scheduler $$S_1$$ is clearly better performing than scheduler $$S_2$$, so this metric allows them to partially order schedulers based on their performance.
 
@@ -254,8 +254,6 @@ Suppose that all syntactic information about $$T$$ is available, so $$I$$ is the
 
 A serializable schedule is one that cannot be distinguished (by looking at the execution results) by a serial schedule (which is correct by definition). Based on the Herbrand semantics, two final results are equal, when exactly the same function calls and arguments where used to compute them. So "same execution results" means syntactic equality of the expressions used to compute a variable.
 
-**LEFT HERE**
-
 <!-- **Optimal Schedulers for Complete Syntactic Information** (WOW) -->
 
 <!-- Suppose that all syntactic information is available, so I is the set of all transaction systems with the same syntax. (**NOTE(That might be wrong): From what I understand knowing the syntax of the program, means that we know all the names of functions and the arguments that they are given but not the the semantics of the calls themselves. So we don't know what might happen after a call. TODO: Make sure I understand this correctly**)  -->
@@ -266,58 +264,164 @@ A serializable schedule is one that cannot be distinguished (by looking at the e
 
 <!-- (**NOTE 2: A schedule is serializable if we can reorder its steps to a serial one, while keeping the exact same syntactic results. For example the assignment x := f1(x) might sometimes preserve the value of variable x (based on some branching in f1). However, because we only have knowledge of syntax, we can only reorder the assignment x := f1(x) with the assignment x := f1(x) and not with x := f2(x) despite knowing that for x f1 and f2 return the same value.**)  -->
 
-By SR(T) we denote the set of all serializable histories of T. A **serialization scheduler** is defined to be a scheduler S whose P = SR(T) and S(H) = P for any T. So it is the scheduler that allows all serializable schedules to pass without an issue, and that maps every other schedule to a serializable one. In a sense, a serialization scheduler, is "faster" than a serial scheduler because it allows all serializable schedules to pass by intact, and ensures correctness for H by making sure that there exists a reordering of it that gives syntactically equivalent results (under Herbrand semantics) to a serial schedule (which is always correct no matter what). In a sense, the way they make schedulers, is that they build them on top of the simple serial schedulers (which are correct by definition) by allowing them to do equivalent reorderings to schedules to bring them to a serial one. The other approach would be to make sure that the schedule preserves the integrity constraints, but that requires syntactic, semantic, and integrity information, making the problem undecidable(**is it correct that it becomes undecidable?**)
+Let's denote the set of all serializable histories of $$T$$ as $$SR(T)$$. A _serialization scheduler_ is defined to be a scheduler which satisfies:
+
+$$
+\forall T, P = SR(T) \wedge S(H) = P
+$$
+
+So it is a scheduler that allows all serializable schedules to pass without an issue, and maps every other schedule to a serializable one. A serialization scheduler is "faster" compared to a serial scheduler, in the sense that its fixpoint set contains all serializable schedules (which are a superset of serial schedules). It ensures correctness for any history $$h$$ by reordering it to a serial schedule which has the same execution results (under Herbrand semantics) and is correct by definition. 
+
+<!-- By SR(T) we denote the set of all serializable histories of T. A **serialization scheduler** is defined to be a scheduler S whose P = SR(T) and S(H) = P for any T. So it is the scheduler that allows all serializable schedules to pass without an issue, and that maps every other schedule to a serializable one. In a sense, a serialization scheduler, is "faster" than a serial scheduler because it allows all serializable schedules to pass by intact, and ensures correctness for H by making sure that there exists a reordering of it that gives syntactically equivalent results (under Herbrand semantics) to a serial schedule (which is always correct no matter what). In a sense, the way they make schedulers, is that they build them on top of the simple serial schedulers (which are correct by definition) by allowing them to do equivalent reorderings to schedules to bring them to a serial one. The other approach would be to make sure that the schedule preserves the integrity constraints, but that requires syntactic, semantic, and integrity information, making the problem undecidable(**is it correct that it becomes undecidable?**) -->
 
 <!-- **Side Note on Herbrand Semantics:** -->
 <!-- Herbrand semantics is a way to give semantic meaning to syntax, while not losing any information. What it does essentially is to interpret a function call, using the function call syntax itself. It is in a sense like lazy computation, where we keep every function call unintepreted, but we know that it was called. So the semantics of a final assignment migh be f1(x, f2(y,z)). -->
 
+The serialization scheduler intuitively looks well-performing when only given syntactic information. Well now comes the main theorem of the paper and its very elegant proof.
 
-**Theorem 3:** WOW
-The serialization scheduler is:
-1. Correct
-2. Optimal among all schedulers using complete syntactic information.
+> **Theorem 3:** 
+> The serialization scheduler is correct, and is optimal(!) among all schedulers using complete syntactic information.
 
 **Proof:**
-1. To prove correctness (SR(T') \subseteq C(T') for any T' \in I), (so the fact that all serializable schedules are correct), they use Herbrand's theorem [[Manna 74](#manna-1974)] which states that if two sequences of steps are equivalent under the Herbrand interpretation, they are equivalent under any interpretation. 
 
-(Of course this assumes that functions are pure and don't introduce any side effect, so the interpretation of a function call f1(a1, a2, ..., an) only depends on f1, a1, a2, ..., an and nothing else.)
+Let's first focus on correctness, so the fact that the scheduler always produces a correct schedule:
 
-Thus if h \in SR(T') then the execution results of h are the same as those of some serial schedule for T'. This implies that for any h \in SR(T'), the execution of h preserves the consistency of T', as serial schedules all preserve the consistency of T', and thus h \in C(T').
+$$
+\forall T' \in I, SR(T') \subseteq C(T')
+$$
 
-2. To prove optimality, given a history h not \in SR(T), they want to define a transaction system T' \in I(T) such that h not in C(T'). The semantics of T' are the Herbrand interpretation to simplify things. Now they give the stricter possible integrity constraints, that is (a1, a2, ..., ak) \in IC iff there exists a possibly empty sequence S of steps that is a concatenation of serial executions of transactions such that the initial values (v1, v2, ...vk) of the global variables are transformed by S to (a1, a2, ..., ak). By this definition, all transactions are individually correct, and the basic assumption holds. Now it is easy to see that, if h is any history, not in SR(T'), then it transforms the initial values (v1, ..., vk) to a set of values not in IC, so h not in C(T').
+To prove the above, they use Herbrand's theorem [[Manna 74](#manna-1974)] which states that if two sequences of steps are equivalent under the Herbrand interpretation, they are equivalent under any interpretation<a class="footnote" href="#fn-3"><sup>3</sup></a>.
+<span class="footnoteText">Of course this assumes that functions are pure and don't produce any side effect.</span> 
+Thus for every $$h \in SR(T')$$ there exists a serial schedule which has the same execution results with $$h$$. As we know that all serial schedules are correct, the above implies that every $$h \in SR(T')$$ is also correct.
 
-**NOTE:** The optimality proof is based on the idea that a scheduler has to produce correct schedules for any transaction system, under any semantics, and with any integrity constraints. They use that in their favor, to construct a very strict transaction system, using the Herbrand semantics, and the integrity constraints that only serial executions of transactions lead the transaction system to a state that satisfies the IC. 
-To get a better intuition of the construction of a transaction system T' done in the proof, below follows an example (inspired by the Figure1 in section 4.3 of the paper, but slightly different) of a transaction system T' where:
+<!-- **LEFT HERE** -->
 
-A system with one global variable x with initial value x0, and two transactions
-T1: x := f1(x); x := f2(x)
-T2: x := f3(x)
+<!-- **Theorem 3:** -->
+<!-- The serialization scheduler is: -->
+<!-- 1. Correct -->
+<!-- 2. Optimal among all schedulers using complete syntactic information. -->
 
-The set of acceptable final states IC = {x0, x1, x2, x12, x21} 
-where x1 is the value of x after executing T1 so x1 = f2(f1(x0)), similarly x2 = f3(x0)
-and x12 is x after executing T1; T2 so x1 = f3(x1) and similarly x21 = f2(f1(x2)).
+
+<!-- **Proof:** -->
+<!-- 1. To prove correctness (SR(T') \subseteq C(T') for any T' \in I), (so the fact that all serializable schedules are correct), they use Herbrand's theorem [[Manna 74](#manna-1974)] which states that if two sequences of steps are equivalent under the Herbrand interpretation, they are equivalent under any interpretation.  -->
+
+<!-- (Of course this assumes that functions are pure and don't introduce any side effect, so the interpretation of a function call f1(a1, a2, ..., an) only depends on f1, a1, a2, ..., an and nothing else.) -->
+
+<!-- Thus if h \in SR(T') then the execution results of h are the same as those of some serial schedule for T'. This implies that for any h \in SR(T'), the execution of h preserves the consistency of T', as serial schedules all preserve the consistency of T', and thus h \in C(T').-->
+
+
+To prove optimality, they show that for any history $$h \notin SR(T)$$ there exists a transaction system $$T' \in I$$ such that $$h \notin C(T')$$. Because the information that the scheduler has, does not allow it to distinguish between the transaction systems is $$I$$, if the scheduler produces a non serializable schedule $$h$$, then an adversary could force the scheduler to produce this incorrect schedule by giving it to execute the transaction system $$T'$$. 
+
+Based on the above, given a history $$h \notin SR(T)$$, they want to define a transaction system $$T' \in I(T)$$ with very strict integrity constraints, such that $$h \notin C(T')$$. Let the semantics of $$T'$$ be the Herbrand interpretation. Now given the initial values of the global variables $$(v_1, v_2, ..., v_k)$$, the values $$(a1, a2, ..., ak) \in IC$$ if and only if there exists a possibly empty sequence $$S$$ of steps that is a concatenation of _serial executions_ of transactions such that the initial values of the global variables are transformed by $$S$$ to $$(a1, a2, ..., ak)$$. By this definition, all transactions are individually correct, and the basic assumption holds. Now it is easy to see that, if $$h$$ is any history, that doesn't belong to $$SR(T')$$, then it transforms the initial values $$(v1, ..., vk)$$ to values that are not in $$IC$$, so $$h \notin C(T')$$. $$\square$$
+
+<!-- The semantics of T' are the Herbrand interpretation to simplify things. Now they give the stricter possible integrity constraints, that is (a1, a2, ..., ak) \in IC iff there exists a possibly empty sequence S of steps that is a concatenation of serial executions of transactions such that the initial values (v1, v2, ...vk) of the global variables are transformed by S to (a1, a2, ..., ak). By this definition, all transactions are individually correct, and the basic assumption holds. Now it is easy to see that, if h is any history, not in SR(T'), then it transforms the initial values (v1, ..., vk) to a set of values not in IC, so h not in C(T'). -->
+
+<!-- **NOTE:** The optimality proof is based on the idea that a scheduler has to produce correct schedules for any transaction system, under any semantics, and with any integrity constraints. They use that in their favor, to construct a very strict transaction system, using the Herbrand semantics, and the integrity constraints that only serial executions of transactions lead the transaction system to a state that satisfies the IC.  -->
+
+To get a better intuition of the construction of $$T'$$ in the proof, here follows an example (inspired by the _Figure 1_ in section 4.3 of the paper) of such a transaction system $$T'$$.
+
+Suppose $$T'$$ is a system with one global variable $$x$$ with initial value $$x_0$$, and two transactions:
+
+$$
+T_1: x := f_1(x); x := f_2(x) \\
+T_2: x := f_3(x)
+$$
+
+The set of acceptable final states $$IC = \{ x_0, x_1, x_2, x_{12}, x_{21} \}$$ 
+where $$x_1$$ is the value of $$x$$ after executing $$T_1$$, so $$x_1 = f_2(f_1(x_0))$$ (similarly $$x_2 = f_3(x_0)$$) and $$x_{12}$$ is the value of $$x$$ after executing $$T_1; T_2$$, so $$x_1 = f_3(x_1)$$ (similarly $$x_{21} = f_2(f_1(x_2))$$).
 
 Note that for this specific transaction system, the set of serializable schedules is the set of serial schedules, as there is no way to reorder any non serial schedule to give the same results (under Herbarnd semantics) with any serial schedule.
 
-The above theorem shows that given complete syntactic information of the transactions, one can hope to create a scheduler whose P is at most equal to SR(T), because anything more than that wouldn't be correct for some interpretation and integrity constraints. That is why, most approaches to concurrency control (at the time) had serialization as their goal [citations].
+The above theorem shows that given complete syntactic information of the transactions, one can hope to create a scheduler whose fixpoint set $$P$$ is at best equal to $$SR(T)$$, because anything more than that wouldn't be correct for some interpretation and integrity constraints. That is why most approaches to concurrency control (at the time) had serialization as their objective.
 
-**QUESTION: How do we find a serializable schedule in the first place???**
+<!-- To get a better intuition of the construction of a transaction system T' done in the proof, below follows an example (inspired by the Figure1 in section 4.3 of the paper, but slightly different) of a transaction system T' where: -->
 
-In [[Papadimitriou 1978](#papadimitriou-1978)] it is shown that for some transaction systems of restricted syntax, although serialization is intractable (**I guess because all the different serial orderings are exponentially many**), it can be **approximated** by more restrictive schedulers. (See also [Papadimitriou 77]). So in practice, we cannot even expect to get a scheduler with performance P = SR(T).
+<!-- A system with one global variable x with initial value x0, and two transactions -->
+<!-- T1: x := f1(x); x := f2(x) -->
+<!-- T2: x := f3(x) -->
 
---------------------------------------------------------------------------------------------------
+<!-- The set of acceptable final states IC = {x0, x1, x2, x12, x21}  -->
+<!-- where x1 is the value of x after executing T1 so x1 = f2(f1(x0)), similarly x2 = f3(x0) -->
+<!-- and x12 is x after executing T1; T2 so x1 = f3(x1) and similarly x21 = f2(f1(x2)). -->
 
-**Optimal Scheduler for Complete semantic information, without integrity constraints**
+<!-- Note that for this specific transaction system, the set of serializable schedules is the set of serial schedules, as there is no way to reorder any non serial schedule to give the same results (under Herbarnd semantics) with any serial schedule. -->
 
-In the example above, the history h = (T11, T21, T12) is not serializable since its final Herbrand value is not in IC. However, given an interpretation of the functions as f1(x) = x + 1, f2(x) = 2 * x, and f3(x) = 3 * x the history T11, T21, T12 returns the same value for x as the T1;T2 history. This shows, that given semantic information, a serialization scheduler, is not optimal, as we can do better. 
+<!-- The above theorem shows that given complete syntactic information of the transactions, one can hope to create a scheduler whose P is at most equal to SR(T), because anything more than that wouldn't be correct for some interpretation and integrity constraints. That is why, most approaches to concurrency control (at the time) had serialization as their goal [citations]. -->
+
+In practice, we cannot even expect to get a scheduler with $$P = SR(T)$$, as in [[Papadimitriou 1978](#papadimitriou-1978)] it is shown that serialization is intractable, and for some transaction systems of restricted syntax, it can be _approximated_ by more restrictive schedulers. 
+
+<!-- **QUESTION: How do we find a serializable schedule in the first place???** -->
+
+<!-- In [[Papadimitriou 1978](#papadimitriou-1978)] it is shown that for some transaction systems of restricted syntax, although serialization is intractable (**I guess because all the different serial orderings are exponentially many**), it can be **approximated** by more restrictive schedulers. (See also [Papadimitriou 77]). So in practice, we cannot even expect to get a scheduler with performance P = SR(T). -->
+
+### Optimal Schedulers for Complete Semantic Information, without Integrity Constraints
+
+In the example above, the history $$h = T_{11}; T_{21}; T_{12}$$ is not serializable since its final value (under Herbrand semantics) does not satisfy the integrity constraints. However, given an interpretation of the functions as $$f_1(x) = x + 1$$, $$f_2(x) = 2 * x$$, and $$f_3(x) = 3 * x$$ the history $$T_{11}; T_{21}; T_{12}$$ returns the same value for $$x$$ as $$T1;T2$$. This shows, that given semantic information, a serialization scheduler, is not optimal, and we can do better. 
 
 Therefore, they define a generalized notion of serialization as follows:
 
-A schedule h is said to be weakly serializable, if starting from any state E, the execution of the schedule will end with a state that is achievable by some concatenation of transactions, possibly with repetitions and omissions of transactions also starting from state E. This way we extend P to be the set of schedules that lead to a semantically equivalent final state, instead of a syntactically equivalent one (which is semantic equivalence under Herbrand interpretation).
+A schedule $$h$$ is said to be _weakly serializable_<a class="footnote" href="#fn-4"><sup>4</sup></a>,
+<span class="footnoteText">The name _weak serialization_ is (in my opinion) not the best way to define this generalized notion of serializability, because it doesn't indicate anything about its difference with serialization (except that it is weaker).</span> if starting from any state $$E$$, the execution of the schedule will end with a state that is achievable by some concatenation of transactions also starting from state $$E$$. This way the fixpoint set $$P$$ is extended to be the set of schedules that lead to a semantically equivalent final state, instead of a syntactically equivalent one (which is semantic equivalence under Herbrand interpretation).
 
-Denote by WSR(T) the set of all weakly serializable schedules of T. It is clear that SR(T) \subseteq WSR(T). The weak serialization scheduler is defined to be S that satisfies: P = WSR(T) and S(H) = P for any T. Similarly to above, it holds that the weak serialization scheduler is optimal among all schedulers using all information (syntactic and semantic) but the integrity constraints. 
+Denote by $$WSR(T)$$ the set of all weakly serializable schedules of $$T$$. It is clear that $$SR(T) \subseteq WSR(T)$$. The weak serialization scheduler $$S$$ is defined so that it satisfies: 
+$$
+\forall T, P = WSR(T) \wedge S(H) = P
+$$
+
+Similarly to the above theorem, it holds that the weak serialization scheduler is optimal among all schedulers using all information (syntactic and semantic) but the integrity constraints. 
+
+
+<!-- **Optimal Scheduler for Complete semantic information, without integrity constraints** -->
+
+<!-- In the example above, the history h = (T11, T21, T12) is not serializable since its final Herbrand value is not in IC. However, given an interpretation of the functions as f1(x) = x + 1, f2(x) = 2 * x, and f3(x) = 3 * x the history T11, T21, T12 returns the same value for x as the T1;T2 history. This shows, that given semantic information, a serialization scheduler, is not optimal, as we can do better.  -->
+
+<!-- Therefore, they define a generalized notion of serialization as follows: -->
+
+<!-- A schedule h is said to be weakly serializable, if starting from any state E, the execution of the schedule will end with a state that is achievable by some concatenation of transactions, possibly with repetitions and omissions of transactions also starting from state E. This way we extend P to be the set of schedules that lead to a semantically equivalent final state, instead of a syntactically equivalent one (which is semantic equivalence under Herbrand interpretation). -->
+
+<!-- Denote by WSR(T) the set of all weakly serializable schedules of T. It is clear that SR(T) \subseteq WSR(T). The weak serialization scheduler is defined to be S that satisfies: P = WSR(T) and S(H) = P for any T. Similarly to above, it holds that the weak serialization scheduler is optimal among all schedulers using all information (syntactic and semantic) but the integrity constraints.  -->
+
+Note that they don't propose an optimal scheduler that also has access to the integrity constraints.
 
 ## Discussion
+
+An important question is how the above results relate to the real performance of a database that uses a specific scheduler. From the perspective of clients that use this database (by issuing transactions to it), the time for executing a transaction can be divided into three parts:
+
+- _Scheduling time:_ This is the time that it takes for the scheduler to make its decision. It mostly depends on the sophistication of the scheduler and the amount of information that it has available.
+
+- _Waiting time:_ The total time that the scheduler delayed executing each transaction step of a transaction, so that it could preserve consistency.
+
+- _Execution time:_ The time that is actually spent in executing each step of the transaction.
+
+The execution time only depends on the transactions, so it can be considered constant, and the scheduling time depends on several factors and they don't address it directly in this paper. Instead, they mostly focus on the waiting time, and they argue that the fixpoint set $$P$$ is a good metric of the waiting time as described [above](#scheduler). 
+
+Another important issue is that there is an implicit assumption that underlies the model, and that is that all the information is available to the scheduler from the start. This implies that the transactions to be executed are fixed and known by the scheduler statically. However, that is not a reasonable assumption as in practice the scheduler would acquire most information (especially the knowledge about which transactions are to be executed) dynamically as the clients make requests. They pinpoint this issue, and suggest it as future work.
+
+It is also very interesting to try and compare other consistency criteria with serializability (and weak serializability). On first sight, it seems like a connection can be found between serializability and linearizability.
+
+In order to compare serializability with linearizability, we need to define the granularity of operations. We can define each transaction step to be an operation, its start time to be the moment that the user issued it for execution, and its end time to be the moment that its execution finished. 
+
+The scheduler then delays executing each transaction step, until it is safe to do so (according to a sequential specification that depends on the information available to the scheduler). The difference of linearizability and serializability can be found in the following. Linearizability means that each possible execution of a system can be reordered to match a sequential execution of the sequential specification of the system. In the case of this paper however, the focus is on reducing the latency (or waiting time) of the system, so the time between the issuing of a transaction step for execution and the end of its actual execution. Therefore for each operation (transaction step) we have a start time and a lower bound for its end time, which corresponds to the sum of its start time and its execution time. The scheduler chooses an appropriate end time so that the execution is linearizable to one execution of the sequential specification. So the scheduler always produces linearizable executions (as it drags the end time until it is safe to execute its operation). 
+
+So a scheduler in the setting of this paper actually tries to produce the 
+
+ΣΗΜΕΙΩΣΗ 2: Πρακτικά στον Παπαδημητρίου ερευνούν τι γίνεται αν έχεις όλο και πιο καλό sequential specification και πιο refined. Χωρίς καθόλου ππληροφορία το sequential specification που έχεις είναι ότι επιτρέπεις μόνο sequential executions από transactions. Άρα ο scheduler παράγει πολύ μικρό υποσύνολο των πραγματικών correct schedules (τα οποία μπορούν να οριστούν με ένα complete specification των syntax, semantics, integrity constraints). Αν ο scheduler δει και συντακτική πληροφορία, μπορεί να δει μεγαλύτερο κομμάτι των correct schedules. Με όλο περισσότερη πληροφορία βλέπει και μεγαλύτερο κομμάτι των correct schedules. Αντίθετα, στο paper των Attiya & Welch, ψάχνουν για lower bounds (negative impossiblity results) για άπειρη πληροφορία για τα transactions (αλλά με άλλα constraints όπως τον ασυγχρονισμο ρολογιων κτλ).
+
+
+<hr>
+
+
+
+- The performance of a scheduler from a user's perspective
+  
+- Static vs Dynamic information
+
+- What they leave as future work, to establish the optimality of an assertion based scheduler
+
+- Similarity of serializability with linearizability and sequential consistency
+
+- H analogia ths douleias se auto to paper me to refinement tou sequential specification
+
 
 
 **NOTE:** (Κάποια από αυτά αξίζει να μπουν στο ποστ και άλλα στα notes mou.)
