@@ -22,7 +22,8 @@ a.footnote sup {
    margin-left: 0px;
    margin-right: 18px;
    padding:14px 20px;
-   border-radius:4px; box-shadow: 5px 5px 8px #CCC;
+   border-radius:4px;
+   box-shadow: 5px 5px 8px #CCC;
    border:1px solid #DCA;
    background-color: #fffadd;
 }
@@ -30,6 +31,7 @@ a.footnote sup {
    display: block;
    opacity: 1;
    }
+
 .close:focus .footnoteText {display: none;}
 
 
