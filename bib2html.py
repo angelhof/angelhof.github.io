@@ -49,7 +49,15 @@ def print_authors(authors):
     authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
     # Normalize Whitespace
     authors_list = [normalize_whitespace(author.strip()) for author in  authors_list]
-    return " and ".join(authors_list)
+
+    # Format differently if there are more than 2 authors
+    if len(authors_list) <= 2:
+        authors_string = " and ".join(authors_list)
+    else:
+        authors_string = ", ".join(authors_list[:-1])
+        authors_string += ", and " + authors_list[-1]
+        
+    return authors_string
 
 def print_title(title):
     return "<b>" + title + "</b>"
