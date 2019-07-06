@@ -26,7 +26,7 @@ def generate_pic_html(filename, html_content = ""):
     html_content += "/" + file_path
     html_content += "\" alt=\""
     html_content += filename
-    html_content += "\" style=\"height:"
+    html_content += "\" style=\"max-height:"
     html_content += IMAGE_HEIGHT
     html_content += ";\">\n"
     return html_content
