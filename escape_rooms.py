@@ -32,13 +32,13 @@ def generate_pic_html(filename, html_content = ""):
     return html_content
 
 def generate_pics_html(pics, html_content = ""):
-    sorted_by_name = sorted(pics)
+    sorted_by_name = sorted(pics, reverse=True)
     for filename in sorted_by_name:
         html_content = generate_pic_html(filename, html_content)
     return html_content
 
 def generate_content_html(year_dic, html_content = ""):
-    years = sorted(year_dic.keys())
+    years = sorted(year_dic.keys(), reverse=True)
     for year in years:
         html_content = generate_year_html(year, html_content)
         year_pics = year_dic[year]
