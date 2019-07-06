@@ -9,22 +9,6 @@ def parse_bib(filename):
 ## Turn the Unicode of bibtexparser to ascii
 ##
 
-def asciify_unicode(unicode_string):
-    if type(unicode_string) is unicode:
-        return unicode_string.encode('ascii')
-    else:
-        return unicode_string
-    
-def asciify_unicode_entry(entry):
-    new_entry = {}
-    for key in entry.keys():
-        new_entry[asciify_unicode(key)] = asciify_unicode(entry[key])
-    return new_entry
-        
-def asciify_unicode_entries(entries):
-    return map(asciify_unicode_entry, entries)
-
-
 def get_bib_date(entry):
     year = entry['year']
     month = 0
@@ -95,7 +79,7 @@ def generate_entries_html(entries, counter, heading, entry_handler):
     output_html += "<h2 class=\"page-heading\">" + heading + "</h2>\n"
     output_html += "<ul class=\"" + str.lower(heading) + " bibliography\">\n"
     sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
-    for entry_index in xrange(len(sorted_date_entries)):
+    for entry_index in range(len(sorted_date_entries)):
         entry = sorted_date_entries[entry_index]
         output_html += entry_handler(entry_index + counter, entry)
     output_html += "</ul>\n"
@@ -133,9 +117,9 @@ def bib2html_content(in_files_generators):
     html_content += "<hr>\n\n"
     for in_file, html_generator in in_files_generators:
         bib_content = parse_bib(in_file)
-        ascii_content = asciify_unicode_entries(bib_content.entries)
+        bib_entries = bib_content.entries
         ## TODO: Sort entries based on descending date
-        html_content += html_generator(ascii_content, counter) + "\n"
+        html_content += html_generator(bib_entries, counter) + "\n"
         counter += len(bib_content.entries)
     return html_content
 
@@ -145,4 +129,4 @@ html_content = bib2html_content([('files/papers.bib', generate_papers_html),
                                  ('files/talks.bib', generate_talks_html)])
 
 export_html("pubs.html", html_content)
-print("Done !")
+print("Publications to HMTL -- Done !")
