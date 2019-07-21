@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+# Build the site
+bundle exec jekyll build
+
+# Serve the website
+php -t _site -S localhost:8080 &
+
+# Sleep for 5 so that the website is up
+# sleep 10
+until $(curl --output /dev/null --silent --head --fail localhost:8080); do
+    sleep 1
+done
+
+# Return ok only if no BROKEN link is found
+! blc http://localhost:8080 -ro | grep "BROKEN" | grep -v "www.linkedin.com"
+if [[ $? -ne 0 ]]; then
+   kill $!
+   exit 1
+fi
+
+# Bring the php to the foreground so that it dies when the script stops
+kill $!
+
+echo "Done :)"
