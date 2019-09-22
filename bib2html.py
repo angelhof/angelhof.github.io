@@ -76,7 +76,8 @@ def generate_thesis_html(entry_index, entry):
 
 def generate_entries_html(entries, counter, heading, entry_handler):
     output_html = ""
-    output_html += "<h2 class=\"page-heading\">" + heading + "</h2>\n"
+    output_html += "<h2 id=\"" + heading.lower() + "\" class=\"page-heading\">"
+    output_html += heading + "</h2>\n"
     output_html += "<ul class=\"" + str.lower(heading) + " bibliography\">\n"
     sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
     for entry_index in range(len(sorted_date_entries)):
@@ -105,16 +106,6 @@ def export_html(filename, content):
 def bib2html_content(in_files_generators):
     counter = 0
     html_content = ""
-    html_content += "---\n"
-    html_content += "layout: main\n"
-    html_content += "overview: true\n"
-    html_content += "---\n\n"
-    html_content += "<nav>\n"
-    html_content += "<h3><a href=\"/index.html\" style=\"color: inherit\">About</a></h3>\n"
-    html_content += "<h3 class=\"active\"><a href=\"/pubs.html\" style=\"color: inherit\">Papers</a></h3>\n"
-    html_content += "<h3><a href=\"/blog/index.html\" style=\"color: inherit\">Blog</a></h3>"
-    html_content += "</nav>\n\n"
-    html_content += "<hr>\n\n"
     for in_file, html_generator in in_files_generators:
         bib_content = parse_bib(in_file)
         bib_entries = bib_content.entries

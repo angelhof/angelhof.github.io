@@ -1,14 +1,29 @@
 ---
 layout: main
 overview: true
+sections: {
+  short-bio: "Short Bio",
+  papers: "Papers",
+  service: "Service",
+  personal: "Personal"
+}
 ---
 
 <nav>
   <h3 class="active"><a href="/index.html" style="color: inherit">About</a></h3>
-  <h3><a href="/pubs.html" style="color: inherit">Papers</a></h3>
   <h3><a href="/blog/index.html" style="color: inherit">Blog</a></h3>
 </nav>
 
+
+<hr>
+
+<h2 class="page-heading">Overview</h2>
+
+<ul class="contents">
+  {% for section in page.sections %}
+    <li><a href="#{{ section[0] }}">{{ section[1] }}</a></li>
+  {% endfor %}
+</ul>
 
 <hr>
 
@@ -18,7 +33,7 @@ overview: true
 <!--   Sketch: I am currently working on distributed stream processing.  -->
 <!-- </p> -->
 
-<h2 class="page-heading">Short bio</h2>
+<h2 id="short-bio" class="page-heading">{{ page.sections.short-bio }}</h2>
 
 <p class="homepage">
   I spent the summer of 2019 in the <a href="https://aws.amazon.com/security/provable-security/">Automated Reasoning Group</a> at Amazon Web Services under the supervision of <a href="https://www.linkedin.com/in/daniel-schwartz-narbonne-5036b9137/">Daniel Schwartz-Narbonne</a>. We used the C Bounded Model Checker (<a href="http://www.cprover.org/cbmc/">CBMC</a>) to verify that certain C libraries (<a href="https://github.com/awslabs/aws-c-common">aws-c-common</a>, <a href="https://github.com/aws/aws-encryption-sdk-c">aws-esdk-c</a>) are memory safe and satisfy some functional correctness properties. In the process, I implemented several small extensions for CBMC, mostly focused on improving the support for function contracts.
@@ -40,8 +55,21 @@ overview: true
   I have also participated in Google Summer of Code 2017, where I worked with <a href="https://github.com/zinid">Evgeny Khramtsov</a> to extend <a href="https://github.com/processone/ejabberd">ejabberd</a>. I implemented a mechanism that allows for certificate acquiring through the <a href="https://github.com/ietf-wg-acme/acme">ACME</a> protocol.
 </p>
 
+<hr>
 
-<h2 class="page-heading">Personal</h2>
+{% include_relative pubs.html %}
+
+<hr>
+
+<h2 id="service" class="page-heading">{{ page.sections.service }}</h2>
+
+<ul>
+  <li><b>POPL 2020</b> External Reviewer</li>
+</ul>
+
+<hr>
+
+<h2 id="personal" class="page-heading">{{ page.sections.personal }}</h2>
 
 <p class="homepage">
   In my free time I enjoy programming (for fun or in programming competitions), board games, <a href="/escape_rooms.html" style="color: inherit">escape rooms</a>, and ping pong. I also occasionally play guitar in an amateur jam band.
