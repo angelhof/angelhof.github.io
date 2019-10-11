@@ -30,8 +30,52 @@ sections: {
 <!-- <h2 class="page-heading">Current Research</h2> -->
 
 <!-- <p class="homepage"> -->
-<!--   Sketch: I am currently working on distributed stream processing.  -->
-<!-- </p> -->
+
+<!-- sketch -->
+  
+<!-- I am currently working on distributed stream processing. More -->
+<!-- specifically, I am interested in improving the conceptual and -->
+<!-- programming tools that people have in order to specify and implement -->
+<!-- correct distributed stream processing systems. -->
+
+<!-- There are a lot of programming frameworks for the implementation of -->
+<!-- distributed stream processing systems, and all of them offer great -->
+<!-- performance. But is is almost always uncertain, whether the resulting -->
+<!-- application satisfies the intention that the developers had in mind. -->
+
+<!-- Obviously the first step towards this direction is defining reasonably -->
+<!-- loose notions of correctness. When implementing distributed -->
+<!-- applications, it is clear that some properties are lost for (better -->
+<!-- word for 'for') performance, fault-tolerance (and all the other benefits of -->
+<!-- distributed implementations. -->
+
+<!-- It is very important to know what one loses when using these -->
+<!-- frameworks, and only make these tradeoffs when possible. -->
+
+<!-- One of this looseness/tradeoff criteria that we have found is -->
+<!-- ordering. More concretely, for which input items the result of the -->
+<!-- implementation is causally dependent. Some input items can be -->
+<!-- reordered without any impact to the result of the computation, while -->
+<!-- if others are reordered, the result of the computation is different -->
+<!--   and/or wrong. -->
+
+<!--   We have captured this notion of need for order of events with a -->
+<!--   notion called dependency relation. A user can then sepcify the -->
+<!--   dependency relation for their application, and the underlying system -->
+<!--   should ensure that dependent events will never be reordered. With my -->
+<!--   collaborators we have implemented a programming framework based on -->
+<!--   this model, and a system that implements it. -->
+
+<!-- Note that the need for order is just one of the many requirements that -->
+<!-- an application might have on its inputs, so a major goal of this -->
+<!-- research is to define what type of requirements does a stream -->
+<!-- processing application can have from its environment, and what -->
+<!-- requirements does its environment have on it, so that we can ensure -->
+<!-- that underlying systems are able to achieve performance and other -->
+<!-- benefits without violating a requirement that the environment might -->
+<!-- have. -->
+  
+  <!-- </p> -->
 
 <h2 id="short-bio" class="page-heading">{{ page.sections.short-bio }}</h2>
 
