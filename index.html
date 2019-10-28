@@ -29,14 +29,29 @@ sections: {
 
 <!-- <h2 class="page-heading">Current Research</h2> -->
 
-<!-- <p class="homepage"> -->
+<!-- <\!-- TODO: Add links, and bod, emphasis. Also add a link to the section. -\-> -->
 
-<!-- sketch -->
-  
+<!-- <p class="homepage">   -->
 <!-- I am currently working on distributed stream processing. More -->
-<!-- specifically, I am interested in improving the conceptual and -->
-<!-- programming tools that people have in order to specify and implement -->
-<!-- correct distributed stream processing systems. -->
+<!-- precisely, I am interested in improving the conceptual and programming -->
+<!-- models for the specification and implementation of correct distributed -->
+<!-- stream processing systems. -->
+<!-- </p> -->
+
+<!-- <p class="homepage"> -->
+<!-- In recent years, distributed stream processing frameworks (such as -->
+<!-- Flink, Spark-Streaming, Storm, and Twitter Heron) have seen a massive -->
+<!-- popularity increase. This is mostly due to the dramatic increase in -->
+<!-- the amount of data that needs to be processed in real-time with -->
+<!-- minimal latency. These systems offer enticing performance benefits -->
+<!-- (mostly in latency and throughput) by using aggressive parallelization -->
+<!-- techniques to leverage the available distributed computation -->
+<!-- resources. -->
+<!-- </p> -->
+
+<!-- <p class="homepage"> -->
+<!-- However, these performance benefits don't always come without a -->
+<!-- cost. These systems offer higher level primitives -->
 
 <!-- There are a lot of programming frameworks for the implementation of -->
 <!-- distributed stream processing systems, and all of them offer great -->
@@ -57,14 +72,14 @@ sections: {
 <!-- implementation is causally dependent. Some input items can be -->
 <!-- reordered without any impact to the result of the computation, while -->
 <!-- if others are reordered, the result of the computation is different -->
-<!--   and/or wrong. -->
+<!-- and/or wrong. -->
 
-<!--   We have captured this notion of need for order of events with a -->
-<!--   notion called dependency relation. A user can then sepcify the -->
-<!--   dependency relation for their application, and the underlying system -->
-<!--   should ensure that dependent events will never be reordered. With my -->
-<!--   collaborators we have implemented a programming framework based on -->
-<!--   this model, and a system that implements it. -->
+<!-- We have captured this notion of need for order of events with a notion -->
+<!-- called dependency relation. A user can then sepcify the dependency -->
+<!-- relation for their application, and the underlying system should -->
+<!-- ensure that dependent events will never be reordered. With my -->
+<!-- collaborators we have implemented a programming framework based on -->
+<!-- this model, and a system that implements it. -->
 
 <!-- Note that the need for order is just one of the many requirements that -->
 <!-- an application might have on its inputs, so a major goal of this -->
@@ -75,28 +90,65 @@ sections: {
 <!-- benefits without violating a requirement that the environment might -->
 <!-- have. -->
   
-  <!-- </p> -->
+<!-- </p> -->
 
 <h2 id="short-bio" class="page-heading">{{ page.sections.short-bio }}</h2>
 
 <p class="homepage">
-  I spent the summer of 2019 in the <a href="https://aws.amazon.com/security/provable-security/">Automated Reasoning Group</a> at Amazon Web Services under the supervision of <a href="https://www.linkedin.com/in/daniel-schwartz-narbonne-5036b9137/">Daniel Schwartz-Narbonne</a>. We used the C Bounded Model Checker (<a href="http://www.cprover.org/cbmc/">CBMC</a>) to verify that certain C libraries (<a href="https://github.com/awslabs/aws-c-common">aws-c-common</a>, <a href="https://github.com/aws/aws-encryption-sdk-c">aws-esdk-c</a>) are memory safe and satisfy some functional correctness properties. In the process, I implemented several small extensions for CBMC, mostly focused on improving the support for function contracts.
+  I spent the summer of 2019 in
+  the <a href="https://aws.amazon.com/security/provable-security/">Automated
+  Reasoning Group</a> at Amazon Web Services under the supervision
+  of <a href="https://www.linkedin.com/in/daniel-schwartz-narbonne-5036b9137/">Daniel
+  Schwartz-Narbonne</a>. We used the C Bounded Model Checker
+  (<a href="http://www.cprover.org/cbmc/">CBMC</a>) to verify that
+  certain C libraries
+  (<a href="https://github.com/awslabs/aws-c-common">aws-c-common</a>, <a href="https://github.com/aws/aws-encryption-sdk-c">aws-esdk-c</a>)
+  are memory safe and satisfy some functional correctness
+  properties. In the process, I implemented several small extensions
+  for CBMC, mostly focused on improving the support for function
+  contracts.
 </p>
 
 <p class="homepage">
-  Before my PhD, I was an undergraduate student at the <a href="https://www.ntua.gr/en/">National Technical University of Athens</a>, department of <a href="https://www.ece.ntua.gr/en">Electrical and Computer Engineering</a>. I completed my thesis “HiPErJiT: A Profile-Driven Just-in-Time Compiler for Erlang based on HiPE” under the supervision of <a href="http://user.it.uu.se/~kostis/">Kostis Sagonas</a>. It is available online in both <a href="/files/thesis.pdf">English</a> and <a href="/files/thesis_gr.pdf">Greek</a>.
+  Before my PhD, I was an undergraduate student at
+  the <a href="https://www.ntua.gr/en/">National Technical University
+  of Athens</a>, department
+  of <a href="https://www.ece.ntua.gr/en">Electrical and Computer
+  Engineering</a>. I completed my thesis “HiPErJiT: A Profile-Driven
+  Just-in-Time Compiler for Erlang based on HiPE” under the
+  supervision of <a href="http://user.it.uu.se/~kostis/">Kostis
+  Sagonas</a>. It is available online in
+  both <a href="/files/thesis.pdf">English</a>
+  and <a href="/files/thesis_gr.pdf">Greek</a>.
 </p>
 
 <p class="homepage">
-  In May of 2018 I participated in the <a href="http://fm.csl.sri.com/SSFT18/">Eighth Summer School on Formal Techniques</a> that took place in Atherton, California and was organized by <a href="https://www.sri.com/">SRI International</a>.
+  In May of 2018 I participated in
+  the <a href="http://fm.csl.sri.com/SSFT18/">Eighth Summer School on
+  Formal Techniques</a> that took place in Atherton, California and
+  was organized by <a href="https://www.sri.com/">SRI
+  International</a>.
 </p>
 
 <p class="homepage">
-  Throughout my undergraduate studies I have developed software for many projects with my colleagues. Some notable examples are a complete compiler for the language Edsger (<a href="https://github.com/angelhof/edsger_compiler">source</a>), an implementation of the Chord protocol (<a href="https://github.com/angelhof/chord-distributed-erlang">source</a>), and an extension of the SIP Communicator (<a href="https://github.com/angelhof/sip-project-extensions">source</a>).
+  Throughout my undergraduate studies I have developed software for
+  many projects with my colleagues. Some notable examples are a
+  complete compiler for the language Edsger
+  (<a href="https://github.com/angelhof/edsger_compiler">source</a>),
+  an implementation of the Chord protocol
+  (<a href="https://github.com/angelhof/chord-distributed-erlang">source</a>),
+  and an extension of the SIP Communicator
+  (<a href="https://github.com/angelhof/sip-project-extensions">source</a>).
 </p>
 
 <p class="homepage">
-  I have also participated in Google Summer of Code 2017, where I worked with <a href="https://github.com/zinid">Evgeny Khramtsov</a> to extend <a href="https://github.com/processone/ejabberd">ejabberd</a>. I implemented a mechanism that allows for certificate acquiring through the <a href="https://github.com/ietf-wg-acme/acme">ACME</a> protocol.
+  I have also participated in Google Summer of Code 2017, where I
+  worked with <a href="https://github.com/zinid">Evgeny Khramtsov</a>
+  to
+  extend <a href="https://github.com/processone/ejabberd">ejabberd</a>. I
+  implemented a mechanism that allows for certificate acquiring
+  through the <a href="https://github.com/ietf-wg-acme/acme">ACME</a>
+  protocol.
 </p>
 
 <hr>
@@ -116,5 +168,8 @@ sections: {
 <h2 id="personal" class="page-heading">{{ page.sections.personal }}</h2>
 
 <p class="homepage">
-  In my free time I enjoy programming (for fun or in programming competitions), board games, <a href="/escape_rooms.html" style="color: inherit">escape rooms</a>, and ping pong. I also occasionally play guitar in an amateur jam band.
+  In my free time I enjoy programming (for fun or in programming
+  competitions), board games, <a href="/escape_rooms.html"
+  style="color: inherit">escape rooms</a>, and ping pong. I also
+  occasionally play guitar in an amateur jam band.
 </p>
