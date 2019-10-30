@@ -34,7 +34,12 @@ def print_authors(authors):
     # Normalize Whitespace
     authors_list = [normalize_whitespace(author.strip()) for author in  authors_list]
 
+    # Remove my name
+    authors_list.remove("Konstantinos Kallas")
+
     # Format differently if there are more than 2 authors
+    if len(authors_list) == 0:
+        authors_string = ""
     if len(authors_list) <= 2:
         authors_string = " and ".join(authors_list)
     else:
@@ -46,14 +51,27 @@ def print_authors(authors):
 def print_title(title):
     return "<b>" + title + "</b>"
 
+def print_infix(infix):
+    if ("Under submission" in infix):
+        return "<i>{}</i>".format(infix)
+    else:
+        return infix 
+
+def format_authors(authors):
+    authors_string = print_authors(authors)
+    output_html = ""
+    if(authors_string != ""):
+        output_html += "<br/>"
+        output_html += " &nbsp; with: " + authors_string + ". "
+    return output_html
+    
 def generate_general_html(entry_index, entry, infix):
     output_html = ""
     output_html += "<li id=\"" + entry["ID"] + "\">"
     output_html += "[" + str(entry_index) + "] "
-    if 'author' in entry:
-        output_html +=  print_authors(entry['author']) + ". "
     output_html += print_title(entry['title']) + ". "
-    output_html += infix + ", " + entry['year'] + ". "
+    output_html += print_infix(infix) + ". "
+    # output_html += infix + ", " + entry['year'] + ". "
     if 'note' in entry:
         if entry['note'] == 'accepted':
             output_html += "<i>[Accepted]</i> "
@@ -61,6 +79,8 @@ def generate_general_html(entry_index, entry, infix):
         output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "        
     if 'file' in entry:
         output_html += "(<a href=\"" + entry['file'] + "\">pdf</a>)"
+    if 'author' in entry:
+        output_html += format_authors(entry['author'])
     output_html += "</li>\n"
     return output_html
     
