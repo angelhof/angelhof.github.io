@@ -52,7 +52,7 @@ def print_title(title):
     return "<b>" + title + "</b>"
 
 def print_infix(infix):
-    if ("Under submission" in infix):
+    if ("In submission" in infix):
         return "<i>{}</i>".format(infix)
     else:
         return infix 
