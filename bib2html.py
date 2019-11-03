@@ -45,7 +45,7 @@ def print_authors(authors):
     else:
         authors_string = ", ".join(authors_list[:-1])
         authors_string += ", and " + authors_list[-1]
-        
+
     return authors_string
 
 def print_title(title):
@@ -55,7 +55,7 @@ def print_infix(infix):
     if ("In submission" in infix):
         return "<i>{}</i>".format(infix)
     else:
-        return infix 
+        return infix
 
 def format_authors(authors):
     authors_string = print_authors(authors)
@@ -64,7 +64,7 @@ def format_authors(authors):
         output_html += "<br/>"
         output_html += " &nbsp; with: " + authors_string + ". "
     return output_html
-    
+
 def generate_general_html(entry_index, entry, infix):
     output_html = ""
     output_html += "<li id=\"" + entry["ID"] + "\">"
@@ -76,14 +76,14 @@ def generate_general_html(entry_index, entry, infix):
         if entry['note'] == 'accepted':
             output_html += "<i>[Accepted]</i> "
     if 'url' in entry:
-        output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "        
+        output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "
     if 'file' in entry:
         output_html += "(<a href=\"" + entry['file'] + "\">pdf</a>)"
     if 'author' in entry:
         output_html += format_authors(entry['author'])
     output_html += "</li>\n"
     return output_html
-    
+
 def generate_talk_html(entry_index, entry):
     return generate_general_html(entry_index, entry, entry['event'])
 
@@ -111,7 +111,7 @@ def generate_papers_html(entries, counter):
 
 def generate_talks_html(entries, counter):
     return generate_entries_html(entries, counter, "Talks", generate_talk_html)
-    
+
 def generate_theses_html(entries, counter):
     return generate_entries_html(entries, counter, "Theses", generate_thesis_html)
 
