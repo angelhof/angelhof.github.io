@@ -1,4 +1,5 @@
 import bibtexparser
+from read_people import *
 
 def parse_bib(filename):
     with open(filename) as bibtex_file:
@@ -36,6 +37,8 @@ def print_authors(authors):
 
     # Remove my name
     authors_list.remove("Konstantinos Kallas")
+
+    authors_list = [find_person(author, PEOPLE).format_html() for author in authors_list]
 
     # Format differently if there are more than 2 authors
     if len(authors_list) == 0:
@@ -135,6 +138,11 @@ def bib2html_content(in_files_generators):
     return html_content
 
 # Talks
+
+## First retrieve the people file
+print("Parsing people...")
+PEOPLE = parse_check_people()
+
 html_content = bib2html_content([('files/papers.bib', generate_papers_html),
                                  ('files/theses.bib', generate_theses_html),
                                  ('files/talks.bib', generate_talks_html)])
