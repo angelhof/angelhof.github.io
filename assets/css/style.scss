@@ -45,6 +45,15 @@
 //     line-height: 18.5667px; 
 // }
 
+a.name-link {
+    color: inherit;
+}
+
+a.name-link:hover {
+    text-decoration: underline;
+}
+
+
 a.footnote sup {
    text-decoration:none;
    background-color: #b2ceff;

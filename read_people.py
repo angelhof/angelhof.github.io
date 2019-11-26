@@ -22,7 +22,7 @@ class Person:
         if(self.url is None):
             return self.name
         else:
-            output = '<a href="{}">{}</a>'.format(self.url, self.name)
+            output = '<a class="name-link" href="{}">{}</a>'.format(self.url, self.name)
             return output
 
 def find_person(name, people):
