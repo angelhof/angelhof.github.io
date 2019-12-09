@@ -88,14 +88,14 @@ def generate_general_html(entry_index, entry, infix):
     return output_html
 
 def generate_talk_html(entry_index, entry):
-    return generate_general_html(entry_index, entry, entry['event'])
+    return generate_general_html(entry_index, entry, '{}. {}'.format(entry['event'], entry['year']))
 
 def generate_paper_html(entry_index, entry):
     ## WARNING: Maybe it is not always 'booktitle'
     return generate_general_html(entry_index, entry, entry['booktitle'])
 
 def generate_thesis_html(entry_index, entry):
-    return generate_general_html(entry_index, entry, entry['school'])
+    return generate_general_html(entry_index, entry, '{}. {}'.format(entry['school'], entry['year']))
 
 def generate_entries_html(entries, counter, heading, entry_handler):
     output_html = ""
