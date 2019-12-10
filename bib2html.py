@@ -105,9 +105,12 @@ def generate_entries_html(entries, counter, heading, entry_handler):
     sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
     for entry_index in range(len(sorted_date_entries)):
         entry = sorted_date_entries[entry_index]
-        output_html += entry_handler(entry_index + counter, entry)
+        if(not 'note' in entry or
+           not entry['note'] == 'cv-only'):
+            output_html += entry_handler(counter, entry)
+            counter += 1
     output_html += "</ul>\n"
-    return output_html
+    return output_html, counter
 
 def generate_papers_html(entries, counter):
     return generate_entries_html(entries, counter, "Papers", generate_paper_html)
@@ -173,7 +176,8 @@ def generate_papers_tex(entries, counter):
     for entry_index in range(len(sorted_date_entries)):
         entry = sorted_date_entries[entry_index]
         output_tex += generate_paper_tex(entry)
-    return output_tex
+        counter += 1
+    return output_tex, counter
 
 
 ##
@@ -191,8 +195,9 @@ def bib2output_content(in_files_generators):
         bib_content = parse_bib(in_file)
         bib_entries = bib_content.entries
         ## TODO: Sort entries based on descending date
-        html_content += html_generator(bib_entries, counter) + "\n"
-        counter += len(bib_content.entries)
+        new_html_content, new_counter = html_generator(bib_entries, counter)
+        html_content += new_html_content + "\n"
+        counter = new_counter
     return html_content
 
 # Talks
