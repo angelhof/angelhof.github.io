@@ -158,7 +158,7 @@ def format_authors_tex(authors):
     return output_tex
 
 def generate_paper_tex(entry):
-    output_tex = ""
+    output_tex = "\\begin{minipage}{\\textwidth}\n"
     output_tex += print_title_tex(entry['title']) + ". \\\\\n"
     if 'note' in entry:
         if entry['note'] == 'accepted':
@@ -166,7 +166,7 @@ def generate_paper_tex(entry):
     if 'author' in entry:
         output_tex += format_authors_tex(entry['author'])
     output_tex += print_infix_tex(entry['booktitle']) + "."
-    output_tex += "\n\n"
+    output_tex += "\n\\end{minipage}\n\n"
     return output_tex
     
 
