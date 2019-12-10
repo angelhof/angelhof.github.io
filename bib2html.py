@@ -29,7 +29,7 @@ def get_bib_date(entry):
 def normalize_whitespace(string):
     return " ".join(string.split())
 
-def print_authors(authors):
+def print_authors_html(authors):
     # Reverse the first with the last name
     authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
     # Normalize Whitespace
@@ -61,7 +61,7 @@ def print_infix(infix):
         return infix
 
 def format_authors(authors):
-    authors_string = print_authors(authors)
+    authors_string = print_authors_html(authors)
     output_html = ""
     if(authors_string != ""):
         output_html += "<br/>"
@@ -119,14 +119,72 @@ def generate_theses_html(entries, counter):
     return generate_entries_html(entries, counter, "Theses", generate_thesis_html)
 
 ##
+## Tex backend
+##
+
+def print_authors_tex(authors):
+    # Reverse the first with the last name
+    authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
+    # Normalize Whitespace
+    authors_list = [normalize_whitespace(author.strip()) for author in  authors_list]
+
+    # Format differently if there are more than 2 authors
+    if len(authors_list) == 0:
+        authors_string = ""
+    if len(authors_list) <= 2:
+        authors_string = " and ".join(authors_list)
+    else:
+        authors_string = ", ".join(authors_list[:-1])
+        authors_string += ", and " + authors_list[-1]
+
+    return authors_string
+
+
+def print_title_tex(title):
+    return '\\textbf{{{}}}'.format(title)
+
+def print_infix_tex(infix):
+    if ("In submission" in infix):
+        return "\\emph{{{}}}".format(infix)
+    else:
+        return infix
+
+def format_authors_tex(authors):
+    authors_string = print_authors_tex(authors)
+    output_tex = authors_string + ". \\\\\n"
+    return output_tex
+
+def generate_paper_tex(entry):
+    output_tex = ""
+    output_tex += print_title_tex(entry['title']) + ". \\\\\n"
+    if 'note' in entry:
+        if entry['note'] == 'accepted':
+            output_tex += "<i>[Accepted]</i> "
+    if 'author' in entry:
+        output_tex += format_authors_tex(entry['author'])
+    output_tex += print_infix_tex(entry['booktitle']) + "."
+    output_tex += "\n\n"
+    return output_tex
+    
+
+def generate_papers_tex(entries, counter):
+    output_tex = ""
+    sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
+    for entry_index in range(len(sorted_date_entries)):
+        entry = sorted_date_entries[entry_index]
+        output_tex += generate_paper_tex(entry)
+    return output_tex
+
+
+##
 ## Export the HTML
 ##
 
-def export_html(filename, content):
+def export(filename, content):
     with open(filename, 'w') as html_file:
         html_file.write(content)
 
-def bib2html_content(in_files_generators):
+def bib2output_content(in_files_generators):
     counter = 0
     html_content = ""
     for in_file, html_generator in in_files_generators:
@@ -142,10 +200,15 @@ def bib2html_content(in_files_generators):
 ## First retrieve the people file
 print("Parsing people...")
 PEOPLE = parse_check_people()
+print("People parsed successfully!")
 
-html_content = bib2html_content([('files/papers.bib', generate_papers_html),
-                                 ('files/theses.bib', generate_theses_html),
-                                 ('files/talks.bib', generate_talks_html)])
+html_content = bib2output_content([('files/papers.bib', generate_papers_html),
+                                   ('files/theses.bib', generate_theses_html),
+                                   ('files/talks.bib', generate_talks_html)])
 
-export_html("pubs.html", html_content)
+export("pubs.html", html_content)
 print("Publications to HMTL -- Done !")
+
+tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
+export("pubs.tex", tex_content)
+print("Publications to Tex -- Done !")
