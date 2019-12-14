@@ -227,5 +227,5 @@ export("pubs.html", html_content)
 print("Publications to HMTL -- Done !")
 
 tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
-export("pubs.tex", tex_content)
+export("cv/pubs.tex", tex_content)
 print("Publications to Tex -- Done !")
