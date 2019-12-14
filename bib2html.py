@@ -1,4 +1,5 @@
 import bibtexparser
+import sys
 from read_people import *
 
 def parse_bib(filename):
@@ -29,11 +30,18 @@ def get_bib_date(entry):
 def normalize_whitespace(string):
     return " ".join(string.split())
 
+def trim_trailing_superscripts(string):
+    if('$' in string):
+        return string.split('$')[0]
+    else:
+        return string
+
 def print_authors_html(authors):
     # Reverse the first with the last name
     authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
-    # Normalize Whitespace
-    authors_list = [normalize_whitespace(author.strip()) for author in  authors_list]
+    # Normalize Whitespace and remove superscripts
+    authors_list = [trim_trailing_superscripts(normalize_whitespace(author.strip()))
+                    for author in  authors_list]
 
     # Remove my name
     authors_list.remove("Konstantinos Kallas")
@@ -202,9 +210,13 @@ def bib2output_content(in_files_generators):
 
 # Talks
 
+check_people = True
+if(len(sys.argv) == 2):
+    if(sys.argv[1] == "--no-check"):
+        check_people = False
 ## First retrieve the people file
 print("Parsing people...")
-PEOPLE = parse_check_people()
+PEOPLE = parse_check_people(check = check_people)
 print("People parsed successfully!")
 
 html_content = bib2output_content([('files/papers.bib', generate_papers_html),
