@@ -45,7 +45,8 @@ def check_people_valid(people):
         if (not person.valid_url()):
             print(" !! WARNING: Url for:", person.name, "is not valid !!")
 
-def parse_check_people():
+def parse_check_people(check = True):
     people = parse_people()
-    check_people_valid(people)
+    if(check):
+        check_people_valid(people)
     return people
