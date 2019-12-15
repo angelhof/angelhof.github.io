@@ -144,3 +144,20 @@ nav h3.active {
   color: #000000;
   font-weight: bold;
 }
+
+header div.contact-info {
+    display: inline-block;
+    width: 100%;
+}
+
+@media print, screen and (max-width: 960px) {
+    header {
+        width: 100%;
+    }
+    header div.contact-info {
+        display: flex;
+        float: left;
+        width: 50%;
+        padding-left: 5%
+    }
+}

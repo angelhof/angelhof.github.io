@@ -7,40 +7,42 @@ layout: default
 
   <hr>
   
-  <div style="margin-bottom: 4%; display: inline-block; border: 2px solid black; height: 220px;">
+  <div style="margin-bottom: 4%; display: inline-block; border: 2px solid black; height: 220px; float: left; ">
     <img src="/files/aws_prof_pic.jpg" height="220" >
   </div>
 
-  <p>
-    PhD student at <a href="https://www.cis.upenn.edu/~plclub/">PLClub</a></br>
-    <a href="https://www.cis.upenn.edu/">Department of Computer and Information Science</a></br>
-    <a href="https://www.upenn.edu/">University of Pennsylvania</a></br>
-    Office: Levine 513</br>
-    Contact: <a href="mailto:kallas@seas.upenn.edu">kallas@seas.upenn.edu</a>
-  </p>
+  <div class="contact-info">
+    <p>
+      PhD student at <a href="https://www.cis.upenn.edu/~plclub/">PLClub</a></br>
+      <a href="https://www.cis.upenn.edu/">Department of Computer and Information Science</a></br>
+      <a href="https://www.upenn.edu/">University of Pennsylvania</a></br>
+      Office: Levine 513</br>
+      Contact: <a href="mailto:kallas@seas.upenn.edu">kallas@seas.upenn.edu</a></br></br>
 
-  <p class="view"><a href="/files/cv_konstantinos_kallas.pdf">Curriculum Vitae</a></p>
+      <a href="/files/cv_konstantinos_kallas.pdf">Curriculum Vitae</a> </br></br>
 
-  <p class="view"><a href="/blog/index.html">Personal Blog</a></p>
+      <a href="/blog/index.html">Personal Blog</a>
+    </p>
 
-  <a href="{{ site.github.owner_url }}">
-    <img src="/assets/GitHub-Mark-64px.png"  style="width:24px;height:24px;border:0;">
-  </a>
-  <a href="https://scholar.google.gr/citations?user=vKPisLUAAAAJ">
-    <img src="/assets/google_scholar_icon_cropped.png"  style="width:24px;height:24px;border:0;">
-  </a>
-  <a href="https://www.linkedin.com/in/konstantinoskallas/">
-    <img src="/assets/In-Black-48px.png"  style="width:24px;height:24px;border:0;">
-  </a>
+  </div>
+  <div class="links" style="display: inline-block; width: 100%; ">
+    <a href="{{ site.github.owner_url }}">
+      <img src="/assets/GitHub-Mark-64px.png"  style="width:24px;height:24px;border:0;">
+    </a>
+    <a href="https://scholar.google.gr/citations?user=vKPisLUAAAAJ">
+      <img src="/assets/google_scholar_icon_cropped.png"  style="width:24px;height:24px;border:0;">
+    </a>
+    <a href="https://www.linkedin.com/in/konstantinoskallas/">
+      <img src="/assets/In-Black-48px.png"  style="width:24px;height:24px;border:0;">
+    </a>
+  </div>
 
-  <!-- <img src="/files/portrait_profile_pic.jpg"> -->
-  
 </header>
 
 <section>
-  
+
   {{ content }}
-  
+
 </section>
 
 <footer>
