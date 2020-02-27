@@ -90,6 +90,8 @@ def generate_general_html(entry_index, entry, infix):
         output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "
     if 'file' in entry:
         output_html += "(<a href=\"" + entry['file'] + "\">pdf</a>)"
+    if 'talk' in entry:
+        output_html += "(<a href=\"" + entry['talk'] + "\">slides</a>)"
     if 'author' in entry:
         output_html += format_authors(entry['author'])
     output_html += "</li>\n"
@@ -127,7 +129,7 @@ def generate_talks_html(entries, counter):
     return generate_entries_html(entries, counter, "Talks", generate_talk_html)
 
 def generate_theses_html(entries, counter):
-    return generate_entries_html(entries, counter, "Theses", generate_thesis_html)
+    return generate_entries_html(entries, counter, "Theses/Reports", generate_thesis_html)
 
 ##
 ## Tex backend
@@ -220,8 +222,8 @@ PEOPLE = parse_check_people(check = check_people)
 print("People parsed successfully!")
 
 html_content = bib2output_content([('files/papers.bib', generate_papers_html),
-                                   ('files/theses.bib', generate_theses_html),
-                                   ('files/talks.bib', generate_talks_html)])
+                                   ('files/talks.bib', generate_talks_html),
+                                   ('files/theses.bib', generate_theses_html)])
 
 export("pubs.html", html_content)
 print("Publications to HMTL -- Done !")
