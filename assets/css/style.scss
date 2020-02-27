@@ -156,7 +156,8 @@ header div.profile-pic {
     border: 2px solid black;
     height: 220px;
     float: left;
-    image-orientation: from-image;
+    // image-orientation: 0deg;
+    // image-orientation: from-image;
 }
 
 @media print, screen and (max-width: 960px) {
