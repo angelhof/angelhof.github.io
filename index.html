@@ -36,37 +36,37 @@ sections: {
 
 <!-- <p class="homepage"> -->
 <!-- I am currently working on <em>distributed stream processing</em>. More -->
-<!-- precisely, I am interested in improving the programming models for the -->
-<!-- specification and implementation of correct distributed stream -->
-<!-- processing systems. A necessary prerequisite is to improve the -->
-<!-- existing conceptual model that we have for streaming computations, -->
-<!-- making it more expressive and at the same time formalizing it to allow -->
-<!-- for formal reasoning. -->
+<!-- precisely, I am interested in improving the support for specification -->
+<!-- and implementation of correct distributed stream processing -->
+<!-- applications, either by designing expressive programming models that -->
+<!-- offer correctness by construction, or by developing tools for checking -->
+<!-- correctness of existing applications. A necessary prerequisite to -->
+<!-- achieve these goals is to rethink the conceptual foundation of -->
+<!-- distributed stream processing. -->
 <!-- </p> -->
 
 <!-- <p class="homepage"> -->
 <!-- In recent years, distributed stream processing frameworks (such as -->
 <!-- Flink, Spark-Streaming, Storm, and Twitter Heron) have seen a massive -->
-<!-- popularity increase. This is mostly due to the dramatic increase in -->
-<!-- the amount of data that needs to be processed in real-time with -->
-<!-- minimal latency. These systems offer enticing performance benefits -->
-<!-- (mostly in latency and throughput) by using aggressive parallelization -->
-<!-- techniques to leverage the available distributed computation -->
-<!-- resources. -->
+<!-- popularity increase, an increase that can mostly be attributed to the -->
+<!-- surge in the amount of data that needs to be processed in real-time -->
+<!-- with minimal latency. These systems offer enticing performance -->
+<!-- benefits (mostly in latency and throughput) by using aggressive -->
+<!-- parallelization techniques to leverage the available distributed -->
+<!-- computation resources. -->
 <!-- </p> -->
 
 <!-- <p class="homepage"> -->
-<!-- However, these performance benefits don't always come without a -->
-<!-- cost. These systems have two main drawbacks. First, their programming -->
-<!-- interfaces are limited to a restricted class of popular streaming -->
-<!-- computations. They can implement these streaming computations -->
-<!-- extremely efficiently, but they can't implement ones that fall out of -->
-<!-- this class. Second, they offer limited support for checking -->
-<!-- correctness, as there are implicit assumptions that the user code has -->
-<!-- to satisfy in order for the computation to be correct. These -->
-<!-- assumptions are often just documented in plain text in the framework -->
-<!-- documentation, making it very hard for a developer to ensure that -->
-<!-- their code is correct. -->
+<!-- However, these performance benefits don't always come without a cost, -->
+<!-- impeding development of applications in these frameworks in two -->
+<!-- ways. First, their programming interfaces are limited to a restricted -->
+<!-- class of streaming computations. Computations that do not fall in this -->
+<!-- class can only be implemented with low level primitives, circumventing -->
+<!-- the programming model of the framework. Second, checking correctness -->
+<!-- of applications in these frameworks is extremely error-prone, as there -->
+<!-- are implicit assumptions---often documented just in text---that the -->
+<!-- user-written code has to satisfy in order for the computation to be -->
+<!-- correct. -->
 <!-- <\!-- This motivates the development of both (i) more -\-> -->
 <!-- <\!-- expressive programming frameworks that can implement a wider class of -\-> -->
 <!-- <\!-- computations in a distributed way, as well as (ii) tools that offer -\-> -->
@@ -77,35 +77,34 @@ sections: {
 <!-- <p class="homepage"> -->
 <!-- To address the expressiveness issue, we have -->
 <!-- developed <a href="https://github.com/angelhof/flumina">Flumina</a>, a -->
-<!-- programming framework and system where one can express and implement a -->
-<!-- wider class of distributed stream processing computations, -->
+<!-- programming framework and system that can support and implement -->
 <!-- computations that involve state and therefore cannot be distributed -->
 <!-- straightforwardly. These computations cannot be expressed by the -->
 <!-- dataflow graph model or the SQL-like languages that modern systems -->
-<!-- support, so the user has to use lower level primitives to implement -->
-<!-- these computations in a distributed way. We support these computations -->
-<!-- in our programming model by viewing input streams as partial orders -->
-<!-- instead of sequences of events. Events that are unordered, can be -->
-<!-- safely processed independently in a distributed fashion, and -->
-<!-- synchronization only happens when order is necessary. The user writes -->
-<!-- a sequential specification and some distribution primitives, and the -->
-<!-- underlying system generates a correct distributed implementation. Our -->
-<!-- goal is to develop a high-level query language that can support a -->
-<!-- wider class of computations that all current systems support, that can -->
-<!-- be compiled down to Flumina's programming model. -->
+<!-- support, so the user has to resort to manual synchronization to -->
+<!-- implement these computations in a distributed way. Our programming -->
+<!-- model supports these computations by viewing input streams as partial -->
+<!-- orders instead of sequences of events. Events that are unordered, can -->
+<!-- be safely processed independently in a distributed fashion, and -->
+<!-- synchronization only happens when order is necessary. The programming -->
+<!-- model requires that the user writes a sequential specification and -->
+<!-- some distribution primitives, and the underlying system generates a -->
+<!-- correct distributed implementation. With the Flumina programming model -->
+<!-- as a compilation target, our goal is to develop a high-level query -->
+<!-- language on top if it that can support a wider class of computations -->
+<!-- than all current frameworks do. -->
 <!-- </p> -->
 
 <!-- <p class="homepage"> -->
-<!-- To address the correctness issue of applications developed in existing -->
-<!-- systems, we are working on tools for testing the correctness of -->
-<!-- applications written in existing distributed stream processing -->
-<!-- systems. In order to do that, a fundamental challenge is to define -->
-<!-- what it means for a distributed streaming computation to be -->
-<!-- correct. We defined correctness of a distributed streaming computation -->
-<!-- with respect to a sequential one, and we developed a testing algorithm -->
-<!-- that checks two distriuted streaming computations for equivalence. We -->
-<!-- are currently in the process of packaging the tool to release it for -->
-<!-- public use for Apache Flink programs. -->
+<!-- To address the correctness issue, we are working on tools for testing -->
+<!-- the correctness of applications written in existing distributed stream -->
+<!-- processing frameworks. In order to do that, a fundamental challenge is -->
+<!-- to define what it means for a distributed streaming computation to be -->
+<!-- correct. We defined correctness of such computations with respect to a -->
+<!-- sequential one, and we developed a testing algorithm that checks two -->
+<!-- streaming computations for equivalence. We are currently in the -->
+<!-- process of packaging the tool to release it for public use for Apache -->
+<!-- Flink programs. -->
 <!-- </p> -->
 
 <!-- <p class="homepage"> -->
