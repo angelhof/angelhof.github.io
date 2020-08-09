@@ -16,6 +16,10 @@ class Person:
             return true
         else:
             resp = requests.get(self.url)
+            ## Linkedin returns 999
+            if(resp.status_code == 999):
+                if("linkedin" in self.url):
+                    return True
             return resp.status_code == requests.codes.ok
 
     def format_html(self):
