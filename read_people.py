@@ -15,7 +15,11 @@ class Person:
         if(self.url is None):
             return true
         else:
-            resp = requests.get(self.url)
+            try:
+                resp = requests.get(self.url)
+            except requests.exceptions.SSLError as err:
+                print("SSLError:", err)
+                return False
             ## Linkedin returns 999
             if(resp.status_code == 999):
                 if("linkedin" in self.url):
@@ -47,7 +51,7 @@ def parse_people():
 def check_people_valid(people):
     for person in people:
         if (not person.valid_url()):
-            print(" !! WARNING: Url for:", person.name, "is not valid !!")
+            print(" !! WARNING: Url:", person.url, "for:", person.name, "is not valid !!")
 
 def parse_check_people(check = True):
     people = parse_people()
