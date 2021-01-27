@@ -102,7 +102,11 @@ def generate_talk_html(entry_index, entry):
 
 def generate_paper_html(entry_index, entry):
     ## WARNING: Maybe it is not always 'booktitle'
-    return generate_general_html(entry_index, entry, entry['booktitle'])
+    if( 'booktitle' in entry):
+        booktitle = entry['booktitle']
+    else:
+        booktitle = entry['journal']
+    return generate_general_html(entry_index, entry, booktitle)
 
 def generate_thesis_html(entry_index, entry):
     return generate_general_html(entry_index, entry, '{}. {}'.format(entry['school'], entry['year']))
@@ -175,7 +179,11 @@ def generate_paper_tex(entry):
             output_tex += "<i>[Accepted]</i> "
     if 'author' in entry:
         output_tex += format_authors_tex(entry['author'])
-    output_tex += print_infix_tex(entry['booktitle']) + "."
+    if( 'booktitle' in entry):
+        booktitle = entry['booktitle']
+    else:
+        booktitle = entry['journal']
+    output_tex += print_infix_tex(booktitle) + "."
     output_tex += "\n\\end{minipage}\n\n"
     return output_tex
     
