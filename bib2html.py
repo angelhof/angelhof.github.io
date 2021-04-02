@@ -38,7 +38,7 @@ def trim_trailing_superscripts(string):
 
 def print_authors_html(authors):
     # Reverse the first with the last name
-    authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
+    authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split(' and ')]
     # Normalize Whitespace and remove superscripts
     authors_list = [trim_trailing_superscripts(normalize_whitespace(author.strip()))
                     for author in  authors_list]
@@ -63,7 +63,8 @@ def print_title(title):
     return "<b>" + title + "</b>"
 
 def print_infix(infix):
-    if ("In submission" in infix):
+    if ("In submission" in infix
+        or "Work In Progress" in infix):
         return "<i>{}</i>".format(infix)
     else:
         return infix
@@ -141,7 +142,7 @@ def generate_theses_html(entries, counter):
 
 def print_authors_tex(authors):
     # Reverse the first with the last name
-    authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split('and')]
+    authors_list = [author.split(',')[1] + " " + author.split(',')[0] for author in authors.split(' and ')]
     # Normalize Whitespace
     authors_list = [normalize_whitespace(author.strip()) for author in  authors_list]
 
@@ -161,7 +162,8 @@ def print_title_tex(title):
     return '\\textbf{{{}}}'.format(title)
 
 def print_infix_tex(infix):
-    if ("In submission" in infix):
+    if ("In submission" in infix
+        or "Work In Progress" in infix):
         return "\\emph{{{}}}".format(infix)
     else:
         return infix
