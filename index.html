@@ -2,6 +2,7 @@
 layout: main
 overview: true
 sections: {
+  research: "Research",
   short-bio: "Short Bio",
   papers: "Papers",
   awards: "Awards",
@@ -18,16 +19,126 @@ sections: {
     fortunate to be advised
     by <a href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>. My
     research interests lie in the intersection of programming
-    languages, distributed systems, and software verification. I am
-    particularly interested in ways of making distributed systems
-    development more reliable and secure.
+    languages, distributed systems, and software verification.    
 </p>
 
-<ul class="contents">
+<p class="homepage">
+  <b>Quick Links:</b>
+  <a href="#research">{{ page.sections.research }}</a>, 
+  <a href="#short-bio">{{ page.sections.short-bio }}</a>, 
+  <a href="#papers">{{ page.sections.papers }}</a>, 
+  <a href="#awards">{{ page.sections.awards }}</a>, 
+  <a href="#software">{{ page.sections.software }}</a>, 
+  <a href="#service">{{ page.sections.service }}</a>,
+  <a href="#personal">{{ page.sections.personal }}</a>
+</p>
+
+<!-- <ul class="contents">
   {% for section in page.sections %}
     <li><a href="#{{ section[0] }}">{{ section[1] }}</a></li>
   {% endfor %}
-</ul>
+</ul> -->
+
+<hr>
+
+<h2 id="research" class="page-heading">{{ page.sections.research }}</h2>
+
+<h3 class="page-heading">Automatic parallelization of shell scripts</h3>
+
+<p class="homepage">
+  <b>Links:</b> 
+  <a class="name-link" href="https://github.com/andromeda/pash">PaSh</a>
+  <a class="github-button" href="https://github.com/andromeda/pash" data-icon="octicon-star"  data-show-count="true" aria-label="Star andromeda/pash on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://arxiv.org/abs/2007.09436">PaSh paper (EuroSys 2021)</a>,
+  <a class="name-link" href="https://arxiv.org/abs/2012.15422">Dataflow paper (In submission)</a>,
+  <a class="name-link" href="https://www.youtube.com/watch?v=3uqYJo1v1E0">Short video (POPL SRC)</a>
+</p>
+
+<!-- <p class="homepage">
+  <a class="github-button" href="https://github.com/andromeda/pash" data-icon="octicon-star"  data-show-count="true" aria-label="Star andromeda/pash on GitHub">Star</a>  
+</p> -->
+
+<p class="homepage">
+  <b>Collaborators:</b>
+  <a class="name-link" href="http://nikos.vasilak.is/">Nikos Vasilakis</a>,
+  <a class="name-link" href="https://www.linkedin.com/in/achilles-benetopoulos/">Achilleas Benetopoulos</a>,
+  <a class="name-link" href="https://github.com/cvetkovic">Lazar M. Cvetković</a>,
+  <a class="name-link" href="https://dblp.org/pid/220/9099.html">Shivam Handa</a>,
+  <a class="name-link" href="https://mamouras.web.rice.edu/">Konstantinos Mamouras</a>,
+  and <a class="name-link" href="https://people.csail.mit.edu/rinard/">Martin Rinard</a>
+</p>
+
+<p class="homepage">
+  Together with <a href="http://nikos.vasilak.is/">Nikos Vasilakis</a>, we are 
+  leading a research project on the automatic parallelization of shell scripts.
+  The ultimate goal is to improve our understanding of the shell, 
+  approaching it from a programming languages viewpoint, and build frameworks
+  that enable further studies and analyses on it.
+
+  Our first paper on this work was published at EuroSys 2021 
+  (<a href="https://arxiv.org/abs/2007.09436">preprint</a>).
+  One of the main challenges that we had to overcome is that shell commands
+  are arbitrary black boxes that can be written in a plethora of programming languages,
+  making any analysis infeasible.
+  We addressed that by developing an annotation language that captures a few key properties
+  of shell commands that can then be used by our system to parallelize a script.
+  These annotations are written once per command, and can be shared among users
+  in the form of annotation libraries.
+  
+  We are also working on a paper 
+  (<a href="https://arxiv.org/abs/2012.15422">preprint</a>) 
+  that formalizes an order-aware dataflow model that is equivalent to a "scheduling-free" fragment of the shell.
+  We use this model as an convenient representation on which we apply transformations that expose parallelism.
+  After we are done parallelizing, the dataflow graph is transformed back to a shell script that can
+  execute on any standard shell.
+
+  Our work is open-source and available on <a href="https://github.com/andromeda/pash">Github</a>.
+</p>
+
+<h3 class="page-heading">Partial order driven stream processing</h3>
+
+<p class="homepage">
+  <b>Links:</b> 
+  <a class="name-link" href="https://github.com/angelhof/flumina">Flumina on Github</a>
+  <a class="github-button" href="https://github.com/angelhof/flumina" data-icon="octicon-star"  data-show-count="true" aria-label="Star angelhof/flumina on GitHub">Star</a>,
+  <a class="name-link" href="https://github.com/fniksic/diffstream">Diffstream on GitHub</a>
+  <a class="github-button" href="https://github.com/fniksic/diffstream" data-icon="octicon-star"  data-show-count="true" aria-label="Star fniksic/diffstream on GitHub">Star</a>,
+  <a class="name-link" href="https://dl-acm-org.proxy.library.upenn.edu/doi/abs/10.1145/3428221">Diffstream paper (OOPSLA 2020)</a>
+</p>
+
+<p class="homepage">
+  <b>Collaborators:</b>
+  <a class="name-link" href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>,
+  <a class="name-link" href="https://fniksic.github.io/">Filip Niksic</a>,
+  and <a class="name-link" href="https://www.cis.upenn.edu/~castan/">Caleb Stanford</a>
+  
+</p>
+
+<p class="homepage">
+  Existing abstractions for stream processing either consider streams to either be totally ordered sequences,
+  completely unordered relations, or some fixed point in between, e.g., CQL considers streams to be sequences of relations.
+
+  However, these representations face a number of issues.
+  If a representation does not capture adequate order, streaming queries can produce erroneous results
+  due to nondeterminism and out-of-order input data.
+  If a representation is "too ordered", then it does not expose available parallelism,
+  and optimizations due to lack of order.
+  We propose a flexible partial order abstraction that can capture fine-grained ordering requirements,
+  allowing for correct and maximally parallel stream processing.
+
+  Our first paper on this work was published at OOPSLA 2020
+  (<a href="https://dl-acm-org.proxy.library.upenn.edu/doi/abs/10.1145/3428221">link</a>),
+  where we describe a differential testing framework 
+  (<a href="https://github.com/fniksic/diffstream">code</a>)
+  for stream processing applications that allows
+  users to define the ordering requirements on their application's output, improving testing accuracy.
+
+  We are also working on a programming model that can exploit the partially ordered nature of the input stream,
+  generating highly parallel implementations. This work is under submission, 
+  but a prototype of the code is available on 
+  (<a href="https://github.com/angelhof/flumina">Github</a>).
+</p>
 
 <hr>
 
@@ -149,6 +260,8 @@ sections: {
 
 <h2 id="short-bio" class="page-heading">{{ page.sections.short-bio }}</h2>
 
+<!-- Add a paragraph about PaSh (either here, or above as current research). -->
+
 <p class="homepage">
   During the unconventional summer of 2020 I did an internship
   in <a href="https://www.microsoft.com/en-us/research/group/research-software-engineering-rise/">RiSE</a>
@@ -245,15 +358,21 @@ sections: {
 
 <ul>
   <li>
-    <b>PaSh</b> (<a href="https://github.com/andromeda/pash">GitHub</a>) <br>
+    <b>PaSh</b> (<a href="https://github.com/andromeda/pash">GitHub</a>) 
+    <a class="github-button" href="https://github.com/andromeda/pash" data-icon="octicon-star"  data-show-count="true" aria-label="Star andromeda/pash on GitHub">Star</a>
+    <br>
     A system that automatically parallelizes <em>your</em> shell scripts.
   </li>
   <li>
-    <b>Flumina</b> (<a href="https://github.com/angelhof/flumina">GitHub</a>) <br>
+    <b>Flumina</b> (<a href="https://github.com/angelhof/flumina">GitHub</a>)
+    <a class="github-button" href="https://github.com/angelhof/flumina" data-icon="octicon-star"  data-show-count="true" aria-label="Star angelhof/flumina on GitHub">Star</a>
+    <br>
     A programming model and system for stateful distributed streaming computations.
   </li>
   <li>
-    <b>DiffStream</b> (<a href="https://github.com/fniksic/diffstream">GitHub</a>) <br>
+    <b>DiffStream</b> (<a href="https://github.com/fniksic/diffstream">GitHub</a>)
+    <a class="github-button" href="https://github.com/fniksic/diffstream" data-icon="octicon-star"  data-show-count="true" aria-label="Star fniksic/diffstream on GitHub">Star</a>
+    <br>
     A differential testing library for stream processing applications in Apache Flink.
   </li>
 </ul>
@@ -263,6 +382,7 @@ sections: {
 <h2 id="service" class="page-heading">{{ page.sections.service }}</h2>
 
 <ul>
+  <li><b>POPL 2022</b> Student Volunteer Co-Chair</li>
   <li><b>VMCAI 2021</b> Artifact Evaluation Committee</li>
   <li><b>POPL 2020</b> External Reviewer</li>
 </ul>
