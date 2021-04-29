@@ -93,6 +93,8 @@ def generate_general_html(entry_index, entry, infix):
         output_html += "(<a href=\"" + entry['file'] + "\">pdf</a>) "
     if 'talk' in entry:
         output_html += "(<a href=\"" + entry['talk'] + "\">slides</a>) "
+    if 'award' in entry:
+        output_html += "<br/> &#11088 <em>" + entry['award'] + "</em> &#11088 "
     if 'author' in entry:
         output_html += format_authors(entry['author'])
     output_html += "</li>\n"
@@ -186,6 +188,8 @@ def generate_paper_tex(entry):
     else:
         booktitle = entry['journal']
     output_tex += print_infix_tex(booktitle) + "."
+    if 'award' in entry:
+        output_tex += "\\\\\n \\emph{" + entry['award'] + ".}"
     output_tex += "\n\\end{minipage}\n\n"
     return output_tex
     
