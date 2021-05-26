@@ -92,7 +92,7 @@ def generate_general_html(entry_index, entry, infix):
     if 'file' in entry:
         output_html += "(<a href=\"" + entry['file'] + "\">pdf</a>) "
     if 'talk' in entry:
-        output_html += "(<a href=\"" + entry['talk'] + "\">slides</a>) "
+        output_html += "(<a href=\"" + entry['talk'] + "\">talk</a>) "
     if 'award' in entry:
         output_html += "<br/> &#11088 <em>" + entry['award'] + "</em> &#11088 "
     if 'author' in entry:
