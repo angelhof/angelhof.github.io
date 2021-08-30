@@ -45,7 +45,11 @@ def parse_people():
     with open(filename) as people_f:
         lines = [line.split("|") for line in people_f.readlines()]
         clean_lines = [[word.strip() for word in line] for line in lines]
-    people = [Person(line) for line in clean_lines]
+    people = []
+    for line in clean_lines:
+        print(".", end="")
+        people.append(Person(line))
+    print()
     return people
 
 def check_people_valid(people):
