@@ -37,8 +37,8 @@ def find_person(name, people):
     for person in people:
         if(person.name == name):
             return person
-    print(" !! ERROR:", name, "not found in people")
-    exit(1)
+    print(" !! WARNING:", name, "not found in people")
+    return None
 
 def parse_people():
     filename = "files/people.csv"
