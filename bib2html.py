@@ -46,7 +46,9 @@ def print_authors_html(authors):
     # Remove my name
     authors_list.remove("Konstantinos Kallas")
 
-    authors_list = [find_person(author, PEOPLE).format_html() for author in authors_list]
+    authors_list = [find_person(author, PEOPLE).format_html() 
+                      if find_person(author, PEOPLE) is not None else author
+                    for author in authors_list]
 
     # Format differently if there are more than 2 authors
     if len(authors_list) == 0:
