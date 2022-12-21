@@ -44,8 +44,11 @@ sections: {
 </p>
 
 <p class="homepage">
-  <b>Quick Links:</b>
-  <a href="#research">{{ page.sections.research }}</a>, 
+  <b>Links:</b>
+  <a href="#research">{{ page.sections.research }}</a>
+  (<a href="#research-shell">shell</a>,
+   <a href="#research-serverless">serverless</a>,
+   <a href="#research-streaming">streaming</a>), 
   <a href="#papers">{{ page.sections.papers }}</a>, 
   <a href="#awards">{{ page.sections.awards }}</a>, 
   <a href="#software">{{ page.sections.software }}</a>, 
@@ -73,7 +76,7 @@ sections: {
 
 <h2 id="research" class="page-heading">{{ page.sections.research }}</h2>
 
-<h3 class="page-heading">Automatic parallelization of shell scripts</h3>
+<h3 id="research-shell" class="page-heading">Automatic scaling of shell scripts</h3>
 
 <p class="homepage">
   <b>Links:</b> 
@@ -88,10 +91,6 @@ sections: {
   <a class="name-link" href="https://www.youtube.com/watch?v=dMrfLCjtHM4&list=PLl-7Fg11LUZe_6cCrz6sVvTbE_8SEobNB">Shell Future talk (Distinguished Presentation &#11088 HotOS 2021)</a>,
   <a class="name-link" href="https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/">PaSh is hosted by the Linux Foundation</a>
 </p>
-
-<!-- <p class="homepage">
-  <a class="github-button" href="https://github.com/binpash/pash" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/pash on GitHub">Star</a>  
-</p> -->
 
 <p class="homepage">
   <b>Collaborators:</b>
@@ -108,6 +107,20 @@ sections: {
 </p>
 
 <p class="homepage">
+  Shell scripts are ubiquitous (steadily in top 10 programming languages for the 
+  last decade according to 
+  <a href="https://octoverse.github.com/2022/top-programming-languages">Github's survey</a>)
+  due to the shell's unique features:
+    simple command composition and easy access to the state of the whole system.
+  
+  Unfortunately, these features hinder optimizations on shell scripts to scale to handle
+  contemporary workloads and utilize available resources.
+
+  Our goal with this research is to automatically scale shell scripts by developing
+  solutions that respect the shell's unique features and limitations.
+</p>
+
+<!-- <p class="homepage">
   Together with <a href="http://nikos.vasilak.is/">Nikos Vasilakis</a> and
   <a href="https://mgree.github.io/">Michael Greenberg</a>, we are 
   leading a research project on the automatic parallelization of shell scripts.
@@ -139,14 +152,75 @@ sections: {
   We use this model as an convenient representation on which we apply transformations that expose parallelism.
   After we are done parallelizing, the dataflow graph is transformed back to a shell script that can
   execute on any standard shell.
-</p>
+</p> -->
 
 <p class="homepage">
   Our work is open-source, available on <a href="https://github.com/binpash/pash">Github</a>, and hosted
   <a href="https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/">under the Linux Foundation</a>. 
+
+  If you want to learn more about it, start from our 
+  <a href="https://dl.acm.org/doi/10.1145/3447786.3456228">EuroSys 21 paper</a>.
 </p>
 
-<h3 class="page-heading">Partial order driven stream processing</h3>
+<h3 id="research-serverless" class="page-heading">Programming models for stateful serverless</h3>
+
+<p class="homepage">
+  <b>Links:</b> 
+  <a class="name-link" href="https://github.com/eniac/mu2sls">mu2sls</a>
+  <a class="github-button" href="https://github.com/eniac/mu2sls" data-icon="octicon-star"  data-show-count="true" aria-label="Star eniac/mu2sls on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://github.com/microsoft/durabletask-netherite">Netherite</a>
+  <a class="github-button" href="https://github.com/microsoft/durabletask-netherite" data-icon="octicon-star"  data-show-count="true" aria-label="Star microsoft/durabletask-netherite on GitHub">Star</a>,
+  <a class="name-link" href="/files/papers/mu2sls-2023-popl.pdf">Microservices on Serverless (POPL 2023)</a>,
+  <a class="name-link" href="https://www.vldb.org/pvldb/vol15/p1591-burckhardt.pdf">Netherite paper (VLDB 2022)</a>,
+  <a class="name-link" href="https://doi.org/10.1145/3485510">Durable Functions semantics (OOPSLA 2022)</a>
+</p>
+
+<p class="homepage">
+  <b>Collaborators:</b>
+  <a class="name-link" href="https://www.cis.upenn.edu/~haorz/">Haoran Zhang</a>,
+  <a class="name-link" href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>,
+  <a class="name-link" href="https://www.cis.upenn.edu/~sga001/">Sebastian Angel</a>,
+  <a class="name-link" href="https://vincen.tl/">Vincent Liu</a>,
+  <a class="name-link" href="https://www.microsoft.com/en-us/research/people/sburckha/">Sebastian Burckhardt</a>,
+  <a class="name-link" href="https://badrish.net/">Badrish Chandramouli</a>,
+  <a class="name-link" href="https://twitter.com/davidjustodavid">David Justo</a>,
+  and <a class="name-link" href="http://christophermeiklejohn.com/">Christopher S. Meiklejohn</a>
+</p>
+
+<p class="homepage">
+  Serverless is an emerging computing platform offered that allows 
+  application developers to offload deployment, operation, and maintenance tasks to
+  cloud providers.
+
+  Unfortunately, existing programming models for serverless expose implementation details
+  and make application development hard, especially for stateful and non-monolithic applications.
+
+  Developers have to manually implement concurrency control and fault tolerance in their 
+  applications---functionalities that are known to be very hard in the distributed setting.
+
+  To address this, I am working on developing higher level programming abstractions for
+  developers so that they can focus on application logic and ignore implementation
+  details that are specific to serverless.
+
+  I am especially interested in stateful microservice applications and how to 
+  facilitate their development while correctly deploying them on a serverless platform.
+</p>
+
+<p class="homepage">
+  I have worked on two programming models for stateful serverless, mu2sls and Durable Functions, 
+  both of which are available on Github 
+  (<a href="https://github.com/eniac/mu2sls">mu2sls</a>,
+   <a href="https://github.com/microsoft/durabletask-netherite">Netherite</a>).
+
+  If you want to learn more start from the  
+  <a href="https://doi.org/10.1145/3485510">Durable Functions semantics paper</a> 
+  that describes the semantics of the Durable Functions programming model including 
+  many examples.
+</p>
+
+
+<h3 id="research-streaming" class="page-heading">Partial order driven stream processing</h3>
 
 <p class="homepage">
   <b>Links:</b> 
@@ -155,6 +229,7 @@ sections: {
   <a class="name-link" href="https://github.com/fniksic/diffstream">Diffstream on GitHub</a>
   <a class="github-button" href="https://github.com/fniksic/diffstream" data-icon="octicon-star"  data-show-count="true" aria-label="Star fniksic/diffstream on GitHub">Star</a>,
   <a class="name-link" href="https://doi.org//10.1145/3503221.3508413">Dependency-guided synchronization paper (PPoPP 2022)</a>,
+  <a class="name-link" href="https://doi.org/10.1145/3452021.3458317">Synchronization Schemas (Invited at PODS 2021)</a>,
   <a class="name-link" href="https://doi.org/10.1145/3428221">Diffstream paper (OOPSLA 2020)</a>
 </p>
 
@@ -168,27 +243,25 @@ sections: {
 
 <p class="homepage">
   Existing abstractions for stream processing either consider streams to either be totally ordered sequences,
-  completely unordered relations, or some fixed point in between, e.g., CQL considers streams to be sequences of relations.
+  completely unordered relations, or some fixed point in between, e.g., sequences of relations.
 
-  However, these representations face a number of issues.
-  If a representation does not capture adequate order, streaming queries can produce erroneous results
-  due to nondeterminism and out-of-order input data.
-  If a representation is "too ordered", then it does not expose available parallelism,
-  and optimizations due to lack of order.
-  We propose a flexible partial order abstraction that can capture fine-grained ordering requirements,
+  However, these representations create several issues related to performance,
+    too much order does not expose available parallelism,
+  and correctness,
+    lack of order disallows expressive temporal queries.
+ 
+  To address these challenges, we propose a flexible partial order abstraction 
+  that can capture fine-grained ordering requirements,
   allowing for correct and maximally parallel stream processing.
+</p>
 
-  Our first paper on this work was published at OOPSLA 2020
-  (<a href="https://dl-acm-org.proxy.library.upenn.edu/doi/abs/10.1145/3428221">link</a>),
-  where we describe a differential testing framework 
-  (<a href="https://github.com/fniksic/diffstream">code</a>)
-  for stream processing applications that allows
-  users to define the ordering requirements on their application's output, improving testing accuracy.
-
-  We are also working on a programming model that can exploit the partially ordered nature of the input stream,
-  generating highly parallel implementations. This work is going to appear at PPoPP 2022, 
-  and a prototype of the code is available on 
-  (<a href="https://github.com/angelhof/flumina">Github</a>).
+<p class="homepage">
+  Our work is open source and available on Github
+  (<a href="https://github.com/fniksic/diffstream">Diffstream</a>,
+  <a href="https://github.com/angelhof/flumina">Flumina</a>)
+  and if you want to learn more about it start from our
+  <a href="https://doi.org/10.1145/3452021.3458317">Synchronization Schemas paper</a>
+  that describes types for partially ordered streams.  
 </p>
 
 <hr>
