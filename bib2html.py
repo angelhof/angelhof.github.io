@@ -16,9 +16,9 @@ def get_bib_date(entry):
     month = 0
     day = 0
     if 'month' in entry:
-        month = entry['month']
+        month = int(entry['month'])
     if 'day' in entry:
-        day = entry['day']
+        day = int(entry['day'])
     return (year, month, day)
 
 
