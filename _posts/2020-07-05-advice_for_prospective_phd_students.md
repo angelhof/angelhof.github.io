@@ -133,3 +133,7 @@ relationship can not be easily solved, often forcing the student to
 leave the program. On the other hand, if the relationship is good, a
 healthy solution can be found to most of the other issues that might
 arise during the degree.
+
+EDIT 2023-01-25: Stephen Chong gave an [amazing talk](https://popl23.sigplan.org/details/PLMW-POPL-2023-papers/5/Care-and-Feeding-of-Advisors) at PLMW@POPL23 about selecting 
+and working with one's advisor, which I would highly recommend to any student that
+is searching for an advisor or already has one!
