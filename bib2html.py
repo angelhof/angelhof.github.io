@@ -103,7 +103,10 @@ def generate_general_html(entry_index, entry, infix):
     return output_html
 
 def generate_talk_html(entry_index, entry):
-    return generate_general_html(entry_index, entry, '{}. {}'.format(entry['event'], entry['year']))
+    infix = '{}, {}'.format(entry['event'], entry['year'])
+    if 'host' in entry:
+        infix += '. Host: {}'.format(entry['host'])
+    return generate_general_html(entry_index, entry, infix)
 
 def generate_paper_html(entry_index, entry):
     ## WARNING: Maybe it is not always 'booktitle'
@@ -210,7 +213,6 @@ def generate_talk_tex(entry):
     output_tex += print_title_tex(entry['title']) + ". \hfill {\em " + entry["year"] + "}\\\\\n"
     if 'event' in entry:
         output_tex += f'Event: {entry["event"]}.'
-
     if 'host' in entry:
         output_tex += "\\\\\n Host: " + entry['host'] + "."
     output_tex += "\n\\end{minipage}\n\n"
