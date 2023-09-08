@@ -205,6 +205,27 @@ def generate_papers_tex(entries, counter):
         counter += 1
     return output_tex, counter
 
+def generate_talk_tex(entry):
+    output_tex = "\\begin{minipage}{\\textwidth}\n"
+    output_tex += print_title_tex(entry['title']) + ". \hfill {\em " + entry["year"] + "}\\\\\n"
+    if 'event' in entry:
+        output_tex += f'Event: {entry["event"]}.'
+
+    if 'host' in entry:
+        output_tex += "\\\\\n Host: " + entry['host'] + "."
+    output_tex += "\n\\end{minipage}\n\n"
+    return output_tex
+    
+
+def generate_talks_tex(entries, counter):
+    output_tex = ""
+    sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
+    for entry_index in range(len(sorted_date_entries)):
+        entry = sorted_date_entries[entry_index]
+        output_tex += generate_talk_tex(entry)
+        counter += 1
+    return output_tex, counter
+
 
 ##
 ## Export the HTML
@@ -246,4 +267,7 @@ print("Publications to HMTL -- Done !")
 
 tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
 export("cv/pubs.tex", tex_content)
+
+talks_tex_content = bib2output_content([('files/talks.bib', generate_talks_tex)])
+export("cv/talks.tex", talks_tex_content)
 print("Publications to Tex -- Done !")
