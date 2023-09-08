@@ -17,20 +17,22 @@ sections: {
 <p class="homepage">
   I am a final year PhD student at the University of Pennsylvania, where I am
   fortunate to be advised
-  by <a href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>. My
-  research interests lie in the intersection of computer systems 
-  and programming languages.
+  by <a href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>. 
+  My research interests lie in the intersection of computer systems and programming languages.
+  <!-- Add a punchy sentence about my research. -->
+  <!-- Also a paragraph that illustrates pash, serverless. It should shout systems. -->
 
   <!-- In my research I like to find hard domains in computer systems, 
   distilling a well-defined fragment that can be modeled elegantly,
   and solving problems in them. -->
 
-  I have interned in Microsoft Research, where I worked with
+  <!-- This should be part of a bio and not my overview -->
+  <!-- I have interned in Microsoft Research, where I worked with
   <a href="https://www.microsoft.com/en-us/research/people/sburckha/">Sebastian Burckhardt</a>,
   and in the Automated Reasoning Group in AWS, where I worked with 
   <a href="https://www.linkedin.com/in/daniel-schwartz-narbonne-5036b9137/">Daniel Schwartz-Narbonne</a>.
   Before my PhD, I studied at the National Technical University of Athens,
-  where I was advised by <a href="http://user.it.uu.se/~kostis/">Kostis Sagonas</a>.
+  where I was advised by <a href="http://user.it.uu.se/~kostis/">Kostis Sagonas</a>. -->
 </p>
 
 <p class=homepage">
@@ -92,7 +94,7 @@ sections: {
 
 <h2 id="research" class="page-heading">{{ page.sections.research }}</h2>
 
-<h3 id="research-shell" class="page-heading">Automatic scaling of shell scripts</h3>
+<h3 id="research-shell" class="page-heading">Automated scale-out of shell programs</h3>
 
 <p class="homepage">
   <b>Links:</b> 
@@ -102,8 +104,13 @@ sections: {
   <a class="name-link" href="https://github.com/binpash/try">try</a>
   <a class="github-button" href="https://github.com/binpash/try" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/try on GitHub">Star</a>,
   <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://github.com/binpash/dish">DiSh</a>
+  <a class="github-button" href="https://github.com/binpash/dish" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/dish on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
   <a class="name-link" href="https://news.mit.edu/2022/faster-unix-computing-program-0607">MIT News Article on PaSh</a>,
   <a class="name-link" href="https://disseminatepodcast.podcastpage.io/episode/konstantinos-kallas-practically-correct-just-in-time-shell-script-parallelization-20">Disseminate Podcast Episode on PaSh</a>,
+  <a class="name-link" href="https://dl.acm.org/doi/10.1145/3593856.3595891">hs paper (HotOS 2023)</a>,
+  <a class="name-link" href="https://www.usenix.org/conference/nsdi23/presentation/mustafa">DiSh paper (NSDI 2023)</a>,
   <a class="name-link" href="https://www.usenix.org/conference/osdi22/presentation/kallas">PaSh-JIT paper (OSDI 2022)</a>,
   <a class="name-link" href="https://dl.acm.org/doi/10.1145/3447786.3456228">PaSh paper (Best Paper &#11088 EuroSys 2021)</a>,
   <a class="name-link" href="https://dl.acm.org/doi/10.1145/3473570">Dataflow Model paper (ICFP 2021)</a>,
@@ -121,14 +128,17 @@ sections: {
   <a class="name-link" href="https://www.linkedin.com/in/achilles-benetopoulos/">Achilleas Benetopoulos</a>,
   <a class="name-link" href="https://github.com/cvetkovic">Lazar M. Cvetković</a>,
   <a class="name-link" href="https://people.csail.mit.edu/thurston/">Thurston Dang</a>,
+  <a class="name-link" href="https://reikdas.github.io/">Pratyush Das</a>,
   <a class="name-link" href="https://dblp.org/pid/220/9099.html">Shivam Handa</a>,
   <a class="name-link" href="https://dkarnikis.github.io/">Dimitris Karnikis</a>,
+  <a class="name-link" href="https://gliargovas.github.io/">Georgios Liargkovas</a>,
+  <a class="name-link" href="https://ericz.me/">Tianyu (Eric) Zhu</a>,
   <a class="name-link" href="https://mamouras.web.rice.edu/">Konstantinos Mamouras</a>,
   and <a class="name-link" href="https://people.csail.mit.edu/rinard/">Martin Rinard</a>
 </p>
 
 <p class="homepage">
-  Shell scripts are ubiquitous (steadily in top 10 programming languages for the 
+  Shell programs are ubiquitous (steadily in top 10 programming languages for the 
   last decade according to 
   <a href="https://octoverse.github.com/2022/top-programming-languages">Github's survey</a>)
   due to the shell's unique features:
@@ -137,8 +147,8 @@ sections: {
   Unfortunately, these features hinder optimizations on shell scripts to scale to handle
   contemporary workloads and utilize available resources.
 
-  Our goal with this research is to automatically scale shell scripts by developing
-  solutions that respect the shell's unique features and limitations.
+  The goal of my research is to develop bolt-on systems that automatically scale out shell scripts
+  with theoretical and practical correctness guarantees.
 </p>
 
 <!-- <p class="homepage">
@@ -337,6 +347,12 @@ sections: {
     <a class="github-button" href="https://github.com/binpash/try" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/try on GitHub">Star</a>
     <br>
     A tool that lets you run a command and inspect its effects before committing them to your system.
+  </li>
+  <li>
+    <b>DiSh</b> (<a href="https://github.com/binpash/dish">GitHub</a>) 
+    <a class="github-button" href="https://github.com/binpash/dish" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/dish on GitHub">Star</a>
+    <br>
+    A system that automatically scales out shell scripts that operate on files in HDFS.
   </li>
   <li>
     <b>mu2sls</b> (<a href="https://github.com/eniac/mu2sls">GitHub</a>) 
