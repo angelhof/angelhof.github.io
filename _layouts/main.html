@@ -9,11 +9,33 @@ layout: default
   
   <div class="profile-pic">
   <!-- <img src="/files/olympus_opt.jpg" height="100%" > -->
-    <img src="/files/konstantinos_smallest.jpg" height="100%" >
+    <img id="prof-pic-img" src="/files/konstantinos_smallest.jpg" height="100%" >
     <!-- <div class="profile-pic-button">
 	    <img src="/files/mountain_emoji.png" height="100%" >    
     </div> -->
   </div>
+
+  <!-- The code below is thanks to Nikos Pagonas (https://nikpag.github.io/) -->
+  <!-- Prefetch mountain image for immediate change -->
+  <img src="/files/argiria_jump_cropped.jpg" style="display: none;" />
+
+  <!-- Change profile picture to mountain on hover -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hoverText = document.getElementById("hoverText")
+      const profilePicture = document.getElementById("prof-pic-img")
+
+      const originalSrc = profilePicture.src
+      const mountainSrc = "/files/argiria_jump_cropped.jpg"
+
+      hoverText.addEventListener("mouseover", function() {
+        profilePicture.src = mountainSrc;
+      })
+      hoverText.addEventListener("mouseout", function() {
+        profilePicture.src = originalSrc;
+      })
+    })
+  </script>
 
   <div class="contact-info">
     <p>
@@ -21,7 +43,7 @@ layout: default
       PhD student at <a href="https://www.upenn.edu/">UPenn</a></br>
       Co-organizer of <a href="https://manosth.github.io/mentoring_initiative/">CS PhD MentoRes</a></br>
       Member of Penn's <a href="https://dsl.cis.upenn.edu/">DSL</a> and <a href="https://www.cis.upenn.edu/~plclub/">PLClub</a></br>
-      Office: Levine 513</br>
+      Office: Levine 513 (or <a id="hoverText">&#x26F0;&#xFE0F;</a>)</br>
       Contact: <a href="mailto:kallas@seas.upenn.edu">kallas@seas.upenn.edu</a></br></br>
 
       <a href="/files/cv_konstantinos_kallas.pdf">Curriculum Vitae</a> </br>
