@@ -1,0 +1,98 @@
+<h3 id="research-shell" class="page-heading">Automated scale-out of shell programs</h3>
+
+<p class="homepage">
+  <b>Links:</b> 
+  <a class="name-link" href="https://github.com/binpash/pash">PaSh</a>
+  <a class="github-button" href="https://github.com/binpash/pash" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/pash on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://github.com/binpash/try">try</a>
+  <a class="github-button" href="https://github.com/binpash/try" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/try on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://github.com/binpash/dish">DiSh</a>
+  <a class="github-button" href="https://github.com/binpash/dish" data-icon="octicon-star"  data-show-count="true" aria-label="Star binpash/dish on GitHub">Star</a>,
+  <!-- Place this tag where you want the button to render. -->
+  <a class="name-link" href="https://news.mit.edu/2022/faster-unix-computing-program-0607">MIT News Article on PaSh</a>,
+  <a class="name-link" href="https://disseminatepodcast.podcastpage.io/episode/konstantinos-kallas-practically-correct-just-in-time-shell-script-parallelization-20">Disseminate Podcast Episode on PaSh</a>,
+  <a class="name-link" href="https://dl.acm.org/doi/10.1145/3593856.3595891">hs paper (HotOS 2023)</a>,
+  <a class="name-link" href="https://www.usenix.org/conference/nsdi23/presentation/mustafa">DiSh paper (NSDI 2023)</a>,
+  <a class="name-link" href="https://www.usenix.org/conference/osdi22/presentation/kallas">PaSh-JIT paper (OSDI 2022)</a>,
+  <a class="name-link" href="https://dl.acm.org/doi/10.1145/3447786.3456228">PaSh paper (Best Paper &#11088 EuroSys 2021)</a>,
+  <a class="name-link" href="https://dl.acm.org/doi/10.1145/3473570">Dataflow Model paper (ICFP 2021)</a>,
+  <a class="name-link" href="/files/papers/shell-2021-hotos.pdf">Shell Future paper (HotOS 2021)</a>,
+  <a class="name-link" href="https://www.youtube.com/watch?v=3uqYJo1v1E0">Short video (1st place &#11088 POPL SRC)</a>,
+  <a class="name-link" href="https://www.youtube.com/watch?v=dMrfLCjtHM4&list=PLl-7Fg11LUZe_6cCrz6sVvTbE_8SEobNB">Shell Future talk (Distinguished Presentation &#11088 HotOS 2021)</a>,
+  <a class="name-link" href="https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/">PaSh is hosted by the Linux Foundation</a>
+</p>
+
+<p class="homepage">
+  <b>Collaborators:</b>
+  <a class="name-link" href="http://nikos.vasilak.is/">Nikos Vasilakis</a>,
+  <a class="name-link" href="https://mgree.github.io/">Michael Greenberg</a>,
+  <a class="name-link" href="https://www.linkedin.com/in/tammam-mustafa-884b22137/">Tammam Mustafa</a>,
+  <a class="name-link" href="https://www.linkedin.com/in/achilles-benetopoulos/">Achilleas Benetopoulos</a>,
+  <a class="name-link" href="https://github.com/cvetkovic">Lazar M. Cvetković</a>,
+  <a class="name-link" href="https://people.csail.mit.edu/thurston/">Thurston Dang</a>,
+  <a class="name-link" href="https://reikdas.github.io/">Pratyush Das</a>,
+  <a class="name-link" href="https://dblp.org/pid/220/9099.html">Shivam Handa</a>,
+  <a class="name-link" href="https://dkarnikis.github.io/">Dimitris Karnikis</a>,
+  <a class="name-link" href="https://gliargovas.github.io/">Georgios Liargkovas</a>,
+  <a class="name-link" href="https://ericz.me/">Tianyu (Eric) Zhu</a>,
+  <a class="name-link" href="https://mamouras.web.rice.edu/">Konstantinos Mamouras</a>,
+  and <a class="name-link" href="https://people.csail.mit.edu/rinard/">Martin Rinard</a>
+</p>
+
+<p class="homepage">
+  Shell programs are ubiquitous (steadily in top 10 programming languages for the 
+  last decade according to 
+  <a href="https://octoverse.github.com/2022/top-programming-languages">Github's survey</a>)
+  due to the shell's unique features:
+    simple command composition and easy access to the state of the whole system.
+  
+  Unfortunately, these features hinder optimizations on shell scripts to scale to handle
+  contemporary workloads and utilize available resources.
+
+  The goal of my research is to develop bolt-on systems that automatically scale out shell scripts
+  with theoretical and practical correctness guarantees.
+</p>
+
+<!-- <p class="homepage">
+  Together with <a href="http://nikos.vasilak.is/">Nikos Vasilakis</a> and
+  <a href="https://mgree.github.io/">Michael Greenberg</a>, we are 
+  leading a research project on the automatic parallelization of shell scripts.
+  The ultimate goal is to improve our understanding of the shell, 
+  approaching it from a programming languages viewpoint, and build frameworks
+  that enable further studies and analyses on it.
+  
+  We have described this vision for the future of the shell in 
+  <a href="/files/papers/shell-2021-hotos.pdf">this paper</a>
+  that appeared in HotOS '21, where we also organized a 
+  <a href="https://fut-shell.github.io/">panel</a> 
+  on future avenues for shell research.
+</p>
+
+<p class="homepage">
+  The paper that started this research was published at EuroSys 2021 
+  (<a href="https://dl.acm.org/doi/10.1145/3447786.3456228">link</a>).
+  One of the main challenges that we had to overcome is that shell commands
+  are arbitrary black boxes that can be written in a plethora of programming languages,
+  making any analysis infeasible.
+  We addressed that by developing an annotation language that captures a few key properties
+  of shell commands that can then be used by our system to parallelize a script.
+  These annotations are written once per command, and can be shared among users
+  in the form of annotation libraries.
+  
+  We have also formalized an order-aware dataflow model 
+  that is equivalent to a "scheduling-free" fragment of the shell
+  (<a href="https://dl.acm.org/doi/10.1145/3473570">paper link</a>).
+  We use this model as an convenient representation on which we apply transformations that expose parallelism.
+  After we are done parallelizing, the dataflow graph is transformed back to a shell script that can
+  execute on any standard shell.
+</p> -->
+
+<p class="homepage">
+  Our work is open-source, available on <a href="https://github.com/binpash/pash">Github</a>, and hosted
+  <a href="https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/">under the Linux Foundation</a>. 
+
+  If you want to learn more about it, start from our 
+  <a href="https://dl.acm.org/doi/10.1145/3447786.3456228">EuroSys 21 paper</a>.
+</p>
