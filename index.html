@@ -19,12 +19,6 @@ sections: {
   fortunate to be advised
   by <a href="https://www.cis.upenn.edu/~alur/">Rajeev Alur</a>. 
   My research interests lie in the intersection of computer systems and programming languages.
-  <!-- Add a punchy sentence about my research. -->
-  <!-- Also a paragraph that illustrates pash, serverless. It should shout systems. -->
-
-  <!-- In my research I like to find hard domains in computer systems, 
-  distilling a well-defined fragment that can be modeled elegantly,
-  and solving problems in them. -->
 
   <!-- This should be part of a bio and not my overview -->
   <!-- I have interned in Microsoft Research, where I worked with
@@ -62,9 +56,9 @@ sections: {
 
 <p class="homepage">
   <b>Links:</b>
-  <a href="#research">{{ page.sections.research }}</a>
-  (<a href="#research-shell">shell</a>,
-   <a href="#research-serverless">serverless</a>),
+  <a href="#research">{{ page.sections.research }}</a>,
+  <!-- (<a href="#research-shell">shell</a>,
+   <a href="#research-serverless">serverless</a>), -->
    <!-- ,<a href="#research-streaming">streaming</a>),  -->
   <a href="#papers">{{ page.sections.papers }}</a>, 
   <a href="#awards">{{ page.sections.awards }}</a>, 
@@ -94,12 +88,37 @@ sections: {
 
 <h2 id="research" class="page-heading">{{ page.sections.research }}</h2>
 
-<!-- TODO: Add a paragraph here -->
 
 <p class="homepage">
-  Here are some research projects that I am currently working on. 
-  Past research projects can be found <a href="/past-projects.html">here</a>.  
+  <!-- We are in an era of unprecedented software democratization; 
+    as an example, the advent of the cloud allows anyone to deploy critical applications 
+    that serve millions of users without owning or managing any computational resources. 
+     -->
+  The goal of my research is <b>to enable ordinary developers to develop high-performance applications 
+    with robust correctness guarantees</b>. 
+    
+  To achieve this goal, I develop novel programmable software systems and enhance existing ones by reimagining their capabilities. 
+  
+  I use formal methods and models to prove properties of these systems and their expected behavior.
+  <!-- , e.g., backwards compatibility and optimization correctness. -->
+
+  The following diagram shows an overview of the research during my PhD.
+  <!-- Throughout my PhD I have done research on a range of domains 
+    from systems that optimize shell scripts for large data sets and contemporary workloads to better utilize available hardware, 
+    to systems and models for cloud computing—serverless, microservices, and stream processing. -->
 </p>
+
+<div>
+  <img src="/files/research_overview.svg">
+</div>
+
+</br>
+
+<p class="homepage">
+  Here is some more information about two of my current research projects. 
+  Past research projects can be found <a href="/past-projects.html">here</a>.
+</p>
+
 
 {% include_relative research-projects/shell.html %}
 
