@@ -267,8 +267,9 @@ html_content = bib2output_content([('files/papers.bib', generate_papers_html),
 export("pubs.html", html_content)
 print("Publications to HMTL -- Done !")
 
-tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
-export("cv/pubs.tex", tex_content)
+# Commenting this out until job apps
+# tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
+# export("cv/pubs.tex", tex_content)
 
 talks_tex_content = bib2output_content([('files/talks.bib', generate_talks_tex)])
 export("cv/talks.tex", talks_tex_content)
