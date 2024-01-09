@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Safe shell command execution with try
+title: Using try to make Copilot command suggestion a bit saner
 overview: true
 tags: [try, copilot, LLM]
 ---
