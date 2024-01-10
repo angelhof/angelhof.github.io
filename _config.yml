@@ -3,6 +3,7 @@ title: Konstantinos Kallas
 
 plugins:
   - jekyll-paginate
+  - jekyll-feed
 
 paginate: 5
 paginate_path: "/blog/page:num"
