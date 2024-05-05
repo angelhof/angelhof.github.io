@@ -4,12 +4,12 @@ overview: true
 sections: {
   research: "Research",
   papers: "Papers",
-  awards: "Awards",
   software: "Software",
-  mentoring: "Mentoring",
+  group: "Group",
+  projects: "Projects",
   outreach: "Outreach",
   service: "Service",
-  personal: "Personal"
+  misc: "Misc"
 }
 ---
 
@@ -62,12 +62,12 @@ sections: {
    <a href="#research-serverless">serverless</a>), -->
    <!-- ,<a href="#research-streaming">streaming</a>),  -->
   <a href="#papers">{{ page.sections.papers }}</a>, 
-  <a href="#awards">{{ page.sections.awards }}</a>, 
   <a href="#software">{{ page.sections.software }}</a>,
-  <a href="#mentoring">{{ page.sections.mentoring }}</a>,
-  <a href="#outreach">{{ page.sections.outreach }}</a>,
-  <a href="#service">{{ page.sections.service }}</a>,
-  <a href="#personal">{{ page.sections.personal }}</a>
+  <a href="/group.html">{{ page.sections.group }}</a>,
+  <a href="/projects.html">{{ page.sections.projects }}</a>,
+  <a href="/outreach.html">{{ page.sections.outreach }}</a>,
+  <a href="/service.html">{{ page.sections.service }}</a>,
+  <a href="#personal">{{ page.sections.misc }}</a>
 </p>
 
 <!-- <ul class="contents">
@@ -102,33 +102,11 @@ sections: {
   To achieve this goal, I build practical programmable software systems that target realistic workloads in widely-used environments. 
   
   I build my systems on solid foundations using formal specifications and techniques drawn from the programming languages, compilers, and formal methods literature.
-    
-  The following diagram shows an overview of the research during my PhD.
-  <!-- Throughout my PhD I have done research on a range of domains 
-    from systems that optimize shell scripts for large data sets and contemporary workloads to better utilize available hardware, 
-    to systems and models for cloud computing—serverless, microservices, and stream processing. -->
-</p>
-
-<div>
-  <img src="/files/research_overview.svg">
-</div>
-
-</br>
-
-<p class="homepage">
-  Here is some more information about two of my current research projects. 
-  Past research projects can be found <a href="/past-projects.html">here</a>.
 </p>
 
 
-{% include_relative research-projects/shell.html %}
 
-{% include_relative research-projects/serverless.html %}
-
-
-<hr>
-
-<h2 id="papers" class="page-heading">Selected Publications</h2>
+<h3 id="papers" class="page-heading">Papers</h2>
 
 <p class="homepage">
   A complete list of my publications, talks, and reports, can be found <a href="/papers.html">here</a> 
@@ -146,24 +124,9 @@ sections: {
 </ul>
 
 
-<hr>
+<!-- <hr> -->
 
-<h2 id="awards" class="page-heading">{{ page.sections.awards }}</h2>
-
-<ul>
-  <li><b>Morris and Dorothy Rubinoff Award 2024</b> Best Computer Science Ph.D. thesis at Penn.</li>
-  <li><b>A.G. Leventis Foundation PhD Grant 2021-2023</b></li>
-  <li><b>ACM SRC Grand Finals 2021</b> 2nd place at Graduate Category among SRC winners across all ACM conferences.</li>
-  <li><b>HotOS 2021 Distinguished Presentation Award</b> Awarded for our paper "Unix Shell Programming: The Next 50 Years" (<a href="https://www.youtube.com/watch?v=dMrfLCjtHM4&list=PLl-7Fg11LUZe_6cCrz6sVvTbE_8SEobNB">talk</a>).</li>
-  <li><b>EuroSys 2021 Best Paper Award</b> Awarded for our paper "PaSh: Light-touch Data-Parallel Shell Processing".</li>
-  <li><b>POPL 2021 Student Research Competition</b> 1st place at Graduate Category.</li>
-  <li><b>Gerondelis Foundation PhD Award 2020</b></li>
-</ul>
-
-
-<hr>
-
-<h2 id="software" class="page-heading">{{ page.sections.software }}</h2>
+<h3 id="software" class="page-heading">{{ page.sections.software }}</h2>
 
 <ul>
   <li>
@@ -213,116 +176,8 @@ sections: {
 
 <hr>
 
-<h2 id="mentoring" class="page-heading">{{ page.sections.mentoring }}</h2>
+<h2 id="personal" class="page-heading">Personal</h2>
 
-<p class="homepage">
-  I get significant fulfillment and satisfaction from mentoring students 
-  and helping them develop to independent researchers. I have followed this 
-  inclination and mentored several students throughout my PhD. Here is a list of current 
-  <!-- and past  -->
-  mentees of mine:
-</p>
-
-<ul>
-  <li>
-    <u><b><a class="name-link" href="https://mkeoliya.github.io/">Mayank Keoliya</a></b></u> 
-    (2023 - present, UPenn, PhD)  
-    LLMs for Unix command specification.
-  </li>
-  <li><b>Dimitra Leventi</b> (2023 - present, NTUA, BSc)  
-    Characterization of shell workloads and development of a benchmark suite.
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://nikpag.github.io/">Nikos Pagonas</a></b></u> 
-    (2023 - present, NTUA, BSc)
-    Design and development of a serverless shell.
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://spyrospav.github.io/">Spyros Pavlatos</a></b></u> 
-    (2022 - present, UPenn, PhD)  
-    Development of correctness criteria for microservice applications.
-  </li>
-  <li><b>Akis Giannoukos</b> (2022 - present, UPenn, PhD)  
-    Overload control for microservice applications.
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://gliargovas.github.io/">Giorgos Liargovas</a></b></u> 
-    (2022 - present, AUEB, BSc)
-    Out-of-order execution of shell scripts 
-    (paper at <a href="https://dl.acm.org/doi/10.1145/3593856.3595891">HotOS 2023</a>).
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://ericz.me/">Tianyu (Ezri) Zhu</a></b></u> 
-    (2022 - present, Stevens, BSc)
-    Design and development of 
-    <a href="https://github.com/binpash/try">try</a>,
-    a lightweight isolation tool for Linux (over 4k stars on Github).
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://sites.google.com/seas.upenn.edu/xjiali/english">Jiali Xing</a></b></u> 
-    (2021 - present, UPenn, PhD)
-    Overload control for microservice applications (paper at  
-    <a href="/files/papers/charon-2021-hotnets.pdf">HotNets 2021</a>).
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://www.linkedin.com/in/tammam-mustafa-884b22137/">Tammam Mustafa</a></b></u> 
-    (2021 - 2023, MIT, BSc → Google)
-    Design and development of DiSh (papers at 
-    <a href="https://www.usenix.org/conference/osdi22/presentation/kallas">OSDI 2022</a>
-    and
-    <a href="https://www.usenix.org/conference/nsdi23/presentation/mustafa">NSDI 2023</a>).
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://www.linkedin.com/in/achilles-benetopoulos/">Achilles Benetopoulos</a></b></u>
-    (2019 - 2021, NTUA, BSc → UCSC, PhD)
-    Development of PaSh's runtime and benchmarking of shell programs (paper at 
-    <a href="https://dl.acm.org/doi/10.1145/3447786.3456228">EuroSys 2021</a>).
-  </li>
-  <li>
-    <u><b><a class="name-link" href="https://systems.ethz.ch/people/profile.MjkzNzEw.TGlzdC8zODg4LDEyOTU2NDI2OTI=.html">Lazar Cvetkovic</a></b></u>
-    (2019 - 2021, University of Belgrade, BSc → ETH, PhD)
-    Specification framework for POSIX and GNU Coreutils commands (paper at 
-    <a href="https://dl.acm.org/doi/10.1145/3447786.3456228">EuroSys 2021</a>).
-  </li>
-</ul>
-
-<hr>
-
-
-
-<h2 id="outreach" class="page-heading">{{ page.sections.outreach }}</h2>
-
-<!-- <p class="homepage">
-  I am really passionate about mentoring, especially for people who lack adequate resources and a network. 
-</p> -->
-
-<ul>
-  <li><b>CS PhD MentoRes (2021 - present)</b> 
-    Co-organizer of 
-    <a href="https://manosth.github.io/mentoring_initiative/">mentoring initiative</a>
-    for students that are interested in applying for PhD programs in CS but lack adequate resources. 
-    We have provided mentoring and resources to more than 40 students since the initiative's start.
-  </li>
-  <li><b>SIGPLAN-M (2021 - present)</b> Participating mentor for students in the programming languages community.</li>
-  <li><b>SOSP Mentoring (2023)</b> Student mentor in SOSP 2023.</li>
-</ul>
-
-<hr>
-
-<h2 id="service" class="page-heading">{{ page.sections.service }}</h2>
-
-<ul>
-  <li><b>POPL 2023</b> Student Volunteer Co-Chair</li>
-  <li><b>OOPSLA 2023</b> External Review Committee and Artifact Evaluation Committee</li>
-  <li><b>POPL 2022</b> Student Volunteer Co-Chair</li>
-  <li><b>HotOS 2021</b> Co-organizer of a <a href="https://fut-shell.github.io/">panel</a> on the future of the shell</li>
-  <li><b>VMCAI 2021</b> Artifact Evaluation Committee</li>
-  <li><b>POPL 2020</b> External Reviewer</li>
-</ul>
-
-<hr>
-
-<h2 id="personal" class="page-heading">{{ page.sections.personal }}</h2>
 
 <p class="homepage">
   In my free time I enjoy human activities.
@@ -340,10 +195,12 @@ sections: {
   the 
   <a href="/files/sleep/west_philly_sleep.jpg" rel="nofollow" style="color: inherit">presence</a> 
   of other people.
-  <!-- It often happens that I accidentally(?) fall asleep in the presence of other people. -->
   During the late 2010s I was obsessed with 
   <a href="/escape_rooms.html" rel="nofollow" style="color: inherit">escape rooms</a>
   but I am not going that often anymore.
   I occasionally like producing rhythmic sounds from electric guitars, usually in the context of some 
   <a href="https://magnesiumsessions.bandcamp.com/track/air" rel="nofollow" style="color: inherit">jam session</a>.
 </p>
+
+
+
