@@ -185,17 +185,9 @@ def generate_indexed_paper_html(entry):
         links_html += f', <a href="https://github.com/{entry["github"]}">{system_name}</a> '
         links_html += f'<a class="github-button" href="https://github.com/{entry["github"]}" data-icon="octicon-star"  data-show-count="true" aria-label="Star {entry["github"]} on GitHub">Star</a>'
     output_html += f'({links_html})'
-    # if 'note' in entry:
-    #     if entry['note'] == 'accepted':
-    #         output_html += "<i>[Accepted]</i> "
-    # if 'url' in entry:
-    #     output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "
     
-
     if 'award' in entry:
         output_html += f'&#11088 <em>{entry["award"]}</em> &#11088 '
-    # if 'author' in entry:
-    #     output_html += format_authors(entry['author'])
     output_html += "</li>\n"
     return output_html
 
@@ -356,9 +348,8 @@ indexed_papers_html = bib2output_content([('files/papers.bib', generate_indexed_
 export("indexed_paper_list.html", indexed_papers_html)
 print("Indexed Publications to HMTL -- Done !")
 
-# Commenting this out until job apps
-# tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
-# export("cv/pubs.tex", tex_content)
-# talks_tex_content = bib2output_content([('files/talks.bib', generate_talks_tex)])
-# export("cv/talks.tex", talks_tex_content)
-# print("Publications to Tex -- Done !")
+tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
+export("cv/pubs.tex", tex_content)
+talks_tex_content = bib2output_content([('files/talks.bib', generate_talks_tex)])
+export("cv/talks.tex", talks_tex_content)
+print("Publications to Tex -- Done !")
