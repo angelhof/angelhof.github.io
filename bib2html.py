@@ -1,4 +1,5 @@
 import bibtexparser
+import re
 import sys
 from read_people import *
 
@@ -121,8 +122,8 @@ def generate_thesis_html(entry_index, entry):
 
 def generate_entries_html(entries, counter, heading, entry_handler):
     output_html = ""
-    output_html += "<h2 id=\"" + heading.lower() + "\" class=\"page-heading\">"
-    output_html += heading + "</h2>\n"
+    output_html += "<h3 id=\"" + heading.lower() + "\" class=\"page-heading\">"
+    output_html += heading + "</h3>\n"
     output_html += "<ul class=\"" + str.lower(heading) + " bibliography\">\n"
     sorted_date_entries = sorted(entries, key=get_bib_date, reverse=True)
     for entry_index in range(len(sorted_date_entries)):
@@ -142,6 +143,89 @@ def generate_talks_html(entries, counter):
 
 def generate_theses_html(entries, counter):
     return generate_entries_html(entries, counter, "Theses/Reports", generate_thesis_html)
+
+
+
+def get_conf_name(entry):
+    ## WARNING: Maybe it is not always 'booktitle'
+    if( 'booktitle' in entry):
+        booktitle = entry['booktitle']
+    else:
+        booktitle = entry['journal']
+    return booktitle
+
+def get_short_conf_name(entry):
+    conf_name = get_conf_name(entry)
+    # Match the short conference names in parentheses
+    pattern = r'\((.*?)\)'
+
+    # Use re.findall to find all occurrences of the pattern in the input text
+    matches = re.findall(pattern, conf_name)
+
+    ## Assert that to make sure this is correct
+    assert(len(matches) == 1)
+    return matches[0]
+
+def generate_indexed_paper_html(entry):
+    short_conf_name = get_short_conf_name(entry)
+
+    output_html = ""
+    output_html += "<li id=\"" + entry["ID"] + "\">"
+    output_html += f'{entry["title"]} '
+    if 'file' in entry:
+        link_href = entry['file']
+    elif 'url' in entry:
+        link_href = entry['url']
+
+    links_html = f'<a href="{link_href}">{short_conf_name}</a>'
+    if ('github' in entry):
+        system_name=entry['github']
+        if 'system' in entry:
+            system_name=entry['system']
+        links_html += f', <a href="https://github.com/{entry["github"]}">{system_name}</a> '
+        links_html += f'<a class="github-button" href="https://github.com/{entry["github"]}" data-icon="octicon-star"  data-show-count="true" aria-label="Star {entry["github"]} on GitHub">Star</a>'
+    output_html += f'({links_html})'
+    # if 'note' in entry:
+    #     if entry['note'] == 'accepted':
+    #         output_html += "<i>[Accepted]</i> "
+    # if 'url' in entry:
+    #     output_html += "(<a href=\"" + entry['url'] + "\">link</a>) "
+    
+
+    if 'award' in entry:
+        output_html += f'&#11088 <em>{entry["award"]}</em> &#11088 '
+    # if 'author' in entry:
+    #     output_html += format_authors(entry['author'])
+    output_html += "</li>\n"
+    return output_html
+
+def generate_indexed_papers_html(entries, _counter):
+    categories = {
+        "cloud": "Cloud Software Systems",
+        "shell": "Compilers and Systems for Shell Scripts"
+    }
+    category_papers = {}
+    for key in categories:
+        category_papers[key] = []
+
+    for entry in entries:
+        if ('note' in entry and
+            entry['note'] in categories.keys()):
+            paper_html = generate_indexed_paper_html(entry)
+            category_papers[entry['note']].append(paper_html)
+    
+    output_html = ""
+
+    for key, category_name in categories.items():
+        output_html += f'<h3 id="{key}" class="page-heading">{category_name}</h2>\n'
+        output_html += f'<ul>\n'
+        for indexed_paper_html in category_papers[key]:
+            output_html += indexed_paper_html
+        output_html += "</ul>\n"
+
+    print (output_html)
+    return output_html, _counter
+
 
 ##
 ## Tex backend
@@ -266,6 +350,11 @@ html_content = bib2output_content([('files/papers.bib', generate_papers_html),
 
 export("pubs.html", html_content)
 print("Publications to HMTL -- Done !")
+
+indexed_papers_html = bib2output_content([('files/papers.bib', generate_indexed_papers_html)])
+
+export("indexed_paper_list.html", indexed_papers_html)
+print("Indexed Publications to HMTL -- Done !")
 
 # Commenting this out until job apps
 # tex_content = bib2output_content([('files/papers.bib', generate_papers_tex)])
