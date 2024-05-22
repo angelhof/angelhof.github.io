@@ -215,7 +215,6 @@ def generate_indexed_papers_html(entries, _counter):
             output_html += indexed_paper_html
         output_html += "</ul>\n"
 
-    print (output_html)
     return output_html, _counter
 
 
