@@ -108,17 +108,17 @@ I build my systems on solid foundations using formal specifications and techniqu
 \hyperlink{sec:publications}{\textbf{Publications}},
 \hyperlink{sec:software}{\textbf{Software}},
 \hyperlink{sec:press}{\textbf{Selected Press}},
-\hyperlink{sec:mentoring}{\textbf{Research Mentoring}},
+% \hyperlink{sec:mentoring}{\textbf{Research Mentoring}},
 \hyperlink{sec:outreach}{\textbf{Outreach}},
 \hyperlink{sec:service}{\textbf{Service}},
 \hyperlink{sec:teaching}{\textbf{Teaching}},
-\hyperlink{sec:talks}{\textbf{Invited Talks}},
-\hyperlink{sec:references}{\textbf{References}}
+\hyperlink{sec:talks}{\textbf{Invited Talks}}
+% \hyperlink{sec:references}{\textbf{References}}
 
 \section{Education}
+\hypertarget{sec:education}{}
 
-% HACK!! Hack to have links to sections, nothing else seems to work :( If I put the hypertarget in the section it breaks the alignment.
-\hypertarget{sec:education}{\textbf{University of Pennsylvania}} \hfill {\em September 2018 -- present}\\
+\textbf{University of Pennsylvania} \hfill {\em September 2018 -- July 2024}\\
 Computer and Information Science, PhD student \\
 Advisor: Prof. Rajeev Alur
 
@@ -143,8 +143,9 @@ Advisor: Prof. Kostis Sagonas
 
 
 \section{Employment}
+\hypertarget{sec:employment}{}
 
-\hypertarget{sec:employment}{\textbf{Research Intern}} \hfill {\em Summer 2020} \\
+\textbf{Research Intern} \hfill {\em Summer 2020} \\
 Microsoft Research, Redmond, US \\
 Internship in the RiSE group; advised by Sebastian Burckhardt. \\
 Worked on Durable Functions, a programming model for serverless applications.
@@ -164,8 +165,9 @@ Internship at the Big Data Center of Excellence. \\
 Developed Big Data Applications using tools in the Hadoop ecosystem.
 
 \section{Honors and Awards}
+\hypertarget{sec:honors}{}
 
-\hypertarget{sec:honors}{\textbf{Morris and Dorothy Rubinoff Award}} \hfill {\em 2024} \\
+\textbf{Morris and Dorothy Rubinoff Award} \hfill {\em 2024} \\
 Best Computer Science Ph.D. thesis at Penn.
 
 \textbf{A.G. Leventis Foundation PhD Grant} \hfill {\em 2021-2023}
@@ -212,19 +214,21 @@ Presented work on a parallelizing JiT compiler for shell scripts.
 
 
 \section{Publications}
+\hypertarget{sec:publications}{}
 
 \input{pubs.tex}
 
 Notes: $^*$ indicates equal contribution.
 
 \section{Software}
+\hypertarget{sec:software}{}
+
+\textbf{PaSh} (\href{https://github.com/binpash/pash}{Github: binpash/pash}) \\
+A bolt-on system that automatically parallelizes arbitrary shell programs with theoretical and practical correctness guarantees. \\
+{\em Hosted by the \href{https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/}{Linux Foundation}}.
 
 \textbf{try} (\href{https://github.com/binpash/try}{Github: binpash/try}) \\
 A tool that lets you run a command and inspect its effects before committing them to your system.
-
-\hypertarget{sec:software}{\textbf{PaSh}} (\href{https://github.com/binpash/pash}{Github: binpash/pash}) \\
-A bolt-on system that automatically parallelizes arbitrary shell programs with theoretical and practical correctness guarantees. \\
-{\em Hosted by the \href{https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/}{Linux Foundation}}.
 
 \textbf{DiSh} (\href{https://github.com/binpash/dish}{Github: binpash/dish}) \\
 A system that automatically scales out shell scripts that operate on files in HDFS.
@@ -242,8 +246,9 @@ A programming model and system for stateful distributed streaming computations.
 A differential testing library for stream processing applications in Apache Flink.
 
 \section{Selected Press}
+\hypertarget{sec:press}{}
 
-\hypertarget{sec:press}{\textbf{Practically Correct, Just-in-Time Shell Script Parallelization}} (\href{https://disseminatepodcast.podcastpage.io/episode/konstantinos-kallas-practically-correct-just-in-time-shell-script-parallelization-20}{link}) \\
+\textbf{Practically Correct, Just-in-Time Shell Script Parallelization} (\href{https://disseminatepodcast.podcastpage.io/episode/konstantinos-kallas-practically-correct-just-in-time-shell-script-parallelization-20}{link}) \\
 Disseminate Podcast Episode 20, hosted by Jack Waudby. January 2023.
 
 \textbf{Faster computing results without fear of errors} (\href{https://news.mit.edu/2022/faster-unix-computing-program-0607}{link}) \\
@@ -261,45 +266,47 @@ Linux Foundation Press Release, written by Kristin OConnell. September 2021.
 % Blogpost by Micah Lerner. July 2021.
 
 
-\section{Research Mentoring}
+% \section{Research Mentoring}
+% \hypertarget{sec:mentoring}{}
 
-\hypertarget{sec:mentoring}{\textbf{Mayank Keoliya}} (UPenn, PhD) \hfill {\em 2023 -- present} \\
-LLMs for Unix command specification.
+% \textbf{Mayank Keoliya} (UPenn, PhD) \hfill {\em 2023 -- present} \\
+% LLMs for Unix command specification.
 
-\textbf{Dimitra Leventi} (NTUA, BSc) \hfill {\em 2023 -- present} \\
-Characterization of shell workloads and development of a benchmark suite.
+% \textbf{Dimitra Leventi} (NTUA, BSc) \hfill {\em 2023 -- present} \\
+% Characterization of shell workloads and development of a benchmark suite.
 
-\textbf{Nikos Pagonas} (NTUA, BSc) \hfill {\em 2023 -- present} \\
-Design and development of a serverless shell.
+% \textbf{Nikos Pagonas} (NTUA, BSc) \hfill {\em 2023 -- present} \\
+% Design and development of a serverless shell.
 
-\textbf{Spyros Pavlatos} (UPenn, PhD) \hfill {\em 2022 -- present} \\
-Development of correctness criteria for microservice applications.
+% \textbf{Spyros Pavlatos} (UPenn, PhD) \hfill {\em 2022 -- present} \\
+% Development of correctness criteria for microservice applications.
 
-\textbf{Akis Giannoukos} (UPenn, PhD) \hfill {\em 2022 -- present} \\
-Overload control for microservice applications.
+% \textbf{Akis Giannoukos} (UPenn, PhD) \hfill {\em 2022 -- present} \\
+% Overload control for microservice applications.
 
-\textbf{Giorgos Liargovas} (AUEB, BSc) \hfill {\em 2022 -- present} \\
-Out-of-order execution of shell scripts (paper at HotOS 2023).
+% \textbf{Giorgos Liargovas} (AUEB, BSc) \hfill {\em 2022 -- present} \\
+% Out-of-order execution of shell scripts (paper at HotOS 2023).
 
-\textbf{Tianyu (Ezri) Zhu} (Stevens, BSc) \hfill {\em 2022 -- present} \\
-Design and development of \texttt{try}, a lightweight isolation tool for Linux (over 4k stars on \href{https://github.com/binpash/try}{Github}).
+% \textbf{Tianyu (Ezri) Zhu} (Stevens, BSc) \hfill {\em 2022 -- present} \\
+% Design and development of \texttt{try}, a lightweight isolation tool for Linux (over 4k stars on \href{https://github.com/binpash/try}{Github}).
 
-\textbf{Jiali Xing} (UPenn, PhD) \hfill {\em 2021 -- present} \\
-Overload control for microservice applications (paper at HotNets 2021).
+% \textbf{Jiali Xing} (UPenn, PhD) \hfill {\em 2021 -- present} \\
+% Overload control for microservice applications (paper at HotNets 2021).
 
-\textbf{Tammam Mustafa} (MIT, BSc $\rightarrow$ Google) \hfill {\em 2021 -- 2023} \\
-Design and development of DiSh (papers at OSDI 2022 and NSDI 2023).
+% \textbf{Tammam Mustafa} (MIT, BSc $\rightarrow$ Google) \hfill {\em 2021 -- 2023} \\
+% Design and development of DiSh (papers at OSDI 2022 and NSDI 2023).
 
-\textbf{Achilles Benetopoulos} (NTUA, BSc $\rightarrow$ UCSC, PhD) \hfill {\em 2019 -- 2021} \\
-Development of PaSh's runtime and benchmarking of shell programs (paper at EuroSys 2021). 
+% \textbf{Achilles Benetopoulos} (NTUA, BSc $\rightarrow$ UCSC, PhD) \hfill {\em 2019 -- 2021} \\
+% Development of PaSh's runtime and benchmarking of shell programs (paper at EuroSys 2021). 
 
-\textbf{Lazar Cvetkovic} (University of Belgrade, BSc $\rightarrow$ ETH, PhD) \hfill {\em 2019 -- 2021} \\
-Specification framework for POSIX and GNU Coreutils commands (paper at EuroSys 2021). 
+% \textbf{Lazar Cvetkovic} (University of Belgrade, BSc $\rightarrow$ ETH, PhD) \hfill {\em 2019 -- 2021} \\
+% Specification framework for POSIX and GNU Coreutils commands (paper at EuroSys 2021). 
 
 
 \section{Outreach}
+\hypertarget{sec:outreach}{}
 
-\hypertarget{sec:outreach}{\textbf{CS PhD MentoRes}}  \hfill {\em 2021 -- present} \\
+\textbf{CS PhD MentoRes}  \hfill {\em 2021 -- present} \\
 Co-organizer of mentoring initiative for students that are interested in applying for PhD programs in CS but lack adequate resources. We have provided mentoring and resources to more than 40 students since the initiative's start.
 
 \textbf{SIGPLAN-M}  \hfill {\em 2021 -- present} \\
@@ -309,8 +316,9 @@ Participating mentor for students in the programming languages community.
 Student mentor in SOSP 2023.
 
 \section{Service}
+\hypertarget{sec:service}{}
 
-\hypertarget{sec:service}{\textbf{POPL 2023 Student Volunteer Co-Chair}}  \hfill {\em 2023}
+\textbf{POPL 2023 Student Volunteer Co-Chair}  \hfill {\em 2023}
 
 \textbf{OOPSLA 2023 External Review and Artifact Evaluation Committee}  \hfill {\em 2023}
 
@@ -323,8 +331,9 @@ Student mentor in SOSP 2023.
 \textbf{POPL 2020 External Reviewer}  \hfill {\em 2020}
 
 \section{Teaching}
+\hypertarget{sec:teaching}{}
 
-\hypertarget{sec:teaching}{\textbf{Teaching Assistant}}  \hfill {\em Fall 2021} \\
+\textbf{Teaching Assistant}  \hfill {\em Fall 2021} \\
 Institution: University of Pennsylvania \\
 Course: \textit{Computer-Aided Verification}, Graduate level \\
 Professor: Rajeev Alur
@@ -341,25 +350,27 @@ Professors: S. Zachos, N. Papaspyrou, V. Kantere, and P. Potikas
 
 
 \section{Invited Talks}
+\hypertarget{sec:talks}{}
 
 \input{talks.tex}
 
-\section{References}
+% \section{References}
+% \hypertarget{sec:references}{}
 
-\hypertarget{sec:references}{\textbf{Rajeev Alur}}\\
-Zisman Family Professor, Department of Computer and Information Science, University of Pennsylvania
+% \textbf{Rajeev Alur}\\
+% Zisman Family Professor, Department of Computer and Information Science, University of Pennsylvania
 
-\textbf{Sebastian Burckhardt}\\
-Senior Principal Researcher, Microsoft Research
+% \textbf{Sebastian Burckhardt}\\
+% Senior Principal Researcher, Microsoft Research
 
-\textbf{Vincent Liu}\\
-Assistant Professor, Department of Computer and Information Science, University of Pennsylvania
+% \textbf{Vincent Liu}\\
+% Assistant Professor, Department of Computer and Information Science, University of Pennsylvania
 
-\textbf{Nikos Vasilakis}\\
-Assistant Professor, Department of Computer Science, Brown University
+% \textbf{Nikos Vasilakis}\\
+% Assistant Professor, Department of Computer Science, Brown University
 
-\textbf{Keith Winstein}\\
-Associate Professor, Department of Computer Science, Stanford University
+% \textbf{Keith Winstein}\\
+% Associate Professor, Department of Computer Science, Stanford University
 
 
 % \section{Languages}
