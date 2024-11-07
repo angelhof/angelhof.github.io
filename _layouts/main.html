@@ -17,22 +17,41 @@ layout: default
 
   <!-- The code below is thanks to Nikos Pagonas (https://nikpag.github.io/) -->
   <!-- Prefetch mountain image for immediate change -->
-  <!-- <img src="/files/argiria_jump_cropped.jpg" style="display: none;" /> -->
+  <img src="/files/argiria_jump_cropped.jpg" style="display: none;" />
+  <img src="/files/zion_narrows_cropped.jpg" style="display: none;" />
   <img src="/files/smolikas_opt.jpg" style="display: none;" />
+  <img src="/files/balkans1.jpg" style="display: none;" />
+  
 
   <!-- Change profile picture to mountain on hover -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const hoverText = document.getElementById("hoverText")
+      const hoverMountain = document.getElementById("mountainEmoji")
+      const hoverRiver = document.getElementById("waterEmoji")
       const profilePicture = document.getElementById("prof-pic-img")
 
       const originalSrc = profilePicture.src
-      const mountainSrc = "/files/smolikas_opt.jpg"
+      const mountainSrc1 = "/files/smolikas_opt.jpg"
+      const mountainSrc2 = "/files/balkans1.jpg"
+      const riverSrc1 = "/files/argiria_jump_cropped.jpg"
+      const riverSrc2 = "/files/zion_narrows_cropped.jpg"
 
-      hoverText.addEventListener("mouseover", function() {
-        profilePicture.src = mountainSrc;
+      hoverMountain.addEventListener("mouseover", function() {
+        profilePicture.src = Math.random() < 0.5 ? mountainSrc1 : mountainSrc2
       })
-      hoverText.addEventListener("mouseout", function() {
+      
+      
+      hoverMountain.addEventListener("mouseout", function() {
+        profilePicture.src = originalSrc;
+      })
+
+      hoverRiver.addEventListener("mouseover", function() {
+        // Randomly pick between riverSrc1 and riverSrc2
+        profilePicture.src = Math.random() < 0.5 ? riverSrc1 : riverSrc2
+      })
+      
+      
+      hoverRiver.addEventListener("mouseout", function() {
         profilePicture.src = originalSrc;
       })
     })
@@ -45,7 +64,9 @@ layout: default
       Co-creator of <a href="https://manosth.github.io/mentoring_initiative/">CS PhD MentoRes</a></br>
       TSC member of <a href="https://github.com/binpash">PaSh</a></br>
       <!-- <a href="https://www.linuxfoundation.org/press-release/linux-foundation-to-host-the-pash-project-accelerating-shell-scripting-with-automated-parallelization-for-industrial-use-cases/">Linux Foundation</a>.  -->
-      Office: Engineering VI, 382 (or <a id="hoverText">&#x26F0;&#xFE0F;</a>)</br>
+      Office: Engineering VI, 382 (or 
+        <a id="mountainEmoji">&#x26F0;&#xFE0F;</a> 
+        <a id="waterEmoji">🌊</a>) </br>
       Contact: <a href="mailto:kkallas@cs.ucla.edu">kkallas@cs.ucla.edu</a>
 
       <!-- Member of Penn's <a href="https://dsl.cis.upenn.edu/">DSL</a> and <a href="https://www.cis.upenn.edu/~plclub/">PLClub</a></br> -->
