@@ -184,6 +184,10 @@ def generate_indexed_paper_html(entry):
             system_name=entry['system']
         links_html += f', <a href="https://github.com/{entry["github"]}">{system_name}</a> '
         links_html += f'<a class="github-button" href="https://github.com/{entry["github"]}" data-icon="octicon-star"  data-show-count="true" aria-label="Star {entry["github"]} on GitHub">Star</a>'
+    
+    if ('video' in entry):
+        video_entry=entry['video']
+        links_html += f', <a href="{video_entry}">video</a>'
     output_html += f'({links_html})'
     
     if 'award' in entry:
