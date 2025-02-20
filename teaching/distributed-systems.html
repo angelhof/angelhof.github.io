@@ -1,0 +1,109 @@
+---
+layout: default
+overview: true
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="/assets/beehive.jpg" height="auto" width="100%">
+        </div>
+    </div>
+
+<br>
+
+<h2 class="page-heading">CS 134: Distributed Systems</h2>
+
+
+<p class="homepage">
+    <b>Course ID:</b> CS134 Distributed Systems </br>
+    <b>Instructor:</b> Konstantinos Kallas 
+        (<a href="mailto:kkallas@ucla.edu">kkallas@ucla.edu</a>) 
+        <!-- The link is absolute in case this website goes under some other directory at some point -->
+        (<a href="https://angelhof.github.io/">Website</a>) </br>
+    <b>TA:</b> TBD</br>
+    <b>Lecture Time & Location:</b> Tuesdays/Thursdays 4pm-5:50pm -- Dodd Hall 175 </br>
+    <b>Discussion & Location:</b> Fridays 2pm-3:50pm -- Dodd Hall 146 </br>
+    <b>Office Hours:</b>
+    <ul>
+        <li>Konstantinos: By appointment</li>
+        <!-- <li>TA: TBD</li> -->
+    </ul>
+    <b>Resources:</b> 
+        <a href="/teaching/spring-2025-cs134/schedule.html">Schedule</a>, 
+        <a href="/teaching/spring-2025-cs134/assignment1.html">Assignment 1</a>
+        <!-- <a href="/teaching/spring-2025-cs134/assignment1.html">Assignment 2</a>
+        <a href="/teaching/spring-2025-cs134/assignment1.html">Assignment 3</a>
+        <a href="/teaching/spring-2025-cs134/assignment1.html">Assignment 4</a> -->
+</p>
+
+<h3 class="page-heading">Synopsis</h3>
+
+<p class="homepage">
+Distributed systems enable developers to leverage compute and storage resources across many networked computers to provide services that are fast, highly available, and scalable. However, doing so is challenging as systems can fail at any time, and networks can fail or be arbitrarily slow. This class covers fundamental concepts regarding the design and implementation of distributed systems. Topics include synchronization (e.g., clock synchronization, logical clocks, vector clocks), failure recovery (e.g., snapshotting, primary-backup), consistency models (e.g., linearizability, eventual, causal), consensus protocols (e.g., Paxos, Raft), distributed transactions, and locking. In addition to lectures, students will gain hands-on, practical experience with these topics through multiple programming assignments; the assignments work through the steps of creating a fault-tolerant, sharded key/value store. We will also explore how these concepts have manifested in several real-world, large-scale distributed systems used by Internet companies like Google, Meta, and Amazon.
+</p>
+
+<h3 class="page-heading">Piazza</h3>
+
+<p class="homepage">
+    Students can use the <a href="https://piazza.com/ucla/spring2025/cs134">course's Piazza page</a> to ask questions relating to lecture material and programming assignments. Students are also encouraged to respond to other student comments/questions. Please sign up for the Piazza page as soon as possible!
+</p>
+
+
+<h3 class="page-heading">Grading</h3>
+
+<p class="homepage">
+    <ul>
+        <li>70% Programming Assignments (10% for Assignment 1, 20% each for Assignments 2-4)</li>
+        <li>30% Final Exam</li>
+    </ul>
+</p>
+
+<h3 class="page-heading">Programming Assignments</h3>
+
+<p class="homepage">
+The course will include four programming assignments which collectively focus on building a fault-tolerant, sharded key/value store. The assignments will be implemented using the 
+<a href="https://go.dev/">Go programming language</a>. 
+The first lab must be completed individually (as it provides an introduction to the Go programming environment, and how we will use it in this course). The remaining three labs may be completed individually, or in groups of two students (each group will turn in one solution, along with a note about how work was divided). Note that expectations are the same for individuals or groups. If you would like a partner, but are unable to find one (especially due to the remote class structure), please post about partner searchers on Piazza or email the TA who will try and pair you with someone. Also note that the same groups will be used for assignments 2-4. Assignments are due by 10pm (PDT) on the listed due dates. Each assignment will take quite a bit of time (mostly spent designing solutions and debugging), so please start early!
+</p>
+
+<p class="homepage">
+Late policy: each group may use up to four late days over the course of the quarter; late days cannot be used for Assignment 1 which will be completed individually. Late days may be allocated across the programming assignments in any way. To use a late day, please contact the TA 
+<b>ahead of time</b>; 
+late days will not be granted after the fact. Any assignment turned in after late days have been expended will be scored starting at 50% of the total score (i.e., the max score for an assignment worth 100 points will be 50 points). Further, assignments may not be turned in more than 5 days after their due dates. In cases when late days do not suffice, please contact the instructor. However, note that additional late days will not be granted for certain circumstances (e.g., interviews, vacation, etc.); please schedule accordingly.
+</p>
+
+<p class="homepage">
+Collaboration policy: programming assignments must be done individually or with your designated group. The work turned in must be your own, and you may not copy another person's solutions or code, including from online sources. In addition, it is not acceptable to discuss solutions with others. Matters of copying work (or allowing work to be copied) will be treated very seriously. In scenarios where material seems too challenging or due dates seem too hard to meet, please contact the instructor or a TA rather than consulting another student's work.
+</p>
+
+<h3 class="page-heading">Textbook</h3>
+
+<p class="homepage">
+There is no required textbook for the course; lecture materials will be made available following each lecture. However, the textbook: Distributed Systems (3rd Edition), Maarten Van Steen and Andrew S. Tanenbaum covers many topics that we will discuss, and is a good reference. The textbook is optional, and a free digital copy is available 
+<a href="https://www.distributed-systems.net/index.php/books/ds4/">here</a>.
+</p>
+
+<h3 class="page-heading">Acknowledgements</h3>
+
+<p class="homepage">
+Course content, including lectures and programming assignments, were largely inspired by the following distributed systems courses at other universities:
+<ul>
+    <li>UCLA CS134: 
+        <a href="https://web.cs.ucla.edu/~ravi/CS134_S20/">Distributed Systems</a> (Professor Ravi Netravali)</li>
+    <li>UCSC CS138: 
+        <a href="https://www.youtube.com/playlist?list=PLNPUF5QyWU8PydLG2cIJrCvnn5I_exhYx">Distributed Systems</a> (Professor Lindsey Kuper)</li>
+    <li>Brown CS1380: 
+        <a href="https://cs.brown.edu/courses/csci1380/">Distributed Systems</a> (Professor Nikos Vasilakis)</li>
+    <li>UPenn CIS4550: 
+        <a href="https://cis5550.seas.upenn.edu/">Internet and Web Systems</a> (Professor Vincent Liu)</li>
+</ul>
+</p>
+
+
+
+</body>
+</html>
+
+
+    
