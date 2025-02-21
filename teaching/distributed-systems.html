@@ -21,13 +21,14 @@ overview: true
         (<a href="mailto:kkallas@ucla.edu">kkallas@ucla.edu</a>) 
         <!-- The link is absolute in case this website goes under some other directory at some point -->
         (<a href="https://angelhof.github.io/">Website</a>) </br>
-    <b>TA:</b> TBD</br>
+    <b>TA:</b> Arjun Aggarwal 
+        (<a href="mailto:arjuna5@g.ucla.edu">arjuna5@g.ucla.edu</a>) </br>
     <b>Lecture Time & Location:</b> Tuesdays/Thursdays 4pm-5:50pm -- Dodd Hall 175 </br>
     <b>Discussion & Location:</b> Fridays 2pm-3:50pm -- Dodd Hall 146 </br>
     <b>Office Hours:</b>
     <ul>
         <li>Konstantinos: By appointment</li>
-        <!-- <li>TA: TBD</li> -->
+        <li>Arjun: TBD</li>
     </ul>
     <b>Resources:</b> 
         <a href="/teaching/spring-2025-cs134/schedule.html">Schedule</a>
@@ -40,15 +41,8 @@ overview: true
 <h3 class="page-heading">Synopsis</h3>
 
 <p class="homepage">
-Distributed systems enable developers to leverage compute and storage resources across many networked computers to provide services that are fast, highly available, and scalable. However, doing so is challenging as systems can fail at any time, and networks can fail or be arbitrarily slow. This class covers fundamental concepts regarding the design and implementation of distributed systems. Topics include synchronization (e.g., clock synchronization, logical clocks, vector clocks), failure recovery (e.g., snapshotting, primary-backup), consistency models (e.g., linearizability, eventual, causal), consensus protocols (e.g., Paxos, Raft), distributed transactions, and locking. In addition to lectures, students will gain hands-on, practical experience with these topics through multiple programming assignments; the assignments work through the steps of creating a fault-tolerant, sharded key/value store. We will also explore how these concepts have manifested in several real-world, large-scale distributed systems used by Internet companies like Google, Meta, and Amazon.
+Distributed systems enable developers to leverage compute and storage resources across many networked computers to provide services that are fast, highly available, and scalable. However, doing so is challenging as systems can fail at any time, and networks can fail or be arbitrarily slow. This class covers fundamental concepts regarding the design and implementation of distributed systems. Topics include synchronization (e.g., clock synchronization, logical clocks, vector clocks), failure recovery (e.g., snapshotting, primary-backup), consistency models (e.g., linearizability, eventual, causal), consensus protocols (e.g., Paxos, Raft), distributed transactions, and locking. In addition to lectures, students will gain hands-on, practical experience with these topics through multiple programming assignments; the assignments work through the steps of creating a fault-tolerant, sharded key/value store. We will also explore how these concepts have manifested in several real-world, large-scale distributed systems used by Internet companies like Google, Meta, and Amazon. Finally, we will cover how these concepts apply to contemporary cloud computing.
 </p>
-
-<h3 class="page-heading">Piazza</h3>
-
-<p class="homepage">
-    Students can use the <a href="https://piazza.com/ucla/spring2025/cs134">course's Piazza page</a> to ask questions relating to lecture material and programming assignments. Students are also encouraged to respond to other student comments/questions. Please sign up for the Piazza page as soon as possible!
-</p>
-
 
 <h3 class="page-heading">Grading</h3>
 
@@ -60,22 +54,55 @@ Distributed systems enable developers to leverage compute and storage resources 
     </ul>
 </p>
 
+<h3 class="page-heading">Prerequisites</h3>
+
+<p class="homepage">
+
+The course has a heavy programming assignment load using the Go programming language, so it is crucial that you have some familiarity with:
+<ul>
+<li>Concurrent programming (threads, locks, message passing)</li>
+<li>Programming in a Unix environment</li>
+<li>(optional) the Go programming language</li>
+</ul>
+
+You should also have a grasp of the basics of computer networks and the internet.
+<!-- For programming assignments, we will use the Go language. We will provide resources and support. You do not
+need to know Go entering this class, but you should have familiarity with concurrency -->
+</p>
+
 <h3 class="page-heading">Programming Assignments</h3>
 
 <p class="homepage">
-The course will include four programming assignments which collectively focus on building a fault-tolerant, sharded key/value store. The assignments will be implemented using the 
+The course will include four heavy programming assignments which collectively focus on building a fault-tolerant, sharded key/value store. The assignments will be implemented using the 
 <a href="https://go.dev/">Go programming language</a>. 
-The first lab must be completed individually (as it provides an introduction to the Go programming environment, and how we will use it in this course). The remaining three labs may be completed individually, or in groups of two students (each group will turn in one solution, along with a note about how work was divided). Note that expectations are the same for individuals or groups. If you would like a partner, but are unable to find one (especially due to the remote class structure), please post about partner searchers on Piazza or email the TA who will try and pair you with someone. Also note that the same groups will be used for assignments 2-4. Assignments are due by 10pm (PDT) on the listed due dates. Each assignment will take quite a bit of time (mostly spent designing solutions and debugging), so please start early!
+The first lab must be completed individually (as it provides an introduction to the Go programming environment, and how we will use it in this course). The remaining three labs may be completed individually, or in groups of two students (each group will turn in one solution, along with a note about how work was divided). Note that expectations are the same for individuals or groups. 
+If you need help to find a partner, please come to discussion section and talk to folks. Alternatively, you can post about partner searchers on Piazza or email the TA who will try and pair you with someone. Also note that the same groups will be used for assignments 2-4. Assignments are due by 10pm (PDT) on the listed due dates. Each assignment will take <strong>a lot of time</strong> (mostly spent designing solutions and debugging), so please start early!
 </p>
 
 <p class="homepage">
-Late policy: each group may use up to four late days over the course of the quarter; late days cannot be used for Assignment 1 which will be completed individually. Late days may be allocated across the programming assignments in any way. To use a late day, please contact the TA 
-<b>ahead of time</b>; 
-late days will not be granted after the fact. Any assignment turned in after late days have been expended will be scored starting at 50% of the total score (i.e., the max score for an assignment worth 100 points will be 50 points). Further, assignments may not be turned in more than 5 days after their due dates. In cases when late days do not suffice, please contact the instructor. However, note that additional late days will not be granted for certain circumstances (e.g., interviews, vacation, etc.); please schedule accordingly.
+Late policy: each group may use up to <strong>8</strong> late days over the course of the quarter; late days cannot be used for Assignment 1 which will be completed individually. Late days may be allocated across the programming assignments in any way. To use a late day, please contact the TA 
+<strong>ahead of time</strong>; 
+late days will not be granted after the fact. Any assignment turned in after late days have been expended will be scored starting at 50% of the total score (i.e., the max score for an assignment worth 100 points will be 50 points). Further, no more than <strong>4</strong> late days can be used for a single assignment. In cases when late days do not suffice, please contact the instructor. However, note that additional late days will not be granted for certain circumstances (e.g., interviews, vacation, etc.); please schedule accordingly.
 </p>
 
 <p class="homepage">
-Collaboration policy: programming assignments must be done individually or with your designated group. The work turned in must be your own, and you may not copy another person's solutions or code, including from online sources. In addition, it is not acceptable to discuss solutions with others. Matters of copying work (or allowing work to be copied) will be treated very seriously. In scenarios where material seems too challenging or due dates seem too hard to meet, please contact the instructor or a TA rather than consulting another student's work.
+Collaboration policy: programming assignments must be done individually or with your designated group. The work turned in must be your own, and you may not copy another person's solutions or code, including from online sources. 
+<!-- Matters of copying work (or allowing work to be copied) will be treated very seriously.  -->
+However, students are encouraged to discuss challenges and solution insights with others during the discussion section.
+</p>
+
+<h3 class="page-heading">Discussion Section</h3>
+
+<p class="homepage">
+The programming assignments will take up significant amount of your time while working on the course, so the main focus of the discussion sections will be working on the assignments. The sections will have minimal lecturing from the TA and will primarily be lab sections where students can work on their assignments and discuss their questions with the TA, the LAs, and among each other.
+
+Students are encouraged to participate in all discussion sections and to use those as the primary way to get help with the assignments. This way, students can discuss challenges not only with the TA (as would be the case on Piazza and office hours) but also with LAs and other students.
+</p>
+
+<h3 class="page-heading">Piazza</h3>
+
+<p class="homepage">
+    Students can use the <a href="https://piazza.com/ucla/spring2025/cs134">course's Piazza page</a> to ask questions relating to lecture material and programming assignments. Students are also encouraged to respond to other student comments/questions.
 </p>
 
 <h3 class="page-heading">Textbook</h3>
@@ -88,7 +115,7 @@ There is no required textbook for the course; lecture materials will be made ava
 <h3 class="page-heading">Acknowledgements</h3>
 
 <p class="homepage">
-Course content, including lectures and programming assignments, were largely inspired by the following distributed systems courses at other universities:
+Course content, including lectures and programming assignments, were largely inspired by the following distributed systems courses:
 <ul>
     <li>UCLA CS134: 
         <a href="https://web.cs.ucla.edu/~ravi/CS134_S20/">Distributed Systems</a> (Professor Ravi Netravali)</li>
