@@ -7,7 +7,7 @@ overview: true
 
 <h3 class="page-heading">Due date: Friday April 11, 10pm</h3>
 
-Post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>.
+<!-- For questions, come to discussion sections on Fridays and post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>. -->
 
 <hr>
 
@@ -359,14 +359,8 @@ $ go test
 
 <h3>Assignment Submission</h3>
 <p>
-    To submit the assignment, please push your final code into your repository. Then fill out the
-    <a href="assignment1.html" target="_blank">submission form</a>
-    to turn in your assignment. You may submit up to 5 times before the 
-assignment is due. We will evaluate the code specified in your <strong>last</strong> submission prior to the 4/11 10pm PT deadline.
-</p>
-
-<p>You will receive full credit if your code passes the <tt>test_test.go</tt> tests when we run it
- <!-- your software on the SEASnet machines; we encourage you to develop or at least test your code on the SEASnet machines prior to submission. -->
+To submit the assignment, use Gradescope.    
+You will receive full credit if your code passes the <tt>test_test.go</tt> tests when we run it.
 <strong>Remember that late days cannot be used for this assignment.</strong>
 </p>
 
