@@ -50,8 +50,7 @@ You must write all the code you hand in for CS134, except for code that we give 
             </a>.
             Your own private copy of the assignment 1 repository is called a mirror repository.
             Each individual student should have their own private mirror repository where
-            they commit their changes. When the assignment is complete, students will
-            submit a link to their private mirror repository in the submission form (listed below).
+            they commit their changes.
         </p>
         <ol>
         <li>First, you should create a new <strong>private</strong> repository on GitHub.
@@ -81,7 +80,7 @@ origin  git@github.com:${USER_NAME}/assignment1.git (push)
         </li>
         </ol>
         <p>
-        Now you have your own copy of the original <i>ucla-progsoftsys/assignment1-skeleton</i> repository. Please add your designated TA as a collaborator on this  private repository. Your designated TA is the one leading your discussion section; please email the TAs if you are unsure about whom to add. 
+        Now you have your own copy of the original <i>ucla-progsoftsys/assignment1-skeleton</i> repository. 
         </p>
         <p>
             Git allows you to keep track of the changes you make to the code.
@@ -96,12 +95,6 @@ $ git push
 </pre>
 <p></p>
 </li>
-
-        <!-- <p>
-            Note: Go and Git are already installed on the seasnet linux 
-servers. We will be using lnxsrv09 or equivalent to grade these projects
- for consistency.
-        </p> -->
 </ul>
 </p>
 
