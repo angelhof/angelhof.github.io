@@ -353,7 +353,7 @@ $ go test
 <p>
 To submit the assignment, use Gradescope.    
 You will receive full credit if your code passes the <tt>test_test.go</tt> tests when we run it.
-<strong>Remember that late days cannot be used for this assignment.</strong>
+<!-- <strong>Remember that late days cannot be used for this assignment.</strong> -->
 </p>
 
 
