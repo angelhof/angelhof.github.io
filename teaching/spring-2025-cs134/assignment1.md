@@ -33,8 +33,7 @@ You must write all the code you hand in for CS134, except for code that we give 
     <li>
         Install Go: You'll implement this assignment (and all the other assignments) in <a href="http://www.golang.org/">Go</a>. The Go website contains lots of tutorial information which you may want to look at. You can find the installation instructions <a href="https://golang.org/doc/install">here</a>.
     </li>
-    <li> Install the GoLand IDE (optional but highy encouraged): You can use whichever IDE/editor you prefer, but the Goland IDE is very useful and can be found <a href="https://www.jetbrains.com/go/">here</a> and it is free if you provide student identification.
-    </li>
+    <li> Install an IDE/IDE extension of your choice: Some options are the GoLand IDE and the Go extension for VSCode.</li>
     <li>
         Install Git: We supply you with a non-distributed MapReduce implementation, and a partial implementation of a distributed implementation (skeleton code with utility components). You'll fetch the initial implementations with <a href="http://git.or.cz/">git</a> (a version control system). To learn more about git, look at the <a href="http://www.kernel.org/pub/software/scm/git/docs/user-manual.html">git user's manual</a>, or, if you are already familiar with other version control systems, you may find this <a href="http://eagain.net/articles/git-for-computer-scientists/">CS-oriented overview of git</a> useful.
     </li>
