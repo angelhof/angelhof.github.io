@@ -56,7 +56,7 @@ You must write all the code you hand in for CS134, except for code that we give 
             Let's assume the name of this repository is <i>assignment1</i>. Also, replace
             ${USER_NAME} with your GitHub user name while running the following commands.</li>
         <li>Next, create a bare mirrored clone of <i>ucla-progsoftsys/assignment1-skeleton</i> repository.
-<pre>$ git clone --mirror git@github.com:ucla-progsoftsys/assignment1-skeleton.git</pre>
+<pre>$ git clone --mirror git@github.com:ucla-progsoftsys/cs134-assignment1-skeleton.git</pre>
         </li>
         <li>Then, you should mirror-push to the new repository, in 
 addition to setting the push location to your private repository:
