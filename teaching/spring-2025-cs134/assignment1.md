@@ -351,8 +351,12 @@ $ go test
 
 <h3>Assignment Submission</h3>
 <p>
-To submit the assignment, use Gradescope.    
-You will receive full credit if your code passes the <tt>test_test.go</tt> tests when we run it.
+To submit the assignment, submit the code as-is to Gradescope, following the same
+code structure as from the provided skeleton code, with a main and mapreduce folder.
+You will receive full credit if your code passes all of the provided test cases.
+Barring any academic integrity issues or egregious bugs in the autograder,
+your autograder score is your final score. You may submit as many times as you'd like
+to Gradescope, and your active submission will be used for your grade.
 <!-- <strong>Remember that late days cannot be used for this assignment.</strong> -->
 </p>
 
