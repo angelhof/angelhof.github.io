@@ -52,7 +52,7 @@ You must write all the code you hand in for CS134, except for code that we give 
             they commit their changes.
         </p>
         <ol>
-        <li>First, you should create a new <strong>private</strong> repository on GitHub.
+        <li>First, you should create a new <strong>private</strong> repository on GitHub. You should <strong>not</strong> store any solution code in public, since this is considered code sharing.
             Let's assume the name of this repository is <i>assignment1</i>. Also, replace
             ${USER_NAME} with your GitHub user name while running the following commands.</li>
         <li>Next, create a bare mirrored clone of <i>ucla-progsoftsys/assignment1-skeleton</i> repository.
