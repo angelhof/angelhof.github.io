@@ -23,16 +23,6 @@ In the MapReduce assignment, handling failures was relatively easy because the w
 You must write all the code you submit, except for code that we give you as part of the assignment. You are not allowed to look at anyone else's solution, and you are not allowed to look at code from previous years. You may discuss the assignments with other students, but you may not look at or copy each others' code. Please do not publish your code or make it available to future CS134 students -- for example, please do not make your code visible on GitHub (i.e., use a private repo).
 </p>
 
-<h3>Collaboration Policy</h3>
-<p>
-    You must write all the code you submit, except for code
-    that we give you as part of the assignment. You are not allowed to
-    look at anyone else's solution, and you are not allowed to look at
-    code from previous years. You may discuss the assignments with other
-    students, but you may not look at or copy each others' code. Please do
-    not publish your code or make it available to future CS134 students --
-    for example, please do not make your code visible on GitHub (i.e., use a private repo).
-</p>
 
 <h3>Road map for assignments 2-4</h3>
 <p>
@@ -90,19 +80,19 @@ You must write all the code you submit, except for code that we give you as part
 <h3>Setting up GitHub repository</h3>
 <p>
     For assignments 2-4, each team work in their own private repository in the
-    <a href="https://github.com/S20-CS134">
-        <em>S20-CS134</em>
+    <a href="https://github.com/ucla-cs134-spring2025">
+        ucla-cs134-spring2025
     </a> GitHub organization.
-    The TAs will create your repositories for you.
-    Within 24 hours of a TA creating a private repository for your team,
+    The TA will create your repositories for you and you will be automativally invited to them.
+    <!-- Within 24 hours of a TA creating a private repository for your team,
     you will automatically receive an invitation to join the <em>S20-CS134</em> GitHub organization.
-    Your team's repository name will be the same as the team name you listed in the submission form (barring naming conflicts).
+    Your team's repository name will be the same as the team name you listed in the submission form (barring naming conflicts). -->
 </p>
-<p>
+<!-- <p>
     Once you receive an invitation for a private repo, please follow the instructions below
     while replacing <code>${TEAM_NAME}</code> with your team's repository name:
-</p>
-<ul id="requirements" style="list-style-type:disc;">
+</p> -->
+<!-- <ul id="requirements" style="list-style-type:disc;">
     <li>
         <p> Access your team's repository:
             as soon as you accept the invitation,
@@ -135,7 +125,7 @@ You must write all the code you submit, except for code that we give you as part
             After completing these steps, you should have all the required files for assignment 2 in your team's private repository. You can now start the assignment!
         </p>
     </li>
-</ul>
+</ul> -->
 
 
 <h3> Overview of Assignment 2 </h3>
@@ -338,7 +328,7 @@ again.
 An example sequence of view changes:
 
 <p>
-<img src="teaching/spring-2025-cs134/images/ExampleSequence.png">
+<img src="/teaching/spring-2025-cs134/images/ExampleSequence.png">
 </p>
 
 The above example is overspecified; for example, when the view server
@@ -680,9 +670,8 @@ Hint: study the test cases before you start programming
     Then use Gradescope to turn in your assignment.
 </p>
 <p>
-    You will receive full credit if your code passes(provided there is no plagiarism).
-    the <tt>test_test.go</tt> tests when we run your code on the SEASnet
-    machines. You may use any number of your group's late days for this assignment. You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same methodn for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours; for example, if you use 1 late day, the assignment will be due Saturday, May 3 at 10pm. In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline (i.e., using the commit hash listed in that submission).
+You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests.You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours; for example, if you use 1 late day, the assignment will be due Saturday, May 3 at 10pm. 
+<!-- In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline. -->
 </p>
 
 <hr />
