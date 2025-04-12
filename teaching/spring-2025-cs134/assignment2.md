@@ -23,6 +23,13 @@ In the MapReduce assignment, handling failures was relatively easy because the w
 You must write all the code you submit, except for code that we give you as part of the assignment. You are not allowed to look at anyone else's solution, and you are not allowed to look at code from previous years. You may discuss the assignments with other students, but you may not look at or copy each others' code. Please do not publish your code or make it available to future CS134 students -- for example, please do not make your code visible on GitHub (i.e., use a private repo).
 </p>
 
+<h3 class="page-heading">Keeping track of time</h3>
+
+<p class="homepage">
+At the end of the assignment we will ask you how long it took, so try to keep a rough estimate of how many hours you have worked on it in total as a team :)
+</p>
+
+
 
 <h3>Road map for assignments 2-4</h3>
 <p>
