@@ -90,7 +90,10 @@ At the end of the assignment we will ask you how long it took, so try to keep a 
     <a href="https://github.com/ucla-cs134-spring2025">
         ucla-cs134-spring2025
     </a> GitHub organization.
-    The TA will create your repositories for you and you will be automativally invited to them.
+    We will be using GitHub classroom to manage group repositories. Open the
+    invite link posted in Piazza, select your UID from the list, and either 
+    create a new group or join the existing group with your partner. A
+    repository should automatically be created for you.
     <!-- Within 24 hours of a TA creating a private repository for your team,
     you will automatically receive an invitation to join the <em>S20-CS134</em> GitHub organization.
     Your team's repository name will be the same as the team name you listed in the submission form (barring naming conflicts). -->
@@ -233,10 +236,10 @@ work out the details.</p>
 <h3>Getting started</h3>
 <p>
     Assuming that you are in <code>${TEAM_NAME}</code> directory,
-    running <tt>test_test.go</tt> in the <tt>src/viewservice</tt> should give the following errors:
+    running <tt>test_test.go</tt> in the <tt>viewservice</tt> should give the following errors:
     <pre>
         $ export GOPATH=$(pwd)
-        $ cd src/viewservice
+        $ cd viewservice
         $ go test
     </pre>
     <pre>
@@ -257,10 +260,10 @@ work out the details.</p>
 
 <p>
     You can run your code as stand-alone programs by building the source files (
-    <tt>src/main/viewd.go</tt>,
-    <tt>src/main/pbd.go</tt>, and
-    <tt>src/main/pbc.go</tt>).
-    Please see the comments in <tt>src/main/pbc.go</tt>.
+    <tt>main/viewd.go</tt>,
+    <tt>main/pbd.go</tt>, and
+    <tt>main/pbc.go</tt>).
+    Please see the comments in <tt>main/pbc.go</tt>.
 </p>
 
 
@@ -306,7 +309,7 @@ the view service that it crashed.
 
 <p>
 The view service proceeds to a new view if it hasn't
-received recent Pings from both primary and backup, or
+received recent Pings from either the primary or backup, or
 if the primary or backup crashed and restarted, or
 if there is no backup and there is an idle server
 (a server that's been Pinging but is
@@ -350,7 +353,7 @@ Your job is to supply the needed code in <tt>server.go</tt>.
 When you're done, you should pass all the <tt>viewservice</tt>
 tests:
     <pre>
-        $ cd src/viewservice
+        $ cd viewservice
         $ go test
         Test: First primary ...
           ... Passed
@@ -516,12 +519,11 @@ Your primary should forward just the arguments to each <tt>Append()</tt>
 to the backup; do not forward the resulting value, which might be large.
 
 <p>
-The skeleton code for the key/value servers is in <tt>src/pbservice</tt>.
+The skeleton code for the key/value servers is in <tt>pbservice</tt>.
 It uses your viewservice, so make sure that your GOPATH is set correctly
 to where your <code>${TEAM_NAME}</code> directory is.
     <pre>
-        $ cd src/pbservice
-        $ go test -i
+        $ cd pbservice
         $ go test
     </pre>
     <pre>
@@ -645,17 +647,8 @@ Hint: some tests involve multiple clients trying to update the same key concurre
 You should make sure that the order of these updates is the same in both the primary and the backup
 
 <p>
-    Hint: you may need to generate numbers that have a high probability of being unique. Try this:
-    <pre>
-        import "crypto/rand"
-        import "math/big"
-        func nrand() int64 {
-          max := big.NewInt(int64(1) << 62)
-          bigx, _ := rand.Int(rand.Reader, max)
-          x := bigx.Int64()
-          return x
-        }
-    </pre>
+    Hint: you may need to generate numbers that have a high probability of being unique.
+    Use the `nrand()` function provided in `client.go`.
 </p>
 
 <p>Hint: the tests kill a server by setting its <tt>dead</tt> flag.  You must
@@ -674,10 +667,11 @@ Hint: study the test cases before you start programming
 
 <p>
     To submit the assignment, please push your final code into your team's repository.
-    Then use Gradescope to turn in your assignment.
+    Then use Gradescope to turn in your assignment from GitHub. Remember to add your teammate
+    to your Gradescope submission.
 </p>
 <p>
-You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests.You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours; for example, if you use 1 late day, the assignment will be due Saturday, May 3 at 10pm. 
+You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests. You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours; for example, if you use 1 late day, the assignment will be due Saturday, May 3 at 10pm. 
 <!-- In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline. -->
 </p>
 
