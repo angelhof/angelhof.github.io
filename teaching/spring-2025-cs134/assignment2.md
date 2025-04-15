@@ -5,7 +5,7 @@ overview: true
 
 <h2 class="page-heading"><a href="/teaching/distributed-systems.html">CS 134: Distributed Systems</a> -- Assignment 2: Primary/Backup Key/Value Service</h2>
 
-<h3 class="page-heading">Due date: Friday May 2, 10pm</h3>
+<h3 class="page-heading">Due date: Sunday May 4, 10pm</h3>
 
 <!-- For questions, come to discussion sections on Fridays and post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>. -->
 
@@ -677,7 +677,7 @@ Hint: study the test cases before you start programming
     Then use Gradescope to turn in your assignment.
 </p>
 <p>
-You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests.You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours; for example, if you use 1 late day, the assignment will be due Saturday, May 3 at 10pm. 
+You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests.You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours.
 <!-- In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline. -->
 </p>
 
