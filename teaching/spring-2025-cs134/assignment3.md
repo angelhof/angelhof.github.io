@@ -89,7 +89,7 @@ overview: true
     problems can be fixed.
 </p>
 <p>
-    To help with this assignment, you should consult the Paxos-related lectures (lectures 8-10). For a wider perspective, have a look at Chubby, Paxos Made Live,
+    To help with this assignment, you should consult the Paxos-related lectures. For a wider perspective, have a look at Chubby, Paxos Made Live,
     Spanner, Zookeeper, Harp, Viewstamped Replication,
     and
     <a href="http://static.usenix.org/event/nsdi11/tech/full_papers/Bolosky.pdf">Bolosky et al.</a>
@@ -108,43 +108,11 @@ overview: true
 
 <h3>Getting the Skeleton Code</h3>
 <p>
-<b>It is strongly recommended that you complete this assignment on the seasnet Linux servers. If you are running locally, we encourage you to use a Linux VM (e.g., using VirtualBox) and not Windows.</b><br>
+<!-- <b>It is strongly recommended that you complete this assignment on the seasnet Linux servers. If you are running locally, we encourage you to use a Linux VM (e.g., using VirtualBox) and not Windows.</b><br> -->
     We have added the files needed for assignment 3 in the
     <a href="https://github.com/ucla-cs134-spring2025">same repository</a>
     as previous assignment.
     Therefore you only need to pull these new files <em>once per team</em>.
-    In order to do so, please run:
-</p>
-<pre>
-$ cd ${TEAM_NAME}
-$ git remote add public git@github.com:S20-CS134/assignments-2-4-skeleton.git
-$ git remote -v
-</pre>
-<pre>
-origin  git@github.com:S20-CS134/${TEAM_NAME}.git (fetch)
-origin  git@github.com:S20-CS134/${TEAM_NAME}.git (push)
-public  git@github.com:S20-CS134/assignments-2-4-skeleton.git (fetch)
-public  git@github.com:S20-CS134/assignments-2-4-skeleton.git (push)
-</pre>
-<pre>
-$ git pull public master
-</pre>
-<p>
-    If you have not changed .gitignore, you should not get any merge conflicts.
-    In case there is a merge conflict, first fix the merge conflict
-    by editing the conflicting files (e.g., .gitignore) to include both your changes and our public changes.
-    Then <code>git add</code> those changes, and finally perform <code>git commit</code>, close the editor, and push the merge commit into your team's repository with:</p>
-<pre>
-$ git push origin master
-</pre>
-
-<p>
-    At this point, the last two commits in your team's repository should be
-    "<code>Merge branch 'master'</code>"
-    and "<code>Added skeleton code needed for assignment 3</code>".
-</p>
-<p>
-    Hint: you can see a list of your last N commits using <code>git log -N</code>.
 </p>
 
 

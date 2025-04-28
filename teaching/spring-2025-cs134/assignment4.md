@@ -99,23 +99,14 @@ overview: true
 <p>
     We have added the files needed for assignment 4 in the
     <a href="https://github.com/ucla-cs134-spring2025">
-        same skeleton repository</a>.
-    Similar to assignment 3, you only need to pull these
-    new files <em>once per team</em>. Assuming that you have correctly
-    added the <code>public</code> remote repository as described
-    in assignment 3, you should be able to easily pull the skeleton
-    code for this assignment using the following commands:
+        same repository</a>.
 </p>
-<pre>    $ cd ${TEAM_NAME}
-$ git pull public master
-$ git push origin master
-</pre>
 
 <h3>Getting started</h3>
 <p>
     Assuming that you are in <code>${TEAM_NAME}</code> directory, proceed to running the code:
 </p>
-<pre>    $ export GOPATH=$(pwd)
+<pre>$ export GOPATH=$(pwd)
 $ cd src/shardmaster
 $ go test
 Test: Basic leave/join ...
@@ -143,7 +134,7 @@ FAIL
     <tt>shardmaster</tt> directory (after ignoring Go's many complaints):
 
 </p>
-<pre>    $ cd src/shardmaster
+<pre>$ cd src/shardmaster
 $ go test
 Test: Basic leave/join ...
 ... Passed
@@ -300,7 +291,7 @@ ok      shardmaster     2.102s
 <p>
     When you're done, your code should pass the shardkv tests:
 </p>
-<pre>    $ cd src/shardkv
+<pre>$ cd src/shardkv
 $ go test
 Test: Basic Join/Leave ...
 ... Passed
@@ -405,9 +396,3 @@ You will receive full credit if your code passes (provided there is no plagiaris
 <address>
     Please post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>.
 </address>
-    <!--  LocalWords:  Paxos Sharded shard sharding sharded Put's src shardmaster
- -->
-    <!--  LocalWords:  shardkv cd TestBasic TestUnreliable Go's RPCs RPC's GID px
- -->
-    <!--  LocalWords:  kvpaxos Config ErrWrongGroup Handin gzipped czvf whoami tgz
- -->
