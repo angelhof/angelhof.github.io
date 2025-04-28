@@ -99,7 +99,7 @@ overview: true
 <p>
     We have added the files needed for assignment 4 in the
     <a href="https://github.com/ucla-cs134-spring2025">
-        our public skeleton repository</a>.
+        same skeleton repository</a>.
     Similar to assignment 3, you only need to pull these
     new files <em>once per team</em>. Assuming that you have correctly
     added the <code>public</code> remote repository as described
