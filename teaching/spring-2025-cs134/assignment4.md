@@ -3,7 +3,7 @@ layout: default
 overview: true
 ---
 
-<h2 class="page-heading"><a href="/teaching/distributed-systems.html">CS 134: Distributed Systems</a> -- Assignment 3: Paxos-based Key/Value Service</h2>
+<h2 class="page-heading"><a href="/teaching/distributed-systems.html">CS 134: Distributed Systems</a> -- Assignment 4: Sharded Key/Value Service</h2>
 
 <h3 class="page-heading">Due date: Friday June 06, 10pm</h3>
 
