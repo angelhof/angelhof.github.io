@@ -400,7 +400,7 @@ You will receive full credit if your code passes (provided there is no plagiaris
 <!-- In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline. -->
 </p>
 
-    <hr>
+<hr>
 
 <address>
     Please post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>.
