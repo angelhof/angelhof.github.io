@@ -98,7 +98,7 @@ overview: true
 <h3>Getting the Skeleton Code</h3>
 <p>
     We have added the files needed for assignment 4 in the
-    <a href="https://github.com/S20-CS134/assignments-2-4-skeleton">
+    <a href="https://github.com/ucla-cs134-spring2025">
         our public skeleton repository</a>.
     Similar to assignment 3, you only need to pull these
     new files <em>once per team</em>. Assuming that you have correctly
