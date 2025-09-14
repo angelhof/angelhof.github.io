@@ -37,11 +37,17 @@ def parse_book_file(filename):
         item['author'] = words[1].strip()
         item['date'] = words[2].strip()
         item['location'] = words[3].strip()
-        if len(words) == 5 and words[4].strip() == '*':
+        if len(words) >= 5 and words[4].strip() == '*':
             item['starred'] = True
         else:
             item['starred'] = False
-        data.append(item)
+        
+        ## Hide a book from the public list
+        hidden = False
+        if len(words) >= 6 and words[5].strip() == "hidden":
+            hidden = True
+        if not hidden:
+            data.append(item)
     return data
 
 
