@@ -1,0 +1,328 @@
+@article{opal2025oopsla,
+    author = {Mell, Stephen and Kallas, Konstantinos and Zdancewic, Steve and Bastani, Osbert},
+    title = {Opportunistically Parallel Lambda Calculus},
+    year = {2025},
+    issue_date = {October 2025},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {9},
+    number = {OOPSLA2},
+    url = {https://doi.org/10.1145/3763143},
+    doi = {10.1145/3763143},
+    abstract = {Scripting languages are widely used to compose external calls such as native libraries and network services. In such scripts, execution time is often dominated by waiting for these external calls, rendering traditional single-language optimizations ineffective. To address this, we propose a novel opportunistic evaluation strategy for scripting languages based on a core lambda calculus that automatically dispatches independent external calls in parallel and streams their results. We prove that our approach is confluent, ensuring that it preserves the programmer’s original intent, and that it eventually executes every external call. We implement this approach in a scripting language called Opal. We demonstrate the versatility and performance of Opal, focusing on programs that invoke heavy external computation through the use of large language models (LLMs) and other APIs. Across five scripts, we compare to several state-of-the-art baselines and show that opportunistic evaluation improves total running time (up to 6.2\texttimes{}) and latency (up to 12.7\texttimes{}) compared to standard sequential Python, while performing very close (between 1.3\% and 18.5\% running time overhead) to hand-tuned manually optimized asynchronous Rust. For Tree-of-Thoughts, a prominent LLM reasoning approach, we achieve a 6.2\texttimes{} performance improvement over the authors’ own implementation.},
+    journal = {Proc. ACM Program. Lang.},
+    month = oct,
+    articleno = {365},
+    numpages = {27},
+    keywords = {LLM agents, concurrency, parallelization, scripting, streaming}
+}
+
+@inproceedings{koala2025atc,
+  title={The Koala benchmarks for the shell: characterization and implications},
+  author={Lamprou, Evangelos and Williams, Ethan and Kaoukis, Georgios and Zhang, Zhuoxuan and Greenberg, Michael and Kallas, Konstantinos and Lazarek, Lukas and Vasilakis, Nikos},
+  booktitle={2025 USENIX Annual Technical Conference (USENIX ATC 25)},
+  pages={449--464},
+  year={2025}
+}
+
+@inproceedings{static2025hotos,
+    author = {Lazarek, Lukas and Jung, Seong-Heon and Lamprou, Evangelos and Li, Zekai and Narsipur, Anirudh and Zhao, Eric and Greenberg, Michael and Kallas, Konstantinos and Mamouras, Konstantinos and Vasilakis, Nikos},
+    title = {From Ahead-of- to Just-in-Time and Back Again: Static Analysis for Unix Shell Programs},
+    year = {2025},
+    isbn = {9798400714757},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3713082.3730395},
+    doi = {10.1145/3713082.3730395},
+    abstract = {Shell programming is as prevalent as ever. It is also quite complex, due to the structure of shell programs, their use of opaque software components, and their complex interactions with the broader environment. As a result, even when exercising an abundance of care, shell developers discover devastating bugs in their programs only at runtime: at best, shell programs going wrong crash the execution of a long-running task; at worst, they silently corrupt the broader environment in which they execute---affecting user data, modifying system files, and rendering entire systems unusable. Could the shell's users enjoy the benefits of semantics-driven static analysis before their programs' execution---as offered by most other production languages?},
+    booktitle = {Proceedings of the 2025 Workshop on Hot Topics in Operating Systems},
+    pages = {88--95},
+    numpages = {8},
+    keywords = {Linux, Unix, inference, shell, static analysis, type systems},
+    location = {Banff, AB, Canada},
+    series = {HotOS '25}
+}
+
+@inproceedings{rajomon2025nsdi,
+    author = {Jiali Xing and Akis Giannoukos and Paul Loh and Shuyue Wang and Justin Qiu and Henri Maxime Demoulin and Konstantinos Kallas and Benjamin C. Lee},
+    title = {Rajomon: Decentralized and Coordinated Overload Control for {Latency-Sensitive} Microservices},
+    booktitle = {22nd USENIX Symposium on Networked Systems Design and Implementation (NSDI 25)},
+    year = {2025},
+    isbn = {978-1-939133-46-5},
+    address = {Philadelphia, PA},
+    pages = {21--36},
+    url = {https://www.usenix.org/conference/nsdi25/presentation/xing},
+    publisher = {USENIX Association},
+    month = apr
+}
+
+@article{netherite2025bestofvldb,
+  title={Netherite: efficient execution of serverless workflows},
+  author={Burckhardt, Sebastian and Chandramouli, Badrish and Gillum, Chris and Justo, David and Kallas, Konstantinos and McMahon, Connor and Meiklejohn, Christopher S and Zhu, Xiangfeng},
+  journal={The VLDB Journal},
+  volume={34},
+  number={2},
+  pages={25},
+  year={2025},
+  publisher={Springer}
+}
+
+@inproceedings{mucache2024nsdi,
+  title={{MuCache}: A general framework for caching in microservice graphs},
+  author={Zhang, Haoran and Kallas, Konstantinos and Pavlatos, Spyros and Alur, Rajeev and Angel, Sebastian and Liu, Vincent},
+  booktitle={21st USENIX Symposium on Networked Systems Design and Implementation (NSDI 24)},
+  pages={221--238},
+  year={2024}
+}
+
+@inproceedings{hs2023hotos,
+  title={Executing shell scripts in the wrong order, correctly},
+  author={Liargkovas, Georgios and Kallas, Konstantinos and Greenberg, Michael and Vasilakis, Nikos},
+  booktitle={Proceedings of the 19th Workshop on Hot Topics in Operating Systems},
+  pages={103--109},
+  year={2023}
+}
+
+@inproceedings {dish2023nsdi,
+    author = {Tammam Mustafa and Konstantinos Kallas and Pratyush Das and Nikos Vasilakis},
+    title = {{DiSh}: Dynamic {Shell-Script} Distribution},
+    booktitle = {20th USENIX Symposium on Networked Systems Design and Implementation (NSDI 23)},
+    year = {2023},
+    isbn = {978-1-939133-33-5},
+    address = {Boston, MA},
+    pages = {341--356},
+    url = {https://www.usenix.org/conference/nsdi23/presentation/mustafa},
+    publisher = {USENIX Association},
+    month = apr
+}
+
+@article{mu2sls2023popl,
+  title={Executing microservice applications on serverless, correctly},
+  author={Kallas, Konstantinos and Zhang, Haoran and Alur, Rajeev and Angel, Sebastian and Liu, Vincent},
+  journal={Proceedings of the ACM on Programming Languages},
+  volume={7},
+  number={POPL},
+  pages={367--395},
+  year={2023},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{pashjit2022osdi,
+  title={Practically correct,{Just-in-Time} shell script parallelization},
+  author={Kallas, Konstantinos and Mustafa, Tammam and Bielak, Jan and Karnikis, Dimitris and Dang, Thurston HY and Greenberg, Michael and Vasilakis, Nikos},
+  booktitle={16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22)},
+  pages={769--785},
+  year={2022}
+}
+
+@article{netherite2022vldb,
+  title={Netherite: Efficient execution of serverless workflows},
+  author={Burckhardt, Sebastian and Chandramouli, Badrish and Gillum, Chris and Justo, David and Kallas, Konstantinos and McMahon, Connor and Meiklejohn, Christopher S and Zhu, Xiangfeng},
+  journal={Proceedings of the VLDB Endowment},
+  volume={15},
+  number={8},
+  pages={1591--1604},
+  year={2022},
+  publisher={VLDB Endowment}
+}
+
+@inproceedings{flumina2022ppopp,
+    author = {Kallas, Konstantinos and Niksic, Filip and Stanford, Caleb and Alur, Rajeev},
+    title = {Stream processing with dependency-guided synchronization},
+    year = {2022},
+    isbn = {9781450392044},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3503221.3508413},
+    doi = {10.1145/3503221.3508413},
+    abstract = {Real-time data processing applications with low latency requirements have led to the increasing popularity of stream processing systems. While such systems offer convenient APIs that can be used to achieve data parallelism automatically, they offer limited support for computations that require synchronization between parallel nodes. In this paper, we propose dependency-guided synchronization (DGS), an alternative programming model for stateful streaming computations with complex synchronization requirements. In the proposed model, the input is viewed as partially ordered, and the program consists of a set of parallelization constructs which are applied to decompose the partial order and process events independently. Our programming model maps to an execution model called synchronization plans which supports synchronization between parallel nodes. Our evaluation shows that APIs offered by two widely used systems---Flink and Timely Dataflow---cannot suitably expose parallelism in some representative applications. In contrast, DGS enables implementations with scalable performance, the resulting synchronization plans offer throughput improvements when implemented manually in existing systems, and the programming overhead is small compared to writing sequential code.},
+    booktitle = {Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming},
+    pages = {1--16},
+    numpages = {16},
+    keywords = {data parallelism, distributed stream processing, sharding, synchronization},
+    location = {Seoul, Republic of Korea},
+    series = {PPoPP '22}
+}
+
+@inproceedings{charon2021hotnets,
+  title={Charon: A framework for microservice overload control},
+  author={Xing, Jiali and Demoulin, Henri Maxime and Kallas, Konstantinos and Lee, Benjamin C},
+  booktitle={Proceedings of the 20th ACM Workshop on Hot Topics in Networks},
+  pages={213--220},
+  year={2021}
+}
+
+@article{durablesemantics2021oopsla,
+  title={Durable functions: semantics for stateful serverless},
+  author={Burckhardt, Sebastian and Gillum, Chris and Justo, David and Kallas, Konstantinos and McMahon, Connor and Meiklejohn, Christopher S},
+  journal={Proceedings of the ACM on Programming Languages},
+  volume={5},
+  number={OOPSLA},
+  pages={1--27},
+  year={2021},
+  publisher={ACM New York, NY, USA}
+}
+
+@article{odfg2021icfp,
+  title={An order-aware dataflow model for parallel unix pipelines},
+  author={Handa, Shivam and Kallas, Konstantinos and Vasilakis, Nikos and Rinard, Martin C},
+  journal={Proceedings of the ACM on Programming Languages},
+  volume={5},
+  number={ICFP},
+  pages={1--28},
+  year={2021},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{synchronizationschemas2021pods,
+    author = {Alur, Rajeev and Hilliard, Phillip and Ives, Zachary G. and Kallas, Konstantinos and Mamouras, Konstantinos and Niksic, Filip and Stanford, Caleb and Tannen, Val and Xue, Anton},
+    title = {Synchronization Schemas},
+    year = {2021},
+    isbn = {9781450383813},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3452021.3458317},
+    doi = {10.1145/3452021.3458317},
+    abstract = {We present a type-theoretic framework for data stream processing for real-time decision making, where the desired computation involves a mix of sequential computation, such as smoothing and detection of peaks and surges, and naturally parallel computation, such as relational operations, key-based partitioning, and map-reduce. Our framework unifies sequential (ordered) and relational (unordered) data models. In particular, we define synchronization schemas as types, and series-parallel streams (SPS) as objects of these types. A synchronization schema imposes a hierarchical structure over relational types that succinctly captures ordering and synchronization requirements among different kinds of data items. Series-parallel streams naturally model objects such as relations, sequences, sequences of relations, sets of streams indexed by key values, time-based and event-based windows, and more complex structures obtained by nesting of these. We introduce series-parallel stream transformers (SPST) as a domain-specific language for modular specification of deterministic transformations over such streams. SPSTs provably specify only monotonic transformations allowing streamability, have a modular structure that can be exploited for correct parallel implementation, and are composable allowing specification of complex queries as a pipeline of transformations.},
+    booktitle = {Proceedings of the 40th ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems},
+    pages = {1--18},
+    numpages = {18},
+    keywords = {synchronization schemas, stream processing, series-parallel partial orders, relations, parallelism, streams, database query languages},
+    location = {Virtual Event, China},
+    series = {PODS'21}
+}
+
+@inproceedings{unix2021hotos,
+    author = {Greenberg, Michael and Kallas, Konstantinos and Vasilakis, Nikos},
+    title = {Unix shell programming: the next 50 years},
+    year = {2021},
+    isbn = {9781450384384},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3458336.3465294},
+    doi = {10.1145/3458336.3465294},
+    abstract = {The Unix shell is a powerful, ubiquitous, and reviled tool for managing computer systems. The shell has been largely ignored by academia and industry. While many replacement shells have been proposed, the Unix shell persists. Two recent threads of formal and practical research on the shell enable new approaches. We can help manage the shell's essential shortcomings (dynamism, power, and abstruseness) and address its inessential ones. Improving the shell holds much promise for development, ops, and data processing.},
+    booktitle = {Proceedings of the Workshop on Hot Topics in Operating Systems},
+    pages = {104--111},
+    numpages = {8},
+    keywords = {transformation, shell, optimization, analysis, Unix, JIT},
+    location = {Ann Arbor, Michigan},
+    series = {HotOS '21}
+}
+
+@inproceedings{unixpanel2021hotos,
+    author = {Greenberg, Michael and Kallas, Konstantinos and Vasilakis, Nikos},
+    title = {The future of the shell: Unix and beyond},
+    year = {2021},
+    isbn = {9781450384384},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3458336.3465296},
+    doi = {10.1145/3458336.3465296},
+    abstract = {The Unix shell is fifty years old, and it continues to be the primary way to configure, deploy, and manage systems of all kinds. What do the next fifty years hold? What is the command-line interface of the 21st century?This 90-minute panel brings together researchers and engineers from disparate communities (systems, languages, security) to think about the shell's strengths and weaknesses, challenges and opportunities around the shell, and the shell's future.},
+    booktitle = {Proceedings of the Workshop on Hot Topics in Operating Systems},
+    pages = {240--241},
+    numpages = {2},
+    location = {Ann Arbor, Michigan},
+    series = {HotOS '21}
+}
+
+@inproceedings{pash2021eurosys,
+    author = {Vasilakis, Nikos and Kallas, Konstantinos and Mamouras, Konstantinos and Benetopoulos, Achilles and Cvetkovi\'{c}, Lazar},
+    title = {PaSh: light-touch data-parallel shell processing},
+    year = {2021},
+    isbn = {9781450383349},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3447786.3456228},
+    doi = {10.1145/3447786.3456228},
+    abstract = {This paper presents PaSh, a system for parallelizing POSIX shell scripts. Given a script, PaSh converts it to a dataflow graph, performs a series of semantics-preserving program transformations that expose parallelism, and then converts the dataflow graph back into a script---one that adds POSIX constructs to explicitly guide parallelism coupled with PaSh-provided Unix-aware runtime primitives for addressing performance- and correctness-related issues. A lightweight annotation language allows command developers to express key parallelizability properties about their commands. An accompanying parallelizability study of POSIX and GNU commands---two large and commonly used groups---guides the annotation language and optimized aggregator library that PaSh uses. PaSh's extensive evaluation over 44 unmodified Unix scripts shows significant speedups (0.89--61.1\texttimes{}, avg: 6.7\texttimes{}) stemming from the combination of its program transformations and runtime primitives.},
+    booktitle = {Proceedings of the Sixteenth European Conference on Computer Systems},
+    pages = {49--66},
+    numpages = {18},
+    keywords = {POSIX, Unix, automatic parallelization, pipelines, shell, source-to-source compiler},
+    location = {Online Event, United Kingdom},
+    series = {EuroSys '21}
+}
+
+@inproceedings{mir2021ccs,
+    author = {Vasilakis, Nikos and Staicu, Cristian-Alexandru and Ntousakis, Grigoris and Kallas, Konstantinos and Karel, Ben and DeHon, Andr\'{e} and Pradel, Michael},
+    title = {Preventing Dynamic Library Compromise on Node.js via RWX-Based Privilege Reduction},
+    year = {2021},
+    isbn = {9781450384544},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3460120.3484535},
+    doi = {10.1145/3460120.3484535},
+    abstract = {Third-party libraries ease the development of large-scale software systems. However, libraries often execute with significantly more privilege than needed to complete their task. Such additional privilege is sometimes exploited at runtime via inputs passed to a library, even when the library itself is not actively malicious. We present Mir, a system addressing dynamic compromise by introducing a fine-grained read-write-execute (RWX) permission model at the boundaries of libraries: every field of every free variable name in the context of an imported library is governed by a permission set. To help specify the permissions given to existing code, Mir's automated inference generates default permissions by analyzing how libraries are used by their clients. Applied to over 1,000 JavaScript libraries for Node.js, Mir shows practical security (61/63 attacks mitigated), performance (2.1s for static analysis and +1.93\% for dynamic enforcement), and compatibility (99.09\%) characteristics---and enables a novel quantification of privilege reduction.},
+    booktitle = {Proceedings of the 2021 ACM SIGSAC Conference on Computer and Communications Security},
+    pages = {1821--1838},
+    numpages = {18},
+    keywords = {third-party libraries, supply-chain attacks, program analysis},
+    location = {Virtual Event, Republic of Korea},
+    series = {CCS '21}
+}
+
+@article{cbmc2021spe,
+  title={Code-level model checking in the software development workflow at Amazon web services},
+  author={Chong, Nathan and Cook, Byron and Eidelman, Jonathan and Kallas, Konstantinos and Khazem, Kareem and Monteiro, Felipe R and Schwartz-Narbonne, Daniel and Tasiran, Serdar and Tautschnig, Michael and Tuttle, Mark R},
+  journal={Software: Practice and Experience},
+  volume={51},
+  number={4},
+  pages={772--797},
+  year={2021},
+  publisher={Wiley Online Library}
+}
+
+@article{diffstream2020oopsla,
+    author = {Kallas, Konstantinos and Niksic, Filip and Stanford, Caleb and Alur, Rajeev},
+    title = {DiffStream: differential output testing for stream processing programs},
+    year = {2020},
+    issue_date = {November 2020},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {4},
+    number = {OOPSLA},
+    url = {https://doi.org/10.1145/3428221},
+    doi = {10.1145/3428221},
+    abstract = {High performance architectures for processing distributed data streams, such as Flink, Spark Streaming, and Storm, are increasingly deployed in emerging data-driven computing systems. Exploiting the parallelism afforded by such platforms, while preserving the semantics of the desired computation, is prone to errors, and motivates the development of tools for specification, testing, and verification. We focus on the problem of differential output testing for distributed stream processing systems, that is, checking whether two implementations produce equivalent output streams in response to a given input stream. The notion of equivalence allows reordering of logically independent data items, and the main technical contribution of the paper is an optimal online algorithm for checking this equivalence. Our testing framework is implemented as a library called DiffStream in Flink. We present four case studies to illustrate how our framework can be used to (1) correctly identify bugs in a set of benchmark MapReduce programs, (2) facilitate the development of difficult-to-parallelize high performance applications, and (3) monitor an application for a long period of time with minimal performance overhead.},
+    journal = {Proc. ACM Program. Lang.},
+    month = nov,
+    articleno = {153},
+    numpages = {29},
+    keywords = {differential testing, runtime verification, stream processing}
+}
+
+@inproceedings{cbmc2020icse,
+  title={Code-level model checking in the software development workflow},
+  author={Chong, Nathan and Cook, Byron and Kallas, Konstantinos and Khazem, Kareem and Monteiro, Felipe R and Schwartz-Narbonne, Daniel and Tasiran, Serdar and Tautschnig, Michael and Tuttle, Mark R},
+  booktitle={Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering: Software Engineering in Practice},
+  pages={11--20},
+  year={2020}
+}
+
+@inproceedings{securitycriteria2019fcs,
+  author = {Kallas, Konstantinos and Schneidewind, Clara and Pierce, Benjamin C. and Zdancewic, Steve},
+  title = {Security Criteria for a Transparent Encryption Layer},
+  booktitle = {Workshop on Foundations of Computer Security (FCS 2019)},
+  year = {2019},
+  url = {https://pdfs.semanticscholar.org/dd4b/cb504bdde49debcd53bcce7a6d7f01ad3171.pdf}
+}
+
+@inproceedings{hiperjit2018ifl,
+    author = {Kallas, Konstantinos and Sagonas, Konstantinos},
+    title = {HiPErJiT: A Profile-Driven Just-in-Time Compiler for Erlang},
+    year = {2018},
+    isbn = {9781450371438},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3310232.3310234},
+    doi = {10.1145/3310232.3310234},
+    abstract = {We introduce HiPErJiT, a profile-driven Just-in-Time compiler for the BEAM ecosystem based on HiPE, the High Performance Erlang compiler. HiPErJiT uses runtime profiling to decide which modules to compile to native code and which of their functions to inline and type-specialize. HiPErJiT is integrated with the runtime system of Erlang/OTP and preserves aspects of Erlang's compilation which are crucial for its applications: most notably, tail-call optimization and hot code loading at the module level. We present HiPErJiT's architecture, describe the optimizations that it performs, and compare its performance with BEAM, HiPE, and Pyrlang. HiPErJiT offers performance which is about two times faster than BEAM and almost as fast as HiPE, despite the profiling and compilation overhead that it has to pay compared to an ahead-of-time native code compiler. But there also exist programs for which HiPErJiT's profile-driven optimizations allow it to surpass HiPE's performance.},
+    booktitle = {Proceedings of the 30th Symposium on Implementation and Application of Functional Languages},
+    pages = {25--36},
+    numpages = {12},
+    keywords = {profile-driven optimization, Just-in-Time compilation, HiPE, Erlang},
+    location = {Lowell, MA, USA},
+    series = {IFL '18}
+}
