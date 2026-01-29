@@ -197,8 +197,9 @@ def generate_indexed_paper_html(entry):
 
 def generate_indexed_papers_html(entries, _counter):
     categories = {
+        "python": "Optimization of Python Applications",
+        "shell": "Compilers and Systems for Shell Scripts",
         "cloud": "Cloud Software Systems",
-        "shell": "Compilers and Systems for Shell Scripts"
     }
     category_papers = {}
     for key in categories:
