@@ -17,10 +17,11 @@ overview: true
 In the MapReduce assignment, handling failures was relatively easy because the workers did not maintain state. The master did maintain state, but you didn't have to make it fault-tolerant. Assignment 2 is a first step towards fault tolerance for servers with state. 
 </p>
 
-<h3 class="page-heading">Collaboration Policy</h3>
+<h3 class="page-heading">Collaboration/AI/Late days Policy</h3>
 
 <p class="homepage">
-You must write all the code you submit, except for code that we give you as part of the assignment. You are not allowed to look at anyone else's solution, and you are not allowed to look at code from previous years. You may discuss the assignments with other students, but you may not look at or copy each others' code. Please do not publish your code or make it available to future CS134 students -- for example, please do not make your code visible on GitHub (i.e., use a private repo).
+See the 
+<a href="/teaching/distributed-systems.html">course website</a>.
 </p>
 
 
@@ -662,10 +663,6 @@ Hint: study the test cases before you start programming
     To submit the assignment, please push your final code into your team's repository.
     Then use Gradescope to turn in your assignment from GitHub. Remember to add your teammate
     to your Gradescope submission.
-</p>
-<p>
-You will receive full credit if your code passes (provided there is no plagiarism) the <tt>test_test.go</tt> tests. You can submit the assignment 2 days late at the max(provided both of the team members have 2 late days remaining). To use a late day, you can just use the same method for submission on Gradescope. We have a late due date mentioned on the assignment that will handle it accordingly. Each used late day pushes the due date back by exactly 24 hours.
-<!-- In the event that no late days are used, we will evaluate the code in your <strong>last</strong> submission prior to the deadline. -->
 </p>
 
 <hr />
