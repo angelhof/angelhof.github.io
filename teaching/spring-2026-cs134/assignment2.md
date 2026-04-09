@@ -241,7 +241,7 @@ work out the details.</p>
         2019/04/09 20:16:35 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: First primary ...
         --- FAIL: Test1 (1.04s)
-            test_test.go:13: wanted primary /var/tmp/824-501/viewserver-46150-1, got
+            test_test.go:15: wanted primary /var/tmp/134-501/viewserver-46150-1, got
         FAIL
         exit status 1
         FAIL    viewservice 1.058s
@@ -525,7 +525,7 @@ to where your <code>${TEAM_NAME}</code> directory is.
         2019/04/08 08:17:15 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: Single primary, no backup ...
         --- FAIL: TestBasicFail (2.01s)
-            test_test.go:54: first primary never formed view
+            test_test.go:56: first primary never formed view
         2019/04/08 08:17:17 rpc.Register: method "GetRPCCount" has 1 input parameters; needs exactly three
         2019/04/08 08:17:17 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: at-most-once Append; unreliable ...
@@ -655,6 +655,7 @@ may still have bugs that cause failures in Part B.
 
 <p>
 Hint: study the test cases before you start programming
+
 
 
 <h3>Assignment Submission</h3>
