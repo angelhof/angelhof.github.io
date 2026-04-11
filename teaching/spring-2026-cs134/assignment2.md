@@ -666,6 +666,18 @@ Hint: study the test cases before you start programming
     to your Gradescope submission.
 </p>
 
+<h3>Gradescope Autograder</h3>
+
+<p>
+    As with the previous assignment and the rest of the assignments for this class, the Gradescope
+    autograder will be used to grade your submission. As a reminder, the displayed score is NOT your
+    final score, as we will re-run the (same) autograder once all submissions are in. In addition, for the remaining
+    projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness, requiring
+    all runs to pass to get points for the test case. Also, in order to speed up the autograder's run time, some test cases
+    <strong>may be run in parllel</strong> by running multiple instances of `go test` at the same time (there is no
+    file I/O required for this and future projects that may cause collisions as in assignment 1).
+</p>
+
 <hr />
 
 <address>
