@@ -80,7 +80,7 @@ See the
 
 <h3>Setting up GitHub repository</h3>
 <p>
-    For assignments 2-4, each team work in their own private repository in the
+    For assignments 2-4, each team will work in their own private repository in the
     <a href="https://github.com/ucla-cs134-spring2026">
         ucla-cs134-spring2026
     </a> GitHub organization.
@@ -232,7 +232,6 @@ work out the details.</p>
     Assuming that you are in <code>${TEAM_NAME}</code> directory,
     running <tt>test_test.go</tt> in the <tt>viewservice</tt> should give the following errors:
     <pre>
-        $ export GOPATH=$(pwd)
         $ cd viewservice
         $ go test
     </pre>
@@ -586,7 +585,7 @@ You're done if you can pass all the <tt>pbservice</tt> tests:
           ... Passed
         Test: Kill last server, new one should not be active ...
           ... Passed
-        Test: at-most-once Put; unreliable ...
+        Test: at-most-once Append; unreliable ...
           ... Passed
         Test: Put() immediately after backup failure ...
           ... Passed
@@ -674,7 +673,7 @@ Hint: study the test cases before you start programming
     final score, as we will re-run the (same) autograder once all submissions are in. In addition, for the remaining
     projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness, requiring
     all runs to pass to get points for the test case. Also, in order to speed up the autograder's run time, some test cases
-    <strong>may be run in parllel</strong> by running multiple instances of `go test` at the same time (there is no
+    <strong>may be run in parallel</strong> by running multiple instances of `go test` at the same time (there is no
     file I/O required for this and future projects that may cause collisions as in assignment 1).
 </p>
 
