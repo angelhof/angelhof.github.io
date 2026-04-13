@@ -674,7 +674,8 @@ Hint: study the test cases before you start programming
     projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness, requiring
     all runs to pass to get points for the test case. Also, in order to speed up the autograder's run time, some test cases
     <strong>may be run in parallel</strong> by running multiple instances of `go test` at the same time (there is no
-    file I/O required for this and future projects that may cause collisions as in assignment 1).
+    file I/O required for this and future projects that may cause collisions as in assignment 1). <strong>Please start early
+    as the autograder may take up to 40 minutes to run!</strong>
 </p>
 
 <hr />
