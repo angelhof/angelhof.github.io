@@ -80,7 +80,7 @@ See the
 
 <h3>Setting up GitHub repository</h3>
 <p>
-    For assignments 2-4, each team work in their own private repository in the
+    For assignments 2-4, each team will work in their own private repository in the
     <a href="https://github.com/ucla-cs134-spring2026">
         ucla-cs134-spring2026
     </a> GitHub organization.
@@ -232,7 +232,6 @@ work out the details.</p>
     Assuming that you are in <code>${TEAM_NAME}</code> directory,
     running <tt>test_test.go</tt> in the <tt>viewservice</tt> should give the following errors:
     <pre>
-        $ export GOPATH=$(pwd)
         $ cd viewservice
         $ go test
     </pre>
@@ -241,7 +240,7 @@ work out the details.</p>
         2019/04/09 20:16:35 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: First primary ...
         --- FAIL: Test1 (1.04s)
-            test_test.go:13: wanted primary /var/tmp/824-501/viewserver-46150-1, got
+            test_test.go:15: wanted primary /var/tmp/134-501/viewserver-46150-1, got
         FAIL
         exit status 1
         FAIL    viewservice 1.058s
@@ -525,7 +524,7 @@ to where your <code>${TEAM_NAME}</code> directory is.
         2019/04/08 08:17:15 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: Single primary, no backup ...
         --- FAIL: TestBasicFail (2.01s)
-            test_test.go:54: first primary never formed view
+            test_test.go:56: first primary never formed view
         2019/04/08 08:17:17 rpc.Register: method "GetRPCCount" has 1 input parameters; needs exactly three
         2019/04/08 08:17:17 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: at-most-once Append; unreliable ...
@@ -586,7 +585,7 @@ You're done if you can pass all the <tt>pbservice</tt> tests:
           ... Passed
         Test: Kill last server, new one should not be active ...
           ... Passed
-        Test: at-most-once Put; unreliable ...
+        Test: at-most-once Append; unreliable ...
           ... Passed
         Test: Put() immediately after backup failure ...
           ... Passed
@@ -657,12 +656,26 @@ may still have bugs that cause failures in Part B.
 Hint: study the test cases before you start programming
 
 
+
 <h3>Assignment Submission</h3>
 
 <p>
     To submit the assignment, please push your final code into your team's repository.
     Then use Gradescope to turn in your assignment from GitHub. Remember to add your teammate
     to your Gradescope submission.
+</p>
+
+<h3>Gradescope Autograder</h3>
+
+<p>
+    As with the previous assignment and the rest of the assignments for this class, the Gradescope
+    autograder will be used to grade your submission. As a reminder, the displayed score is NOT your
+    final score, as we will re-run the (same) autograder once all submissions are in. In addition, for the remaining
+    projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness, requiring
+    all runs to pass to get points for the test case. Also, in order to speed up the autograder's run time, some test cases
+    <strong>may be run in parallel</strong> by running multiple instances of `go test` at the same time (there is no
+    file I/O required for this and future projects that may cause collisions as in assignment 1). <strong>Please start early
+    as the autograder may take up to 40 minutes to run!</strong>
 </p>
 
 <hr />
