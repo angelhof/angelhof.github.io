@@ -671,8 +671,10 @@ Hint: study the test cases before you start programming
     As with the previous assignment and the rest of the assignments for this class, the Gradescope
     autograder will be used to grade your submission. As a reminder, the displayed score is NOT your
     final score, as we will re-run the (same) autograder once all submissions are in. In addition, for the remaining
-    projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness, requiring
-    all runs to pass to get points for the test case. Also, in order to speed up the autograder's run time, some test cases
+    projects, the autograder will run certain test cases <strong>multiple times</strong> to ensure correctness.
+    On these test cases, points will be awarded using an exponential formula: 100% passed = 100% points, 90% passed = 50% points,
+    80% passed = 25% points, 70% passed = 12.5% points, below 70% passed = no points.
+    Also, in order to speed up the autograder's run time, some test cases
     <strong>may be run in parallel</strong> by running multiple instances of `go test` at the same time (there is no
     file I/O required for this and future projects that may cause collisions as in assignment 1). <strong>Please start early
     as the autograder may take up to 40 minutes to run!</strong>
