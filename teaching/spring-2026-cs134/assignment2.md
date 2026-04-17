@@ -236,19 +236,13 @@ work out the details.</p>
         $ go test
     </pre>
     <pre>
-        2019/04/09 20:16:35 rpc.Register: method "GetRPCCount" has 1 input parameters; needs exactly three
-        2019/04/09 20:16:35 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: First primary ...
-        --- FAIL: Test1 (1.04s)
-            test_test.go:15: wanted primary /var/tmp/134-501/viewserver-46150-1, got
+        --- FAIL: Test1 (1.02s)
+            test_test.go:13: wanted primary /var/tmp/134-501/viewserver-61547-1, got 
         FAIL
         exit status 1
-        FAIL    viewservice 1.058s
+        FAIL    cs134-kv/viewservice    1.230s
     </pre>
-</p>
-<p>
-    <strong>Ignore the <tt>method "GetRPCCount"</tt> and <tt>method "Kill"</tt> error messages now and in the future.</strong>
-    The tests fail because <tt>viewservice/server.go</tt> has empty RPC handlers.
 </p>
 
 <p>
@@ -360,12 +354,14 @@ tests:
           ... Passed
         Test: Restarted primary treated as dead ...
           ... Passed
+        Test: Dead backup is removed from view ...
+          ... Passed
         Test: Viewserver waits for primary to ack view ...
           ... Passed
         Test: Uninitialized server can't become primary ...
           ... Passed
         PASS
-        ok      viewservice     7.457s
+        ok  	cs134-kv/viewservice	7.457s
     </pre>
 </p>
 
@@ -520,15 +516,12 @@ to where your <code>${TEAM_NAME}</code> directory is.
         $ go test
     </pre>
     <pre>
-        2019/04/08 08:17:15 rpc.Register: method "GetRPCCount" has 1 input parameters; needs exactly three
-        2019/04/08 08:17:15 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
         Test: Single primary, no backup ...
         --- FAIL: TestBasicFail (2.01s)
-            test_test.go:56: first primary never formed view
-        2019/04/08 08:17:17 rpc.Register: method "GetRPCCount" has 1 input parameters; needs exactly three
-        2019/04/08 08:17:17 rpc.Register: method "Kill" has 1 input parameters; needs exactly three
+            test_test.go:54: first primary never formed view
         Test: at-most-once Append; unreliable ...
-        --- FAIL: TestAtMostOnce (2.55s)
+        --- FAIL: TestAtMostOnce (2.52s)
+            test_test.go:218: ck.Get() returned ??? but expected 0123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
         ...
     </pre>
 </p>
@@ -574,45 +567,66 @@ avoid burning up too much CPU time.
 <p>
 You're done if you can pass all the <tt>pbservice</tt> tests:
     <pre>
-        $ go test
+        $ cd pbservice
+        $ go test -v
     </pre>
     <pre>
+        === RUN   TestBasicFail
         Test: Single primary, no backup ...
           ... Passed
         Test: Add a backup ...
+          ... Passed
+        Test: Count RPCs to viewserver ...
           ... Passed
         Test: Primary failure ...
           ... Passed
         Test: Kill last server, new one should not be active ...
           ... Passed
+        --- PASS: TestBasicFail (8.12s)
+        === RUN   TestAtMostOnce
         Test: at-most-once Append; unreliable ...
           ... Passed
+        --- PASS: TestAtMostOnce (7.87s)
+        === RUN   TestFailPut
         Test: Put() immediately after backup failure ...
           ... Passed
         Test: Put() immediately after primary failure ...
           ... Passed
+        --- PASS: TestFailPut (7.83s)
+        === RUN   TestConcurrentSame
         Test: Concurrent Put()s to the same key ...
           ... Passed
+        --- PASS: TestConcurrentSame (10.32s)
+        === RUN   TestConcurrentSameAppend
+        Test: Concurrent Append()s to the same key ...
+          ... Passed
+        --- PASS: TestConcurrentSameAppend (4.26s)
+        === RUN   TestConcurrentSameUnreliable
         Test: Concurrent Put()s to the same key; unreliable ...
           ... Passed
+        --- PASS: TestConcurrentSameUnreliable (9.43s)
+        === RUN   TestRepeatedCrash
         Test: Repeated failures/restarts ...
-          ... Put/Gets done ...
+          ... Put/Gets done ... 
           ... Passed
-        Test: Repeated failures/restarts; unreliable ...
-          ... Put/Gets done ...
+        --- PASS: TestRepeatedCrash (23.61s)
+        === RUN   TestRepeatedCrashUnreliable
+        Test: Repeated failures/restarts with concurrent updates to same key; unreliable ...
+          ... Appends done ... 
           ... Passed
+        --- PASS: TestRepeatedCrashUnreliable (23.53s)
+        === RUN   TestPartition1
         Test: Old primary does not serve Gets ...
           ... Passed
+        --- PASS: TestPartition1 (7.01s)
+        === RUN   TestPartition2
         Test: Partitioned old primary does not complete Gets ...
           ... Passed
+        --- PASS: TestPartition2 (8.01s)
         PASS
-        ok      pbservice       113.352s
+        ok  	cs134-kv/pbservice	109.984s
     </pre>
 </p>
-
-<p>
-You'll see some "method "GetRPCCount" has 1 input parameters" and
-"method "Kill" has 1 input parameters" complaints; ignore them.
 
 <p>
 Hint: you'll probably need to create new RPCs to forward client
@@ -656,7 +670,6 @@ may still have bugs that cause failures in Part B.
 Hint: study the test cases before you start programming
 
 
-
 <h3>Assignment Submission</h3>
 
 <p>
@@ -676,8 +689,11 @@ Hint: study the test cases before you start programming
     80% passed = 25% points, 70% passed = 12.5% points, below 70% passed = no points.
     Also, in order to speed up the autograder's run time, some test cases
     <strong>may be run in parallel</strong> by running multiple instances of `go test` at the same time (there is no
-    file I/O required for this and future projects that may cause collisions as in assignment 1). <strong>Please start early
-    as the autograder may take up to 40 minutes to run!</strong>
+    file I/O required for this and future projects that may cause collisions as in assignment 1).
+    Each test also has a timeout - please ensure your code runs below this limit. If your test cases pass in a similar
+    amount of time as the output included in the specification, your code should be good. We reserve the right to
+    increase the timeout at any time, including after the late submission deadline.
+    <strong>Please start early as the autograder may take up to 40 minutes to run!</strong>
 </p>
 
 <hr />
