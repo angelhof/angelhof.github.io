@@ -114,9 +114,6 @@ overview: true
 
 
 <h3>Getting started</h3>
-<p>
-    Assuming that you are in the <code>${TEAM_NAME}</code> directory, proceed to running the code:
-</p>
 <pre>
 $ cd paxos
 $ go test -v
