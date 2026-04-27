@@ -5,7 +5,7 @@ overview: true
 
 <h2 class="page-heading"><a href="/teaching/distributed-systems.html">CS 134: Distributed Systems</a> -- Assignment 3: Paxos-based Key/Value Service</h2>
 
-<h3 class="page-heading">Due date: Sunday May 24, 10pm</h3>
+<h3 class="page-heading">Due date: Sunday May 17, 10pm</h3>
 
 <hr>
 
@@ -109,7 +109,7 @@ overview: true
 <h3>Getting the Skeleton Code</h3>
 <p>
 <!-- <b>It is strongly recommended that you complete this assignment on the seasnet Linux servers. If you are running locally, we encourage you to use a Linux VM (e.g., using VirtualBox) and not Windows.</b><br> -->
-    You will be reusing the same skeleton code as Assignment 2. However, changes may have been made since your skeleton code repository was created. In GitHub, please go to the **Pull Requests tab**, and if a Pull Request exists, please **merge it** into your code.
+    You will be reusing the same skeleton code as Assignment 2. However, changes may have been made since your skeleton code repository was created. In GitHub, please go to the <strong>Pull Requests tab</strong> and if a Pull Request exists, please <strong>merge it</strong> into your code.
 </p>
 
 
