@@ -117,7 +117,6 @@ overview: true
 <pre>
 $ cd paxos
 $ go test -v
-alec:paxos % go test -v
 === RUN   TestBasic
 Test: Single proposer ...
     test_test.go:64: too few decided; seq=0 ndecided=0 wanted=3
