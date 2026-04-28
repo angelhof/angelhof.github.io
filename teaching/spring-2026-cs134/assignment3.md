@@ -5,7 +5,7 @@ overview: true
 
 <h2 class="page-heading"><a href="/teaching/distributed-systems.html">CS 134: Distributed Systems</a> -- Assignment 3: Paxos-based Key/Value Service</h2>
 
-<h3 class="page-heading">Due date: Sunday May 24, 10pm</h3>
+<h3 class="page-heading">Due date: Sunday May 17, 10pm</h3>
 
 <hr>
 
@@ -109,18 +109,14 @@ overview: true
 <h3>Getting the Skeleton Code</h3>
 <p>
 <!-- <b>It is strongly recommended that you complete this assignment on the seasnet Linux servers. If you are running locally, we encourage you to use a Linux VM (e.g., using VirtualBox) and not Windows.</b><br> -->
-    You will be reusing the same skeleton code as Assignment 2. However, changes may have been made since your skeleton code repository was created. In GitHub, please go to the **Pull Requests tab**, and if a Pull Request exists, please **merge it** into your code.
+    You will be reusing the same skeleton code as Assignment 2. However, changes may have been made since your skeleton code repository was created. In GitHub, please go to the <strong>Pull Requests tab</strong> and if a Pull Request exists, please <strong>merge it</strong> into your code.
 </p>
 
 
 <h3>Getting started</h3>
-<p>
-    Assuming that you are in the <code>${TEAM_NAME}</code> directory, proceed to running the code:
-</p>
 <pre>
 $ cd paxos
 $ go test -v
-alec:paxos % go test -v
 === RUN   TestBasic
 Test: Single proposer ...
     test_test.go:64: too few decided; seq=0 ndecided=0 wanted=3
@@ -521,48 +517,48 @@ for {
     Once you are done, your submission should look something like this:
 </p>
 <pre>
-    $ cd kvpaxos
-    $ go test -v
-    === RUN   TestBasic
-    Test: Basic put/append/get ...
-    ... Passed
-    Test: Concurrent clients ...
-    ... Passed
-    --- PASS: TestBasic (4.91s)
-    === RUN   TestDone
-    Test: server frees Paxos log memory...
-    ... Passed
-    --- PASS: TestDone (1.83s)
-    === RUN   TestPartition
-    Test: No partition ...
-    ... Passed
-    Test: Progress in majority ...
-    ... Passed
-    Test: No progress in minority ...
-    ... Passed
-    Test: Completion after heal ...
-    ... Passed
-    --- PASS: TestPartition (5.24s)
-    === RUN   TestUnreliable
-    Test: Basic put/get, unreliable ...
-    ... Passed
-    Test: Sequence of puts, unreliable ...
-    ... Passed
-    Test: Concurrent clients, unreliable ...
-    ... Passed
-    Test: Concurrent Append to same key, unreliable ...
-    ... Passed
-    --- PASS: TestUnreliable (8.19s)
-    === RUN   TestHole
-    Test: Tolerates holes in paxos sequence ...
-    ... Passed
-    --- PASS: TestHole (16.03s)
-    === RUN   TestManyPartition
-    Test: Many clients, changing partitions ...
-    ... Passed
-    --- PASS: TestManyPartition (20.84s)
-    PASS
-    ok  	cs134-25s-kv/kvpaxos	57.043s
+$ cd kvpaxos
+$ go test -v
+=== RUN   TestBasic
+Test: Basic put/append/get ...
+... Passed
+Test: Concurrent clients ...
+... Passed
+--- PASS: TestBasic (4.91s)
+=== RUN   TestDone
+Test: server frees Paxos log memory...
+... Passed
+--- PASS: TestDone (1.83s)
+=== RUN   TestPartition
+Test: No partition ...
+... Passed
+Test: Progress in majority ...
+... Passed
+Test: No progress in minority ...
+... Passed
+Test: Completion after heal ...
+... Passed
+--- PASS: TestPartition (5.24s)
+=== RUN   TestUnreliable
+Test: Basic put/get, unreliable ...
+... Passed
+Test: Sequence of puts, unreliable ...
+... Passed
+Test: Concurrent clients, unreliable ...
+... Passed
+Test: Concurrent Append to same key, unreliable ...
+... Passed
+--- PASS: TestUnreliable (8.19s)
+=== RUN   TestHole
+Test: Tolerates holes in paxos sequence ...
+... Passed
+--- PASS: TestHole (16.03s)
+=== RUN   TestManyPartition
+Test: Many clients, changing partitions ...
+... Passed
+--- PASS: TestManyPartition (20.84s)
+PASS
+ok  	cs134-25s-kv/kvpaxos	57.043s
 </pre>
 
 
