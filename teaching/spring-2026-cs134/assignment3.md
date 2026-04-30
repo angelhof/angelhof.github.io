@@ -567,7 +567,7 @@ ok  	cs134-25s-kv/kvpaxos	57.043s
 <p>
     To submit the assignment, please push your final code into your team's repository.
     Then use Gradescope to turn in your assignment from GitHub. Remember to add your teammate
-    to your Gradescope submission.  
+    to your Gradescope submission, and to create a <strong>ai-usage-3.txt</strong> file with your AI usage for assignment 3.
 </p>
 
 <h3>Gradescope Autograder</h3>
