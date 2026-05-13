@@ -385,8 +385,8 @@ ok  	cs134-kv/shardkv	40.206s
     server during view change.
 </p>
 <p>
-    Hint: When debugging, don't discount your <code>paxos.go<code> code! Occasionally,
-    bugs in <code>paxos.go<code> may exist that passed all of Assignment 3 but show up
+    Hint: When debugging, don't discount your <code>paxos.go</code> code! Occasionally,
+    bugs in <code>paxos.go</code> may exist that passed all of Assignment 3 but show up and cause issues
     in this assignment.
 </p>
 
