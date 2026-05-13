@@ -385,8 +385,8 @@ ok  	cs134-kv/shardkv	40.206s
     server during view change.
 </p>
 <p>
-    Hint: When debugging, don't discount your <code>paxos.go<code> code! Occasionally,
-    bugs in <code>paxos.go<code> may exist that passed all of Assignment 3 but show up
+    Hint: When debugging, don't discount your <code>paxos.go</code> code! Occasionally,
+    bugs in <code>paxos.go</code> may exist that passed all of Assignment 3 but show up and cause issues
     in this assignment.
 </p>
 
@@ -408,7 +408,7 @@ ok  	cs134-kv/shardkv	40.206s
     On these test cases, points will be awarded using an exponential formula: 100% passed = 100% points, 90% passed = 50% points,
     80% passed = 25% points, 70% passed = 12.5% points, below 70% passed = no points.
     Also, in order to speed up the autograder's run time, some test cases
-    <strong>may be run in parallel</strong> by running multiple instances of <pre><code>go test</code></pre> at the same time (there is no
+    <strong>may be run in parallel</strong> by running multiple instances of <code>go test</code> at the same time (there is no
     file I/O required for this and future projects that may cause collisions as in assignment 1).
     Each test also has a timeout - please ensure your code runs below this limit. If your test cases pass in a similar
     amount of time as the output included in the specification, your code should be good. We reserve the right to
