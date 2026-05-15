@@ -18,7 +18,7 @@ In this assignment (which will be completed individually), you'll build a MapRed
 <h3 class="page-heading">Collaboration Policy</h3>
 
 <p class="homepage">
-You must write all the code you hand in for CS134, except for code that we give you as part of the assignment. You may discuss clarifications about the assignments with other students, but you may not discuss solutions or look at or copy each others' code. Please do not publish your code or make it available to future CS134 students -- for example, please do not make your code visible on GitHub. Please see the main class homepage for information about the use of AI.
+You must write all the code you hand in for CS134, except for code that we give you as part of the assignment. You may discuss clarifications about the assignments with other students, but you may not discuss solutions or look at or copy each other's code. Please do not publish your code or make it available to future CS134 students -- for example, please do not make your code visible on GitHub. Please see the main class homepage for information about the use of AI.
 </p>
 
 <h3 class="page-heading">Revamped Assignment Notes</h3>
@@ -300,7 +300,7 @@ alec:mapreduce %
     <strong>How to use RPC/<tt>call()</tt>:</strong>
     RPC lets one process call a method running in another process (or on another machine)
     using request/reply semantics similar to a normal function call.
-    In this assignment, the function you are calling over RPC is already defined for you (Worker.DoJob)
+    In this assignment, the function you are calling over RPC is already defined for you (Worker.DoJob).
     For this and future assignments, the helper function signature to actually make an RPC call is as follows:
     <tt>call(srv, rpcname, args, reply) bool</tt>.
 </p>
@@ -368,7 +368,7 @@ if ok {
 <p>
     The master may have to wait for a worker to finish before it can hand out
     more jobs. You may find channels useful to synchronize threads that are waiting
-    for reply with the master once the reply arrives. Channels are explained in the
+    for a reply with the master once the reply arrives. Channels are explained in the
     document on <a href="http://golang.org/doc/effective_go.html#concurrency">Concurrency in Go</a>.
 </p>
 
@@ -410,7 +410,7 @@ ok      cs134-assignment1/mapreduce     3.054s
 
 <p>
     The code we give you runs the workers as threads within a single UNIX
-    process, and can exploit multiple cores on a single machine. For simplicity, all projects will use unix sockets (think using a file as a network connection), limiting running all components of our system to the same computer, but some
+    process, and can exploit multiple cores on a single machine. For simplicity, all projects will use unix sockets (think using a file as a network connection), restricting all components of our system to run on the same computer, but some
     modifications could be done in order to run the workers on multiple
     machines communicating over a network. The RPCs would have to use TCP
     rather than UNIX-domain sockets; there would need to be a way to start
@@ -435,7 +435,7 @@ ok      cs134-assignment1/mapreduce     3.054s
     workers receive the same job and compute it. However, because jobs are
     idempotent, it doesn't matter if the same job is computed twice--both times it
     will generate the same output. So, you don't have to do anything special for this
-    case. (Our tests never fail workers in the middle of job without killing the worker,
+    case. (Our tests never fail workers in the middle of a job without killing the worker,
     so you don't even have to worry about several workers writing to the same output file.)
 </p>
 
