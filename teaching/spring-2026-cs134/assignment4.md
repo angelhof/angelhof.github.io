@@ -260,7 +260,7 @@ ok      cs134-kv/shardmaster    1.839s
     applications that use its client interface. That is, completed
     application calls to the Clerk.Get(), Clerk.Put(), and Clerk.Append() methods
     in <tt>shardkv/client.go</tt> must appear to have affected all
-    replicans in the same order. A Clerk.Get() should see the value written
+    replicas in the same order. A Clerk.Get() should see the value written
     by the most recent Put/Append to the same key. This
     will get tricky when Gets and Puts arrive at about the same time as
     configuration changes.
@@ -358,7 +358,7 @@ ok      cs134-kv/shardkv    40.206s
     Hint: You must call px.Done() to let Paxos free old parts of its log.
 </p>
 <p>
-    Hint: When the test fails, <b>check for a gob error (e.g. "rpc: writing
+    Hint: When the test fails, <b>check for gob errors (e.g. "rpc: writing
         response: gob: type not registered for interface ...") in the log </b>
     because Go doesn't consider the error fatal, although it is fatal for this assignment.
 </p>
@@ -366,7 +366,7 @@ ok      cs134-kv/shardkv    40.206s
     Hint: Be careful about implementing at-most-once semantics for RPC. When a
     server sends shards to another, the server needs to send the clients' state as
     well. Think about how the receiver of the shards should update its own clients'
-    state. Is it OK for the receiver to replace its clients' state with the received
+    state. Is it ok for the receiver to replace its clients' state with the received
     one?
 </p>
 <p>
@@ -381,7 +381,7 @@ ok      cs134-kv/shardkv    40.206s
     implementation.
 </p>
 <p>
-    Hint: Think about when it is OK for a server to give shards to another
+    Hint: Think about when it is ok for a server to give shards to another
     server during a view change.
 </p>
 <p>
