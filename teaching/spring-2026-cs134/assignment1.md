@@ -410,7 +410,7 @@ ok      cs134-assignment1/mapreduce     3.054s
 
 <p>
     The code we give you runs the workers as threads within a single UNIX
-    process, and can exploit multiple cores on a single machine. For simplicity, all projects will use unix sockets (think using a file as a network connection), restricting all components of our system to run on the same computer, but some
+    process, and can exploit multiple cores on a single machine. For simplicity, all projects will use UNIX sockets (think using a file as a network connection), restricting all components of our system to run on the same computer, but some
     modifications could be done in order to run the workers on multiple
     machines communicating over a network. The RPCs would have to use TCP
     rather than UNIX-domain sockets; there would need to be a way to start
