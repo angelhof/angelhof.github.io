@@ -19,7 +19,7 @@ overview: true
     coped with a server (primary or backup) that's briefly unavailable
     (e.g., due to a lost packet) by either blocking or declaring it dead;
     the latter is very expensive because it requires a complete key/value
-    database transfer. Lastly, it could only handle 2 copies of the data at a time - if both the Primary and Backup were lost, all data was lost permanently.
+    database transfer. Lastly, it could only handle 2 copies of the data at a time - if both the primary and backup were lost, all data was lost permanently.
 </p>
 
 <h3>Overview of assignment 3</h3>
@@ -40,8 +40,8 @@ overview: true
     and Paxos peers. Clients send Put(), Append(), and Get() RPCs to key/value
     servers (called kvpaxos servers). A client can send an RPC to any of the kvpaxos
     servers, and should retry by sending to a different server if there's a
-    failure. Each kvpaxos server contains a replica of the key/value database;
-    handlers for client Get() and Put()/Append() RPCs; and a Paxos peer. Paxos takes the form
+    failure. Each kvpaxos server contains a replica of the key/value database,
+    handlers for client Get() and Put()/Append() RPCs, and a Paxos peer. Paxos takes the form
     of a library that is included in each kvpaxos server. A kvpaxos server talks to
     its local Paxos peer (via method calls). The different Paxos peers talk to each
     other via RPC to achieve agreement on each operation.
@@ -90,7 +90,7 @@ overview: true
 </p>
 <p>
     To help with this assignment, you should consult the Paxos-related lectures. For a wider perspective, have a look at Chubby, Paxos Made Live,
-    Spanner, Zookeeper, Harp, Viewstamped Replication,
+    Spanner, ZooKeeper, Harp, Viewstamped Replication,
     and
     <a href="http://static.usenix.org/event/nsdi11/tech/full_papers/Bolosky.pdf">Bolosky et al.</a>
 </p>
@@ -252,7 +252,7 @@ px.Min() int // instances before this have been forgotten
     or if another Paxos peer may not yet have reached agreement on that
     instance. Your Paxos should implement freeing of instances in the
     following way. When a particular peer application will no longer need
-    to call Status() for any instance <= x, it should call Done(x). That Paxos peer can't yet discard the instances, since some other Paxos peer might not yet have agreed to the instance. So each Paxos peer should tell each other peer the highest Done argument supplied by its local application. Each Paxos peer will then have a Done value from each other peer. It should find the minimum, and discard all instances with sequence numbers <=that minimum. The Min() method returns this minimum sequence number plus one. </p> <p>
+    to call Status() for any instance <= x, it should call Done(x). That Paxos peer can't yet discard the instances, since some other Paxos peer might not yet have agreed to the instance. So each Paxos peer should tell each other peer the highest Done argument supplied by its local application. Each Paxos peer will then have a Done value from each other peer. It should find the minimum, and discard all instances with sequence numbers <= that minimum. The Min() method returns this minimum sequence number plus one. </p> <p>
         It's OK for your Paxos to piggyback the Done value in the agreement
         protocol packets; that is, it's OK for peer P1 to only learn P2's
         latest Done value the next time that P2 sends an agreement message to
@@ -378,7 +378,7 @@ else
     Hint: the tester calls Kill() when it wants your Paxos to shut down;
     Kill() sets px.dead. You should call <tt>px.isdead()</tt> in any loops you have
     that might run for a while, and break out of the loop if <tt>px.isdead()</tt> is
-    true. It's particularly important to do this any in any long-running
+    true. It's particularly important to do this in any long-running
     threads you create.
 </p>
 <h3>Part B: Paxos-based Key/Value Server</h3>
@@ -408,7 +408,7 @@ else
     written by the most recent Clerk.Put() or Clerk.Append() (in that order) to the same key. One
     consequence of this is that you must ensure that each application call to
     Clerk.Put() or Clerk.Append()
-    must appear in that order just once (i.e., write the key/value
+    is executed in that order just once (i.e., write the key/value
     database just once), even though internally your <tt>client.go</tt> may have to
     send RPCs multiple times until it finds a kvpaxos server
     replica that replies.
@@ -435,7 +435,7 @@ else
         but not the resulting value, since the result might be large.
     </li>
     <li> Implement a Get() handler. It should enter a Get Op in the Paxos
-        log, and then "interpret" the the log before that point to make sure
+        log, and then "interpret" the log before that point to make sure
         its key/value database reflects all recent Put()s.
     </li>
     <li> Add code to cope with duplicate client requests, including
@@ -502,14 +502,14 @@ for {
 <p>
     Hint: if one of your kvpaxos servers falls behind (i.e. did not
     participate in the agreement for some instance), it will later need to
-    find out what (if anything) was agree to. A reasonable way to to this
+    find out what (if anything) was agreed to. A reasonable way to do this
     is to call Start(), which will either discover the previously
     agreed-to value, or cause agreement to happen. Think about what value
     would be reasonable to pass to Start() in this situation.
 </p>
 <p>
     Hint: When the test fails, check for gob error (e.g. "rpc: writing
-    response: gob: type not registered for interface ...") in the log because go
+    response: gob: type not registered for interface ...") in the log because Go
     doesn't consider the error fatal, although it is fatal for the assignment.
 </p>
 

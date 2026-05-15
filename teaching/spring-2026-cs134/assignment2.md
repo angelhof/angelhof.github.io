@@ -7,8 +7,6 @@ overview: true
 
 <h3 class="page-heading">Due date: Sunday May 3, 10pm</h3>
 
-<!-- For questions, come to discussion sections on Fridays and post questions on <a href="https://piazza.com/ucla/spring2025/cs134">Piazza</a>. -->
-
 <hr>
 
 <h3 class="page-heading">Introduction</h3>
@@ -88,49 +86,7 @@ See the
     invite link posted in Piazza, select your UID from the list, and either 
     create a new group or join the existing group with your partner. A
     repository should automatically be created for you.
-    <!-- Within 24 hours of a TA creating a private repository for your team,
-    you will automatically receive an invitation to join the <em>S20-CS134</em> GitHub organization.
-    Your team's repository name will be the same as the team name you listed in the submission form (barring naming conflicts). -->
 </p>
-<!-- <p>
-    Once you receive an invitation for a private repo, please follow the instructions below
-    while replacing <code>${TEAM_NAME}</code> with your team's repository name:
-</p> -->
-<!-- <ul id="requirements" style="list-style-type:disc;">
-    <li>
-        <p> Access your team's repository:
-            as soon as you accept the invitation,
-            you should be able to see your team's repository either listed under the "Repositories" tab
-            or by going to <code>https://github.com/S20-CS134/${TEAM_NAME}</code>.
-        </p>
-    </li>
-    <li>
-        <p>
-            Mirror the <em>S20-CS134/assignments-2-4-skeleton</em> repository:
-            similar to what you did in assignment 1, you are going to duplicate
-            the assignment 2 skeleton repository into
-            your team's private repository.
-            The assignment 2 skeleton repository can be found here:
-            <a href="https://github.com/S25-CS134/assignments-2-4-skeleton">
-                <em>S20-CS134/assignments-2-4-skeleton</em>
-            </a>.
-            Now let's create a mirrored clone of this repository:
-        </p>
-        <pre>
-            $ git clone --bare git@github.com:S25-CS134/assignments-2-4-skeleton.git
-            $ cd assignments-2-4-skeleton.git
-            $ git push --mirror git@github.com:S20-CS134/${TEAM_NAME}.git
-            $ cd ..
-            $ git clone git@github.com:S20-CS134/${TEAM_NAME}.git
-            $ rm -rf assignments-2-4-skeleton.git
-            $ cd ${TEAM_NAME}
-        </pre>
-        <p>
-            After completing these steps, you should have all the required files for assignment 2 in your team's private repository. You can now start the assignment!
-        </p>
-    </li>
-</ul> -->
-
 
 <h3> Overview of Assignment 2 </h3>
 
@@ -141,7 +97,7 @@ introduce a kind of master server, called the viewservice. The viewservice
 monitors whether each available server is alive or dead. If the current primary
 or backup becomes dead, the viewservice selects a server to replace it. A client
 checks with the viewservice to find the current primary. The servers cooperate
-with the viewservice to ensure that at most one primary is active at a time.
+with the viewservice to ensure that at most one primary is active at a time.</p>
 
 <p>
 Your key/value service will allow replacement of failed servers. If
@@ -150,7 +106,7 @@ primary. If the backup fails, or is promoted, and there is an idle
 server available, the viewservice will cause it to be the backup.
 The primary will send its complete database to the new backup,
 and then send subsequent Puts to the backup to ensure that the
-backup's key/value database remains identical to the primary's.
+backup's key/value database remains identical to the primary's.</p>
 
 <p>
 It turns out the primary must send Gets as well as Puts to the backup
@@ -166,7 +122,7 @@ S1 can then return an error to the client indicating that
 S1 might no longer be the primary (reasoning that, since S2 rejected
 the operation, a new view must have been formed); the client can then
 ask the view service
-for the correct primary (S2) and send it the operation.
+for the correct primary (S2) and send it the operation.</p>
 
 <p>
 A failed key/value server may restart, but it will do so without a
@@ -174,7 +130,7 @@ copy of the replicated data (i.e., the keys and values). That is, your
 key/value server will keep the data in memory, not on disk. One
 consequence of keeping data only in memory
 is that if there's no backup, and the primary
-fails, and then restarts, it cannot then act as primary.
+fails, and then restarts, it cannot then act as primary.</p>
 
 <p>
 Only RPC may be used for interaction between clients and servers,
@@ -230,7 +186,7 @@ work out the details.</p>
 <h3>Getting started</h3>
 <p>
     Assuming that you are in <code>${TEAM_NAME}</code> directory,
-    running <tt>test_test.go</tt> in the <tt>viewservice</tt> should give the following errors:
+    running <tt>test_test.go</tt> in the <tt>viewservice</tt> directory should give the following errors:
     <pre>
         $ cd viewservice
         $ go test
@@ -260,13 +216,13 @@ work out the details.</p>
 Part B you'll build the key/value service. Your viewservice won't itself be
 replicated, so it will be relatively straightforward. Part B is <i>much</i> harder than
 part A, because the K/V service is replicated and you have to design much of the
-replication protocol.
+replication protocol.</p>
 
 <p>
 The view service goes through a sequence of numbered
 <i>views</i>, each with a primary and (if possible) a backup.
 A view consists of a view number and the identity (network port name) of
-the view's primary and backup servers.
+the view's primary and backup servers.</p>
 
 <p>
 The primary in a view must always be either the primary
@@ -276,7 +232,7 @@ An exception: when the viewservice first starts, it should
 accept any server at all as the first primary.
 The backup in a view can be any server (other than the primary),
 or can be altogether missing if no server is available
-(represented by an empty string, <tt>""</tt>).
+(represented by an empty string, <tt>""</tt>).</p>
 
 <p>
 Each key/value server should send a Ping RPC once per
@@ -292,7 +248,7 @@ for <tt>DeadPings</tt> <tt>PingInterval</tt>s, the
 viewservice should consider the server to be dead.
 When a server re-starts after a crash, it should send
 one or more Pings with an argument of zero to inform
-the view service that it crashed.
+the view service that it crashed.</p>
 
 <p>
 The view service proceeds to a new view if it hasn't
@@ -310,28 +266,31 @@ received an acknowledgment for the current view from the primary of
 the current view, the view service should not change views even if it
 thinks that the primary or backup has died.
 That is, the view service may not proceed from view X to view X+1
-if it has not received a Ping(X) from the primary of view X.
+if it has not received a Ping(X) from the primary of view X.</p>
 
 <p> The acknowledgment rule prevents the view service from getting more than one
 view ahead of the key/value servers. If the view service could get arbitrarily
 far ahead, then it would need a more complex design in which it kept a history
 of views, allowed key/value servers to ask about old views, and
 garbage-collected information about old views when appropriate.  The downside of
-the acknowledgement rule is that if the primary fails before it acknowledges the
+the acknowledgment rule is that if the primary fails before it acknowledges the
 view in which it is primary, then the view service cannot ever change views
-again.
+again.</p>
 
 <p>
 An example sequence of view changes:
+</p>
 
 <p>
 <img src="/teaching/spring-2025-cs134/images/ExampleSequence.png">
 </p>
 
+<p>
 The above example is overspecified; for example, when the view server
 gets <tt>Ping(1)</tt> from S1 for the first time, it is also OK for it
 to return view 1, as long as it eventually switches to view 2 (which
 includes S2).
+</p>
 
 <p>
 We provide you with a complete <tt>client.go</tt> and
@@ -366,7 +325,8 @@ tests:
 </p>
 
 <p>
-The above output omits some benign Go rpc errors.
+The above output omits some benign Go RPC errors.
+</p>
 
 <p>
 Hint: you'll want to add field(s) to <tt>ViewServer</tt> in
@@ -374,52 +334,60 @@ Hint: you'll want to add field(s) to <tt>ViewServer</tt> in
 time at which the viewservice has heard a Ping from each
 server. Perhaps a <tt>map</tt> from server names to
 <tt>time.Time</tt>. You can find the current time with <tt>time.Now()</tt>.
+</p>
 
 <p>
 Hint: add field(s) to <tt>ViewServer</tt> to keep track of the
 current view.
+</p>
 
 <p>
 Hint: you'll need to keep track of whether the primary for the
 current view has acknowledged it (in PingArgs.Viewnum).
+</p>
 
 <p>
 Hint: your viewservice needs to make periodic decisions, for
 example to promote the backup if the viewservice has missed <tt>DeadPings</tt>
-pings from the primary. Add this code to the <tt>tick()</tt>
+Pings from the primary. Add this code to the <tt>tick()</tt>
 function, which is called once per <tt>PingInterval</tt>.
+</p>
 
 <p>
 Hint: there may be more than two servers sending Pings. The
 extra ones (beyond primary and backup) are volunteering
 to be backup if needed.
+</p>
 
 <p>
 Hint: the viewservice needs a way to detect that a primary
 or backup has failed and re-started. For example, the primary
 may crash and quickly restart without missing sending a
 single Ping.
+</p>
 
 <p> Hint: study the test cases before you start programming.  If you fail a
 test, you may have to look at the test code in <tt>test_test.go</tt> to figure
-out the failure scenario is.
+out what the failure scenario is.</p>
 
 <p>
 The easiest way to track down bugs is to insert log.Printf()
 statements, collect the output in a file with <tt>go test &gt;
 out</tt>, and then think about whether the output matches your
 understanding of how your code should behave.
+</p>
 
 <p>
 Remember that the Go RPC server framework starts a new thread for each
 received RPC request. Thus if multiple RPCs arrive at the same time
 (from multiple clients), there may be multiple threads running
 concurrently in the server.
+</p>
 
 <p>The tests kill a server by setting its <tt>dead</tt> flag.  You must
 make sure that your server terminates when that flag is set
 (test it with <tt>isdead()</tt>), otherwise
-you may fail to complete the test cases.
+you may fail to complete the test cases.</p>
 
 <h3>Part B: The primary/backup key/value service</h3>
 
@@ -430,6 +398,7 @@ in <tt>pbservice/client.go</tt>, and part of the server
 in <tt>pbservice/server.go</tt>. Clients use the service by creating a
 Clerk object (see <tt>client.go</tt>) and calling its methods, which send
 RPCs to the service.
+</p>
 
 <p>
 Your key/value service should continue operating correctly as long as
@@ -439,19 +408,22 @@ temporary network failure without crashing, or can talk to some
 computers but not others. If your service is operating with just one
 server, it should be able to incorporate a recovered or idle server
 (as backup), so that it can then tolerate another server failure.
+</p>
 
 <p> Correct operation means that calls to Clerk.Get(k) return the latest value
 set by a successful call to Clerk.Put(k,v) or Clerk.Append(k,v), or an empty
 string if the key has never seen either.  All operations should provide at-most-once
-semantics.
+semantics.</p>
 
 <p>
 You should assume that the viewservice never halts or crashes.
+</p>
 
 <p>
 Your clients and servers may only communicate using RPC, and both
 clients and servers must
 send RPCs with the <tt>call()</tt> function in <tt>client.go</tt>.
+</p>
 
 <p>
 It's crucial that only one primary be active at any given time. You
@@ -460,12 +432,14 @@ design. A danger: suppose in some view S1 is the primary; the viewservice change
 views so that S2 is the primary; but S1 hasn't yet heard about the new
 view and thinks it is still primary. Then some clients might talk to
 S1, and others talk to S2, and not see each others' Put()s.
+</p>
 
 <p>
 A server that isn't the active primary should either
 not respond to clients, or respond with an error:
 it should set GetReply.Err or
 PutReply.Err to something other than OK.
+</p>
 
 <p> Clerk.Get(), Clerk.Put(), and Clerk.Append() should only return when they
 have completed the operation. That is, Put()/Append()
@@ -475,7 +449,7 @@ retrieved the current value for the key (if any). Your server must filter out
 the duplicate RPCs that these client re-tries will generate to ensure
 at-most-once semantics for operations.  You can assume that each clerk has only
 one outstanding Put or Get.  Think carefully about what the commit point is for
-a Put.
+a Put.</p>
 
 <p>
 A server should not talk to the viewservice for every Put/Get
@@ -487,6 +461,7 @@ to learn about new views. Similarly, the client Clerk should not
 talk to the viewservice for every RPC it sends; instead, the
 Clerk should cache the current primary, and only talk to the
 viewservice when the current primary seems to be dead.
+</p>
 
 <p>
 Part of your one-primary-at-a-time strategy should rely on the
@@ -498,6 +473,7 @@ view <i>i+1</i>, then it's not acting as primary yet, so
 no harm done. If the backup has heard about view <i>i+1</i>
 and is acting as primary, it knows enough to reject the old
 primary's forwarded client requests.
+</p>
 
 <p>
 You'll need to ensure that the backup sees every update to the
@@ -506,6 +482,7 @@ the complete key/value database and forwarding subsequent
 client operations.
 Your primary should forward just the arguments to each <tt>Append()</tt>
 to the backup; do not forward the resulting value, which might be large.
+</p>
 
 <p>
 The skeleton code for the key/value servers is in <tt>pbservice</tt>.
@@ -528,6 +505,7 @@ to where your <code>${TEAM_NAME}</code> directory is.
 
 <p>
 Here's a recommended plan of attack:
+</p>
 
 <ol>
 <li>
@@ -632,26 +610,31 @@ You're done if you can pass all the <tt>pbservice</tt> tests:
 Hint: you'll probably need to create new RPCs to forward client
 requests from primary to backup, since the backup should reject
 a direct client request but should accept a forwarded request.
+</p>
 
 <p>
 Hint: you'll probably need to create new RPCs to handle the transfer
 of the complete key/value database from the primary to a new backup.
 You can send the whole database in one RPC (for example,
 include a <tt>map[string]string</tt> in the RPC arguments).
+</p>
 
 <p>
 Hint: the state to filter duplicates must be replicated along with the key/value
 state.
+</p>
 
 <p>
 Hint: the tester arranges for RPC replies to be lost in tests whose
 description includes "unreliable". This will cause RPCs to be executed
 by the receiver, but since the sender sees no reply, it cannot
 tell whether the server executed the RPC.
+</p>
 
 <p>
 Hint: some tests involve multiple clients trying to update the same key concurrently.
-You should make sure that the order of these updates is the same in both the primary and the backup
+You should make sure that the order of these updates is the same in both the primary and the backup.
+</p>
 
 <p>
     Hint: you may need to generate numbers that have a high probability of being unique.
@@ -660,15 +643,16 @@ You should make sure that the order of these updates is the same in both the pri
 
 <p>Hint: the tests kill a server by setting its <tt>dead</tt> flag.  You must
 make sure that your server terminates correctly when that flag is set, otherwise
-you may fail to complete the test cases.
+you may fail to complete the test cases.</p>
 
 <p>
 Hint: even if your viewserver passed all the tests in Part A, it
 may still have bugs that cause failures in Part B.
+</p>
 
 <p>
-Hint: study the test cases before you start programming
-
+Hint: study the test cases before you start programming.
+</p>
 
 <h3>Assignment Submission</h3>
 

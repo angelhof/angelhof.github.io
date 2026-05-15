@@ -17,9 +17,9 @@ overview: true
     keys over a set of replica groups. A shard is a subset of the
     key/value pairs; for example, all the keys starting with "a" might be
     one shard, all the keys starting with "b" another, etc. The reason for
-    sharding is performance. Each replica group handles puts and gets for
+    sharding is performance. Each replica group handles Puts and Gets for
     just a few of the shards, and the groups operate in parallel; thus
-    total system throughput (puts and gets per unit time) increases in
+    total system throughput (Puts and Gets per unit time) increases in
     proportion to the number of groups.
 
 </p>
@@ -55,7 +55,7 @@ overview: true
     must agree on whether the Put occurred before or after the
     reconfiguration. If before, the Put should take effect and the new
     owner of the shard will see its effect; if after, the Put won't take
-    effect and client must re-try at the new owner. The recommended approach
+    effect and the client must re-try at the new owner. The recommended approach
     is to have each replica group use Paxos to log not just the sequence
     of Puts, Appends, and Gets, but also the sequence of reconfigurations.
 </p>
@@ -86,12 +86,12 @@ overview: true
 
 <h3>Getting the Skeleton Code</h3>
 <p>
-    You will be reusing the same skeleton code as Assignment 2 & 3, and will be reusing <code>paxos.go</code>.
+    You will be reusing the same skeleton code as Assignments 2 & 3, and will be reusing <code>paxos.go</code>.
 </p>
 
 <h3>Getting started</h3>
 <p>
-    Assuming that you are in <code>${TEAM_NAME}</code> directory, proceed to running the code:
+    Assuming that you are in the <code>${TEAM_NAME}</code> directory, proceed to running the code:
 </p>
 <pre>
 $ cd shardmaster
@@ -110,7 +110,7 @@ Test: Query() returns latest configuration ...
 --- FAIL: TestFreshQuery (0.00s)
 FAIL
 exit status 1
-FAIL	cs134-kv/shardmaster	0.273s
+FAIL    cs134-kv/shardmaster    0.273s
 </pre>
 <p>
     Ignore the large number of "type Paxos
@@ -152,7 +152,7 @@ Test: Query() returns latest configuration ...
   ... Passed
 --- PASS: TestFreshQuery (0.04s)
 PASS
-ok  	cs134-kv/shardmaster	1.839s
+ok      cs134-kv/shardmaster    1.839s
 </pre>
 
 <p>
@@ -179,7 +179,7 @@ ok  	cs134-kv/shardmaster	1.839s
     You do need to detect duplicate client RPCs to the shardkv service
     in Part B. Please make sure that your scheme for duplicate detection
     frees server memory quickly, for example by having the client tell the
-    servers which RPCs it has heard a reply for. It's OK to piggyback this
+    servers which RPCs it has heard a reply for. It's ok to piggyback this
     information on the next client request.
 </p>
 <p>
@@ -270,7 +270,7 @@ ok  	cs134-kv/shardmaster	1.839s
     You are allowed to assume that a majority of servers in each Paxos
     replica group are alive and can talk to each other, can talk to a
     majority of the <tt>shardmaster</tt> servers, and can talk to a majority of
-    each other replica group. Your implementation must operate (serve
+    the servers in each other replica group. Your implementation must operate (serve
     requests and be able to re-configure as needed) if a minority of
     servers in some replica group(s) are dead, temporarily unavailable, or
     slow.
@@ -310,7 +310,7 @@ Test: Concurrent Put/Get/Move (unreliable) ...
   ... Passed
 --- PASS: TestConcurrentUnreliable (8.41s)
 PASS
-ok  	cs134-kv/shardkv	40.206s
+ok      cs134-kv/shardkv    40.206s
 </pre>
 
 <p>
@@ -358,19 +358,19 @@ ok  	cs134-kv/shardkv	40.206s
     Hint: You must call px.Done() to let Paxos free old parts of its log.
 </p>
 <p>
-    Hint: When the test fails, <b>check for gob error (e.g. "rpc: writing
+    Hint: When the test fails, <b>check for gob errors (e.g. "rpc: writing
         response: gob: type not registered for interface ...") in the log </b>
-    because go doesn't consider the error fatal, although it is fatal for this assignment.
+    because Go doesn't consider the error fatal, although it is fatal for this assignment.
 </p>
 <p>
-    Hint: Be careful about implementing at-most-once semantic for RPC. When a
-    server sends shards to another, the server needs to send the clients state as
-    well. Think about how the receiver of the shards should update its own clients
-    state. Is it ok for the receiver to replace its clients state with the received
+    Hint: Be careful about implementing at-most-once semantics for RPC. When a
+    server sends shards to another, the server needs to send the clients' state as
+    well. Think about how the receiver of the shards should update its own clients'
+    state. Is it ok for the receiver to replace its clients' state with the received
     one?
 </p>
 <p>
-    Hint: Think about how should the shardkv client and server deal with
+    Hint: Think about how the shardkv client and server should deal with
     ErrWrongGroup. Should the client change the sequence number if it receives
     ErrWrongGroup? Should the server update the client state if it returns
     ErrWrongGroup when executing a Get/Put request?
@@ -381,8 +381,8 @@ ok  	cs134-kv/shardkv	40.206s
     implementation.
 </p>
 <p>
-    Hint: Think about when it is ok for a server to give shards to the other
-    server during view change.
+    Hint: Think about when it is ok for a server to give shards to another
+    server during a view change.
 </p>
 <p>
     Hint: When debugging, don't discount your <code>paxos.go</code> code! Occasionally,
@@ -395,7 +395,7 @@ ok  	cs134-kv/shardkv	40.206s
 <p>
     To submit the assignment, please push your final code into your team's repository.
     Then use Gradescope to turn in your assignment from GitHub. Remember to add your teammate
-    to your Gradescope submission, and to create a <strong>ai-usage-4.txt</strong> file with your AI usage for assignment 4.
+    to your Gradescope submission, and to create an <strong>ai-usage-4.txt</strong> file with your AI usage for assignment 4.
 </p>
 
 <h3>Gradescope Autograder</h3>
