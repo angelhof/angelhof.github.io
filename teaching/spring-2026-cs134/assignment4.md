@@ -179,7 +179,7 @@ ok      cs134-kv/shardmaster    1.839s
     You do need to detect duplicate client RPCs to the shardkv service
     in Part B. Please make sure that your scheme for duplicate detection
     frees server memory quickly, for example by having the client tell the
-    servers which RPCs it has heard a reply for. It's OK to piggyback this
+    servers which RPCs it has heard a reply for. It's ok to piggyback this
     information on the next client request.
 </p>
 <p>
