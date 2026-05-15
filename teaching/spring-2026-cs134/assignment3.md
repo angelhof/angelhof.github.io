@@ -408,7 +408,7 @@ else
     written by the most recent Clerk.Put() or Clerk.Append() (in that order) to the same key. One
     consequence of this is that you must ensure that each application call to
     Clerk.Put() or Clerk.Append()
-    appears in that order just once (i.e., write the key/value
+    is executed in that order just once (i.e., write the key/value
     database just once), even though internally your <tt>client.go</tt> may have to
     send RPCs multiple times until it finds a kvpaxos server
     replica that replies.
