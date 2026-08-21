@@ -142,35 +142,28 @@ Here is a tentative paper list:
 <h4>Programmability and Language Design</h4>
 
 <p class="homepage">
-What kind of features do we want in a language for writing effectful programs in the context of LLM agents? Do we want a complex language like real-world Python or Shell? Or do we want no language at all? Some example papers we will cover: React, SGLang, Smoosh, CaMeL.
+What kind of features do we want in a language for writing effectful programs in the context of LLM agents? Do we want a complex language like real-world Python or Shell? Or do we want no language at all? 
+<!-- Some example papers we will cover: React, SGLang, Smoosh, CaMeL. -->
 </p>
 
-<!-- <ul>
-    <li><a href="https://dl.acm.org/doi/10.1145/3447786.3456228">PaSh: light-touch data-parallel shell processing (EuroSys 21)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3341301.3359652">Optimizing Data-Intensive Computations in Existing Libraries with Split Annotations (SOSP 19)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3314221.3314586">Ignis: Scaling Distribution-Oblivious Systems with Light-Touch Distribution (PLDI 19)</a></li>
-    <li><a href="https://www.usenix.org/conference/osdi22/presentation/kallas"> Practically Correct, Just-in-Time Shell Script Parallelization (OSDI 22)</a></li>
-</ul> -->
+<ul>
+    <li><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 23)</a></li>
+    <li><a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/724be4472168f31ba1c9ac630f15dec8-Paper-Conference.pdf">SGLang: Efficient Execution of Structured Language Model Programs (NeurIPS 24)</a></li>
+    <li><a href="https://dl.acm.org/doi/10.1145/3371111">Smoosh: Executable Formal Semantics for the POSIX Shell (POPL 20)</a></li>
+    <li><a href="https://arxiv.org/abs/2503.18813">CaMeL: Defeating Prompt Injections by Design (arXiv 25)</a></li>
+</ul>
 
 
 <h4>Integrating Black-box external components</h4>
 
 <p class="homepage">
-How do we integrate external components like Unix utilities and networked services? How can we reason about these components? Do we reimplement them internally? If not, how do we determine their behaviors? What is an abstraction for this? Example papers we will read: Harp, 
-<!-- https://shenjiasi.com/assets/ccs21-harp.pdf -->
-Caruca,
-and Synthesis from Partial Traces. 
-<!-- https://dl.acm.org/doi/10.1145/3729316 -->
-</p>
+How do we integrate external components like Unix utilities and networked services? How can we reason about these components? Do we reimplement them internally? If not, how do we determine their behaviors? What is an abstraction for this? 
 
-<!-- 
 <ul>
-    <li><a href="https://dl.acm.org/doi/10.1145/3448016.3457244">Tuplex: Data Science in Python at Native Code Speed (SIGMOD 21)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3689737">HiPy: Extracting High-Level Semantics from Python Code for Data Processing (OOPSLA 24)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3620665.3640366">PyTorch 2: Faster Machine Learning Through Dynamic Python Bytecode Transformation and Graph Compilation (ASPLOS 24)</a></li>
-    <li><a href="https://sbaziotis.com/papers/dias.pdf">Dias: Dynamic Rewriting of Pandas Code (SIGMOD 24)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3676642.3736129">λ-trim: Optimizing Function Initialization in Serverless Applications With Cost-driven Debloating (ASPLOS 25)</a></li>
-</ul> -->
+    <li><a href="https://shenjiasi.com/assets/ccs21-harp.pdf">Harp: Supply-Chain Vulnerability Elimination via Active Learning and Regeneration (CCS 21)</a></li>
+    <li><a href="https://arxiv.org/abs/2510.14279">Caruca: Effective and Efficient Specification Mining for Opaque Software Components (arXiv 25)</a></li>
+    <li><a href="https://dl.acm.org/doi/10.1145/3729316">Program Synthesis from Partial Traces (PLDI 25)</a></li>
+</ul>
 
 
 <!-- 
@@ -182,18 +175,18 @@ and Synthesis from Partial Traces.
 <h4>Specification inference and correctness checking</h4>
 
 <p class="homepage">
-What is the best way to generate specifications that capture the user intent? Do we aim for full or partial specifications? Do we expect users to write assertions or do we expect them to use templates? Can we infer specifications automatically? Given the specifications, how do we check that they are satisfied? Ahead of time or at runtime? Example papers we will read: AgentPex,
+What is the best way to generate specifications that capture the user intent? Do we aim for full or partial specifications? Do we expect users to write assertions or do we expect them to use templates? Can we infer specifications automatically? Given the specifications, how do we check that they are satisfied? Ahead of time or at runtime? 
+<!-- Example papers we will read: AgentPex,
 Conseca,
 SaSh,
-try.
+try. -->
 </p>
-<!-- 
 <ul>
-    <li><a href="https://www.usenix.org/conference/osdi23/presentation/berger">Triangulating Python Performance Issues with SCALENE (OSDI 23)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3510003.3510144">Nalin: learning from runtime behavior to find name-value inconsistencies in jupyter notebooks (ICSE 22)</a></li>
-    <li><a href="https://andrewhead.info/assets/pdf/bolt-on-slicing.pdf">Bolt-on, Compact, and Rapid Program Slicing for Notebooks (VLDB 2023)</a></li>
-    <li><a href="https://www.vldb.org/pvldb/vol18/p970-li.pdf">Kishu: Time-Traveling for Computational Notebooks (VLDB 2025)</a></li>
-</ul> -->
+    <li><a href="https://dl.acm.org/doi/10.1145/3786335.3813153">AgentPex &mdash; Willful Disobedience: Automatically Detecting Failures in Agentic Traces (CAIS 26)</a></li>
+    <li><a href="https://dl.acm.org/doi/10.1145/3713082.3730378">Conseca &mdash; Contextual Agent Security: A Policy for Every Purpose (HotOS 25)</a></li>
+    <li><a href="https://atlas.cs.brown.edu/pdf/sash:sosp:2026.pdf">SaSh: Ahead-of-time Analysis of Shell Program Effects (SOSP 26)</a></li>
+    <li><a href="https://www.usenix.org/conference/osdi26/presentation/lamprou">Controlling Opaque-Component Effects with Semisolates and Try (OSDI 26)</a></li>
+</ul>
 
     
 
@@ -201,17 +194,16 @@ try.
 
 <p class="homepage">
 What are the relevant tasks, benchmarks, and workloads that we can use to evaluate an effectful program development framework? 
-Example papers we will read:
+<!-- Example papers we will read:
 OSWorld,
 TerminalBench,
-tau^2 bench.
+tau^2 bench. -->
 </p>
 
-<!-- <ul>
-    <li><a href="https://dl.acm.org/doi/10.1145/3477132.3483540">Using Lightweight Formal Methods to Validate a Key-Value Storage Node in Amazon S3 (SOSP 21)</a></li>
-    <li><a href="https://www.usenix.org/conference/osdi22/presentation/huang-lexiang">Metastable Failures in the Wild (OSDI 22)</a></li>
-    <li><a href="https://dl.acm.org/doi/10.1145/3600006.3613161">Acto: Automatic End-to-End Testing for Operation Correctness of Cloud System Management (SOSP 23)</a></li>
-    <li><a href="https://www.usenix.org/conference/nsdi23/presentation/chen-yinfang">Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker (NSDI 23)</a></li>
-</ul> -->
+<ul>
+    <li><a href="https://arxiv.org/abs/2404.07972">OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments (NeurIPS 24)</a></li>
+    <li><a href="https://arxiv.org/abs/2601.11868">Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces (arXiv 26)</a></li>
+    <li><a href="https://arxiv.org/abs/2506.07982">&tau;&sup2;-Bench: Evaluating Conversational Agents in a Dual-Control Environment (arXiv 25)</a></li>
+</ul>
 
 
