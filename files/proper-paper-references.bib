@@ -1,3 +1,21 @@
+@inproceedings{sash2026sosp,
+author = {Lazarek, Lukas and Lamprou, Evangelos and Kapetanakis, George and Narsipur, Anirudh and Zhao, Eric and Zheng, Zhiwen and Greenberg, Michael and Kallas, Konstantinos and Vasilakis, Nikos},
+title = {Ahead-of-Time Analysis of Shell Program Effects},
+year = {2026},
+isbn = {9798400725852},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3830418.3843861},
+doi = {10.1145/3830418.3843861},
+abstract = {The Unix shell remains a core system substrate across system administration, automation, and software development. Shell programs, however, are prone to subtle, severe, and often irreversible effects that are difficult to predict. The challenge stems from the shell's unique execution model, its reliance on external computation and state, its highly dynamic expansion semantics, and the complex interactions among these features. This paper presents SaSh, a system that statically analyzes shell programs to identify errors in their execution before they occur. SaSh introduces an optimistic symbolic execution engine for shell programs that limits path explosion and focuses on high-impact failures. It tracks the effects of external commands over a filesystem model, and approximates shell word expansion using a tailored abstract domain. SaSh quickly identifies bugs even in large programs with a risk-directed exploration strategy, steering its analysis to program fragments likely to exhibit dangerous behavior. Applied to 61 buggy programs, including several high-profile disasters, SaSh identifies all but one instance of unwanted behavior with no false positives, going far beyond the current state-of-the-art. Furthermore, SaSh has already yielded 104 new bug reports in 50 open-source projects such as PyTorch, the P4 compiler, Kubernetes, and vLLM, including bugs that can lead to irreversible data loss.},
+booktitle = {Proceedings of the ACM SIGOPS 32nd Symposium on Operating Systems Principles},
+pages = {932--954},
+numpages = {23},
+keywords = {shell, static analysis, symbolic execution, program effects},
+location = {Prague, Czech Republic},
+series = {SOSP '26}
+}
+
 @inproceedings{hs2026osdi,
   title={{hS: Speculative Script Reordering at Subprocess Granularity}},
   author={Liargkovas, Georgios and Jin, Di and Zhu, Tianyu (Ezri) and Liu, Dan and Thompson, A. Bolun and Narsipur, Anirudh and Jung, Seong-Heon and Prasad, Siddhartha and Spinellis, Diomidis and Greenberg, Michael and Kallas, Konstantinos and Vasilakis, Nikos},
