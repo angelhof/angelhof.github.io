@@ -197,8 +197,9 @@ def generate_indexed_paper_html(entry):
 
 def generate_indexed_papers_html(entries, _counter):
     categories = {
+        "shell-correctness": "Correctness, Security, and Privacy of Effectful Tasks",
         "python": "Optimization of Python Applications",
-        "shell": "Compilers and Systems for Shell Scripts",
+        "shell": "Compilers and Systems for Shell Script Performance",
         "cloud": "Cloud Software Systems",
     }
     category_papers = {}
