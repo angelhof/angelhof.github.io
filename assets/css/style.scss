@@ -188,3 +188,10 @@ header div.profile-pic-button {
         height: 160px;
     }
 }
+
+/* Layout for pages that drop the sidebar (see the "plain" layout):
+   the content spans the full page width. */
+section.plain {
+    width: auto;
+    float: none;
+}
